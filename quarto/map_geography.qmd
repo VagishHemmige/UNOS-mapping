@@ -3,7 +3,7 @@ title: "1. Map geography"
 format: html
 ---
 
-This script builds the map layers every study shares: states with their UNOS region, region outlines, region numbers, adult heart-transplant centers and the extent of the Northeast inset.
+This script builds the map layers every study shares: states with their UNOS region, region outlines, region numbers, adult heart-transplant centers and the extent of the corridor inset.
 
 ::: {.Rcode title="Source code"}
 The full R script is available at:
@@ -54,11 +54,11 @@ The layer shows centers as they are on the day the code runs, not as they were d
 #| eval: false
 ```
 
-## The Northeast inset
+## The corridor inset
 
-The inset shows the bounding box of Regions 1, 2 and 9, from Maine to West Virginia.
+The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in `R/setup.R`, which is easier to read and change than projected coordinates. Here it is turned into a box in `map_crs`. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off.
 
 ```{r}
-#| label: northeast-inset
+#| label: corridor-inset
 #| eval: false
 ```

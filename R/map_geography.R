@@ -1,9 +1,9 @@
 # Purpose: build the map layers every study shares: state polygons with their
 # UNOS region, region outlines, region label points, adult heart-transplant
-# centers, and the Northeast inset extent. All layers use map_crs.
+# centers, and the extent of the corridor inset. All layers use map_crs.
 # Needs: setup.R, functions.R. Downloads the HRSA center layer (public).
 # Produces: region_states, region_outlines, region_labels, heart_centers,
-#   northeast_bbox.
+#   corridor_bbox.
 
 ## ---- region-geography
 # State polygons tagged with UNOS region, built into sRtr. These replace the
@@ -32,8 +32,11 @@ heart_centers <- get_hrsa_transplant_centers() |>
     crs = map_crs
   )
 
-## ---- northeast-inset
-# Extent of the Northeast regions, enlarged in the tmap inset
-northeast_bbox <- region_outlines |>
-  filter(Region %in% northeast_regions) |>
+## ---- corridor-inset
+# The corridor extent, given in longitude and latitude, as a box in map_crs.
+# The box is projected as a polygon, then its bounding box taken, so the
+# inset covers the whole corridor after projection.
+corridor_bbox <- st_bbox(corridor_extent, crs = 4326) |>
+  st_as_sfc() |>
+  st_transform(map_crs) |>
   st_bbox()

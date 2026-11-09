@@ -22,7 +22,7 @@ knitr::read_chunk("../R/setup.R")
 
 ## Packages
 
-[sRtr](https://github.com/VagishHemmige/sRtr) supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed [@srtr_package]. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with a Northeast inset. colorspace provides the `OrYel` palette the published maps used.
+[sRtr](https://github.com/VagishHemmige/sRtr) supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed [@srtr_package]. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with an inset of the Washington-Boston corridor. colorspace provides the `OrYel` palette the published maps used.
 
 ```{r}
 #| label: load-packages
@@ -32,7 +32,7 @@ knitr::read_chunk("../R/setup.R")
 ## Constants
 
 - `map_crs` is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.
-- `northeast_regions` are the regions enlarged in the inset.
+- `corridor_extent` is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.
 - `adult_center_exceptions` are the two centers with "Children" in their name that the original maps kept because they also transplant adults.
 - There is no data path: each study's regional counts are written out in its own script.
 

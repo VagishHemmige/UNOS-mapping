@@ -43,7 +43,7 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/dcd/`.
+For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/dcd/`.
 
 The original RMD repeated the same two plotting blocks four times, once per measure, changing only the column and the legend. Here a named vector pairs each column with its legend, and one loop draws them all. A fifth measure needs one more line, not two more blocks.
 

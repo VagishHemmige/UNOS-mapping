@@ -51,9 +51,9 @@ This replaces the original maps' `geom_sf()` calls with two changes. First, the 
 #| eval: false
 ```
 
-## The map, in tmap, with a Northeast inset
+## The map, in tmap, with a corridor inset
 
-The New England and Mid-Atlantic states are small and their transplant centers crowd together. tmap's `tm_inset()` draws the same map again, enlarged to the extent of the Northeast regions, in a corner of the main map, and outlines that extent on the main map.
+Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. tmap's `tm_inset()` draws the same map again, enlarged to that corridor, and outlines that extent on the main map. `tm_pos_out()` places the inset outside the map frame, to the right, and the legend along the bottom, so neither hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (`rev = TRUE`) so that high values get the dark end, as they do in `scale_fill_continuous_sequential()`.
 
 ```{r}
 #| label: map-regions-tmap

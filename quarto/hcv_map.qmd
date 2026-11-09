@@ -43,7 +43,7 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/hcv/`.
+For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/hcv/`.
 
 This was the first of these maps, and the later RMDs copied its code. Compared with the original, everything that set up the geography is gone from this script: it is in [Map geography](map_geography.qmd), shared by every study.
 

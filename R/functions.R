@@ -71,19 +71,25 @@ map_regions_ggplot <- function(region_states, region_outlines, region_labels,
 }
 
 ## ---- map-regions-tmap
-# The same map in tmap, with the Northeast enlarged in an inset so its small
-# states and crowded centers can be read.
+# The same map in tmap, with the Washington-Boston corridor enlarged in an
+# inset so its crowded centers can be read.
 map_regions_tmap <- function(region_states, region_outlines, region_labels,
                              fill_var, legend_title, centers = NULL,
                              inset_bbox, palette, na_fill) {
   region_map <- tm_shape(region_states) +
     tm_polygons(
       fill = fill_var,
+      # rev = TRUE puts the dark end of the palette on high values, matching
+      # scale_fill_continuous_sequential() in the ggplot2 maps
       fill.scale = tm_scale_continuous(
-        values = sequential_hcl(7, palette = palette),
+        values = sequential_hcl(7, palette = palette, rev = TRUE),
         value.na = na_fill
       ),
-      fill.legend = tm_legend(title = legend_title),
+      fill.legend = tm_legend(
+        title = legend_title,
+        orientation = "landscape",
+        position = tm_pos_out("center", "bottom")
+      ),
       col = "grey55",
       lwd = 0.5
     ) +
@@ -99,7 +105,14 @@ map_regions_tmap <- function(region_states, region_outlines, region_labels,
   }
 
   region_map +
-    tm_inset(inset_bbox, position = c("right", "bottom"), width = 14, height = 14) +
+    # The inset sits outside the map frame, to the right, so it hides nothing
+    # on the main map; the legend runs along the bottom
+    tm_inset(
+      inset_bbox,
+      position = tm_pos_out("right", "center"),
+      width = 16,
+      height = 16
+    ) +
     tm_layout(frame = FALSE)
 }
 

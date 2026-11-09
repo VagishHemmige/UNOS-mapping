@@ -47,7 +47,7 @@ for (measure in names(evmp_measures)) {
     fill_var = measure,
     legend_title = evmp_measures[[measure]],
     centers = heart_centers,
-    inset_bbox = northeast_bbox,
+    inset_bbox = corridor_bbox,
     palette = fill_palette,
     na_fill = missing_fill
   )

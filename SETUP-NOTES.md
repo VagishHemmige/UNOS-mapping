@@ -5,7 +5,7 @@ Non-sensitive setup decisions and open items for this repository. Open decisions
 ## Decided at setup (2026-11-09)
 
 - One repository and one Quarto website, with one code page per study and one shared page for the map layers.
-- Every map uses sRtr for region geography and transplant centers, every layer is projected to EPSG:5070 before plotting, and each map is drawn with ggplot2 and with tmap (Northeast inset).
+- Every map uses sRtr for region geography and transplant centers, every layer is projected to EPSG:5070 before plotting, and each map is drawn with ggplot2 and with tmap (inset of the Washington-Boston corridor, as Vagish Hemmige asked on 2026-11-09).
 - The Chagas map is not included yet: its study is not yet published.
 - The regional summaries and maps are public. Vagish Hemmige, 2026-11-09, in a Claude session: "The maps can be published. The raw data is in the papers so that's fair game too." `figures/` is tracked.
 - The regional counts are written out with `tribble()` in each study script instead of read from spreadsheets (Vagish Hemmige, 2026-11-09: "There's very little data in here. Enough you could even define the tibble in the setups"). Percentages are computed from the counts. The typed counts match the supplied spreadsheets exactly, the computed percentages reproduce their percentage columns to four decimals, and the totals match the papers (HCV 109 of 1,322; DCD 87 of 1,581; EVMP 561 of 12,363).
@@ -43,7 +43,7 @@ These change how the maps look, not what they show.
 - [ ] Confirm the deciders and their areas in `AGENTS.md` (Shivank Madan and Vagish Hemmige, as drafted).
 - [ ] Run `R/main.R`, commit `figures/`, and add a Results page showing the maps.
 - [ ] File D2 and D3 as decision issues and replace the `SETUP-NOTES.md` references in the plan and pages with their links.
-- [ ] Run `R/main.R` with tmap 4.x and the HRSA download, which could not be tested during setup (see below), and check the inset maps by eye.
+- [ ] Run `R/main.R` with the live HRSA download (not reachable from the setup session; see below), then commit `figures/`.
 - [ ] Write `ARCHITECTURE.md`.
 - [ ] Maintainer: protect the `main` branch, and turn on GitHub Pages (from `main`, `/docs`) once the first pull request containing `docs/` is merged.
 - [ ] Consider two sRtr issues: `get_hrsa_transplant_centers()` returns one row per center and organ, so callers must de-duplicate; and `get_hrsa_optn_regions()` returns WGS 84 while `UNOS_regions_sf` is EPSG:5070.
@@ -52,4 +52,5 @@ These change how the maps look, not what they show.
 
 - The ggplot2 path ran on the real regional counts, with centers taken from the original HRSA file in place of the live layer: all eleven regions joined, every layer was EPSG:5070, and the HCV and EVMP maps were inspected by eye. From the original file the center rule kept 109 heart centers, the same as the original code; one, in Puerto Rico, fell outside the map, so centers outside the mapped states are now dropped (108 remain).
 - Earlier, the ggplot2 path also ran on synthetic regional values and a synthetic center layer shaped like the HRSA layer (one row per center and organ): all eleven regions joined, all layers were EPSG:5070, duplicate center rows were removed, a missing region stopped the join, and the maps were inspected by eye.
-- Not tested: the tmap maps (tmap could not be installed in the setup environment), and the live HRSA download (not reachable from the setup environment). sRtr was installed for testing without arrow, which the mapping functions do not use.
+- The tmap maps ran with tmap 4.4-1 on the real counts, with centers from the original HRSA file, and were checked by eye. That check found and fixed a reversed colour scale and an inset that covered the middle of the map.
+- Not tested: the live HRSA download (the domain was not reachable from the setup session, even after it was allowed in settings). sRtr was installed for testing without arrow, which the mapping functions do not use.

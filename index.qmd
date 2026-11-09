@@ -9,7 +9,7 @@ A series of heart-transplantation studies from Montefiore and Albert Einstein Co
 
 ## What this site does
 
-It reproduces each study's regional map, and teaches how to draw it with the [sRtr](https://github.com/VagishHemmige/sRtr) package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Northeast enlarged in an inset.
+It reproduces each study's regional map, and teaches how to draw it with the [sRtr](https://github.com/VagishHemmige/sRtr) package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Washington-Boston corridor enlarged in an inset.
 
 ## Methods
 
