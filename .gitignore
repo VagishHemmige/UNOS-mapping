@@ -6,10 +6,10 @@
 .httr-oauth
 .DS_Store
 
-# Quarto. docs/ is the rendered site: keep it tracked when the site is
-# published from docs/; add docs/ here when a GitHub Actions workflow
-# renders and publishes the site instead.
+# Quarto. docs/ is the rendered site, which the publish workflow renders and
+# publishes to the gh-pages branch, so it is not committed.
 /.quarto/
+/docs/
 **/*.quarto_ipynb
 
 # Credentials
@@ -42,6 +42,9 @@
 # Removing them does not track tables saved as .csv or .rds: the data-format
 # patterns above still hide those, so cleared tables need their own exceptions.
 /tables/
+# Maps: drawn by the publish workflow on every push to main and published
+# with the site, so they are not committed. Run R/main.R to draw them locally.
+/figures/
 
 # Approved public files: add narrow exceptions here, never a whole format.
 # Original HRSA transplant-center file used by the published maps (public)
