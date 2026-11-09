@@ -126,15 +126,15 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Results.callout {
-  border-left-color: #198754;
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
 }
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
 }
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 div.callout-Pending.callout {
@@ -148,15 +148,15 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   content: '⏳';
   background-image: none;
 }
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
+div.callout-Results.callout {
+  border-left-color: #198754;
 }
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
 }
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -398,11 +398,11 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#unos-regions" id="toc-unos-regions" class="nav-link active" data-scroll-target="#unos-regions">UNOS regions</a></li>
-  <li><a href="#a-region-level-choropleth" id="toc-a-region-level-choropleth" class="nav-link" data-scroll-target="#a-region-level-choropleth">A region-level choropleth</a></li>
-  <li><a href="#projections" id="toc-projections" class="nav-link" data-scroll-target="#projections">Projections</a></li>
-  <li><a href="#points-not-jitter" id="toc-points-not-jitter" class="nav-link" data-scroll-target="#points-not-jitter">Points, not jitter</a></li>
-  <li><a href="#insets" id="toc-insets" class="nav-link" data-scroll-target="#insets">Insets</a></li>
+  <li><a href="#spatial-data-are-data-frames-with-a-geometry-column" id="toc-spatial-data-are-data-frames-with-a-geometry-column" class="nav-link active" data-scroll-target="#spatial-data-are-data-frames-with-a-geometry-column">Spatial data are data frames with a geometry column</a></li>
+  <li><a href="#coordinate-reference-systems" id="toc-coordinate-reference-systems" class="nav-link" data-scroll-target="#coordinate-reference-systems">Coordinate reference systems</a></li>
+  <li><a href="#a-choropleth-shading-areas-by-a-value" id="toc-a-choropleth-shading-areas-by-a-value" class="nav-link" data-scroll-target="#a-choropleth-shading-areas-by-a-value">A choropleth: shading areas by a value</a></li>
+  <li><a href="#points-on-the-map" id="toc-points-on-the-map" class="nav-link" data-scroll-target="#points-on-the-map">Points on the map</a></li>
+  <li><a href="#tmap-and-insets" id="toc-tmap-and-insets" class="nav-link" data-scroll-target="#tmap-and-insets">tmap and insets</a></li>
   <li><a href="#what-the-result-looks-like" id="toc-what-the-result-looks-like" class="nav-link" data-scroll-target="#what-the-result-looks-like">What the result looks like</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/methodological_background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -435,26 +435,30 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </header>
 
 
-<p>General mapping ideas the code relies on, with nothing specific to one study.</p>
-<section id="unos-regions" class="level2">
-<h2 class="anchored" data-anchor-id="unos-regions">UNOS regions</h2>
-<p>The Organ Procurement and Transplantation Network divides the United States into eleven regions, each a group of states. Several UNOS regions do not follow state lines exactly (for example, parts of a state can belong to a neighbouring region); sRtr assigns each state to a single region, so a state-level map is an approximation at those edges <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>.</p>
+<p>A short introduction to drawing maps in R, enough to follow the code on this site. For a fuller treatment, Kyle Walker’s <em>Analyzing US Census Data</em> is free online <span class="citation" data-cites="walker2023census">(<a href="#ref-walker2023census" role="doc-biblioref">Walker 2023</a>)</span>. Its chapters on <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html">Census geographic data</a>, <a href="https://walker-data.com/census-r/mapping-census-data-with-r.html">mapping</a> and <a href="https://walker-data.com/census-r/spatial-analysis-with-us-census-data.html">spatial analysis</a> cover everything here in more depth, with US examples. The links below point to the relevant sections.</p>
+<section id="spatial-data-are-data-frames-with-a-geometry-column" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-data-are-data-frames-with-a-geometry-column">Spatial data are data frames with a geometry column</h2>
+<p>The sf package stores spatial data as an ordinary data frame with one extra column, <code>geometry</code>, holding a point, line or polygon for each row. So the usual dplyr verbs work on it: <code>filter()</code> keeps some regions, <code>left_join()</code> attaches a table of values, and <code>group_by()</code> with <code>summarise()</code> merges polygons, which is how states become regions. Walker introduces sf objects in <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#understanding-tigris-and-simple-features">§5.1.1</a>.</p>
+<p>On this site, sRtr supplies the sf objects: <code>UNOS_regions_sf</code> (one polygon per state, tagged with its UNOS region), <code>get_hrsa_optn_regions()</code> (one polygon per region) and <code>get_hrsa_transplant_centers()</code> (one point per center and organ) <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. Walker uses the tigris package for Census boundaries in the same way; sRtr’s state polygons come from the same Census cartographic boundary files.</p>
 </section>
-<section id="a-region-level-choropleth" class="level2">
-<h2 class="anchored" data-anchor-id="a-region-level-choropleth">A region-level choropleth</h2>
-<p>When the value being mapped belongs to a region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone.</p>
+<section id="coordinate-reference-systems" class="level2">
+<h2 class="anchored" data-anchor-id="coordinate-reference-systems">Coordinate reference systems</h2>
+<p>Every geometry is stored in a coordinate reference system (CRS). Longitude and latitude are angles, not distances; drawn as if they were x and y, they stretch the United States east to west and make northern states look larger than they are. A projected CRS such as NAD83 / Conus Albers (EPSG:5070) is designed for the contiguous states and keeps areas comparable, which matters when the eye reads shaded area.</p>
+<p>Two habits follow. Transform every layer to the one CRS with <code>sf::st_transform()</code> before combining or plotting them, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them. And set the CRS of the plot itself with <code>coord_sf(crs = ...)</code>. Walker covers both, and how to choose a projection with the crsuggest package, in <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#coordinate-reference-systems">§5.4</a>.</p>
 </section>
-<section id="projections" class="level2">
-<h2 class="anchored" data-anchor-id="projections">Projections</h2>
-<p>Spatial data store positions in a coordinate reference system (CRS). Longitude and latitude are angles, not distances, and drawing them as if they were x and y stretches the United States east to west and makes northern states look larger than they are. An equal-area projection such as NAD83 / Conus Albers (EPSG:5070) keeps areas comparable across the country, which matters when shaded area is what the eye reads. The safest habit is to transform every layer to the one CRS with <code>sf::st_transform()</code> before plotting, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them.</p>
+<section id="a-choropleth-shading-areas-by-a-value" class="level2">
+<h2 class="anchored" data-anchor-id="a-choropleth-shading-areas-by-a-value">A choropleth: shading areas by a value</h2>
+<p>A choropleth shades each area by a value. In ggplot2, <code>geom_sf(aes(fill = value))</code> draws it; a sequential colour scale suits a quantity that runs from low to high. Walker builds one step by step in <a href="https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-ggplot2-and-geom_sf">§6.2</a>, including the <code>theme_void()</code> and <code>labs()</code> calls used here.</p>
+<p>When the value belongs to a UNOS region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone. Several UNOS regions also cross state lines (Northern Virginia is in Region 2, for example); sRtr assigns each state to one region, so the map is an approximation at those edges.</p>
 </section>
-<section id="points-not-jitter" class="level2">
-<h2 class="anchored" data-anchor-id="points-not-jitter">Points, not jitter</h2>
-<p>Jittering adds random noise to positions so that overlapping points separate. On a map it moves each place somewhere it is not. Drawing points at their true positions, partly transparent, and enlarging crowded areas in an inset shows overlap honestly.</p>
+<section id="points-on-the-map" class="level2">
+<h2 class="anchored" data-anchor-id="points-on-the-map">Points on the map</h2>
+<p>Transplant centers are points. Drawn with <code>geom_sf()</code> at their true locations, partly transparent, they show where programs are and where they cluster. The original maps used <code>geom_jitter()</code>, which separates overlapping points by moving each one randomly, so no center is where it should be.</p>
 </section>
-<section id="insets" class="level2">
-<h2 class="anchored" data-anchor-id="insets">Insets</h2>
-<p>An inset repeats part of the map at a larger scale in a corner of the figure. In the Northeast, small states and many centers close together make the main map hard to read; an inset of Regions 1, 2 and 9 makes them legible without shrinking the rest of the country.</p>
+<section id="tmap-and-insets" class="level2">
+<h2 class="anchored" data-anchor-id="tmap-and-insets">tmap and insets</h2>
+<p>tmap is a second mapping package, built for thematic maps; Walker introduces it in <a href="https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-tmap">§6.3</a>. His examples use tmap 3. This site uses tmap 4, whose syntax changed: <code>tm_polygons(fill = ...)</code> with <code>fill.scale</code> and <code>fill.legend</code> replaces arguments such as <code>col</code>, <code>style</code> and <code>palette</code>. The <a href="https://r-tmap.github.io/tmap/">tmap website</a> documents version 4.</p>
+<p>An inset repeats part of the map at a larger scale in a corner. In the Northeast, small states and many centers close together make the main map hard to read; tmap’s <code>tm_inset()</code> draws Regions 1, 2 and 9 enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris’s <code>shift_geometry()</code> in <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping">§5.5.1</a>; the maps here leave those places out, as the published maps did.</p>
 </section>
 <section id="what-the-result-looks-like" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-result-looks-like">What the result looks like</h2>
@@ -474,6 +478,9 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-srtr_package" class="csl-entry" role="listitem">
 Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRtr</span>: Tools for Working with <span>UNOS</span> <span>SRTR</span> Transplant Data in <span>R</span>.”</span> <a href="https://github.com/VagishHemmige/sRtr" class="uri">https://github.com/VagishHemmige/sRtr</a>.
+</div>
+<div id="ref-walker2023census" class="csl-entry" role="listitem">
+Walker, Kyle E. 2023. <em>Analyzing <span>US</span> Census Data: Methods, Maps, and Models in <span>R</span></em>. Chapman &amp; Hall/CRC the r Series. CRC Press. <a href="https://walker-data.com/census-r/">https://walker-data.com/census-r/</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -943,31 +950,39 @@ Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRt
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>General mapping ideas the code relies on, with nothing specific to one study.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>A short introduction to drawing maps in R, enough to follow the code on this site. For a fuller treatment, Kyle Walker's *Analyzing US Census Data* is free online <span class="co">[</span><span class="ot">@walker2023census</span><span class="co">]</span>. Its chapters on <span class="co">[</span><span class="ot">Census geographic data</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html)</span>, <span class="co">[</span><span class="ot">mapping</span><span class="co">](https://walker-data.com/census-r/mapping-census-data-with-r.html)</span> and <span class="co">[</span><span class="ot">spatial analysis</span><span class="co">](https://walker-data.com/census-r/spatial-analysis-with-us-census-data.html)</span> cover everything here in more depth, with US examples. The links below point to the relevant sections.</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## UNOS regions</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spatial data are data frames with a geometry column</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The Organ Procurement and Transplantation Network divides the United States into eleven regions, each a group of states. Several UNOS regions do not follow state lines exactly (for example, parts of a state can belong to a neighbouring region); sRtr assigns each state to a single region, so a state-level map is an approximation at those edges <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The sf package stores spatial data as an ordinary data frame with one extra column, <span class="in">`geometry`</span>, holding a point, line or polygon for each row. So the usual dplyr verbs work on it: <span class="in">`filter()`</span> keeps some regions, <span class="in">`left_join()`</span> attaches a table of values, and <span class="in">`group_by()`</span> with <span class="in">`summarise()`</span> merges polygons, which is how states become regions. Walker introduces sf objects in <span class="co">[</span><span class="ot">§5.1.1</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#understanding-tigris-and-simple-features)</span>.</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## A region-level choropleth</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>On this site, sRtr supplies the sf objects: <span class="in">`UNOS_regions_sf`</span> (one polygon per state, tagged with its UNOS region), <span class="in">`get_hrsa_optn_regions()`</span> (one polygon per region) and <span class="in">`get_hrsa_transplant_centers()`</span> (one point per center and organ) <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. Walker uses the tigris package for Census boundaries in the same way; sRtr's state polygons come from the same Census cartographic boundary files.</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>When the value being mapped belongs to a region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coordinate reference systems</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Projections</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Every geometry is stored in a coordinate reference system (CRS). Longitude and latitude are angles, not distances; drawn as if they were x and y, they stretch the United States east to west and make northern states look larger than they are. A projected CRS such as NAD83 / Conus Albers (EPSG:5070) is designed for the contiguous states and keeps areas comparable, which matters when the eye reads shaded area.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Spatial data store positions in a coordinate reference system (CRS). Longitude and latitude are angles, not distances, and drawing them as if they were x and y stretches the United States east to west and makes northern states look larger than they are. An equal-area projection such as NAD83 / Conus Albers (EPSG:5070) keeps areas comparable across the country, which matters when shaded area is what the eye reads. The safest habit is to transform every layer to the one CRS with <span class="in">`sf::st_transform()`</span> before plotting, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Two habits follow. Transform every layer to the one CRS with <span class="in">`sf::st_transform()`</span> before combining or plotting them, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them. And set the CRS of the plot itself with <span class="in">`coord_sf(crs = ...)`</span>. Walker covers both, and how to choose a projection with the crsuggest package, in <span class="co">[</span><span class="ot">§5.4</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#coordinate-reference-systems)</span>.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Points, not jitter</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## A choropleth: shading areas by a value</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Jittering adds random noise to positions so that overlapping points separate. On a map it moves each place somewhere it is not. Drawing points at their true positions, partly transparent, and enlarging crowded areas in an inset shows overlap honestly.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>A choropleth shades each area by a value. In ggplot2, <span class="in">`geom_sf(aes(fill = value))`</span> draws it; a sequential colour scale suits a quantity that runs from low to high. Walker builds one step by step in <span class="co">[</span><span class="ot">§6.2</span><span class="co">](https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-ggplot2-and-geom_sf)</span>, including the <span class="in">`theme_void()`</span> and <span class="in">`labs()`</span> calls used here.</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Insets</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>When the value belongs to a UNOS region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone. Several UNOS regions also cross state lines (Northern Virginia is in Region 2, for example); sRtr assigns each state to one region, so the map is an approximation at those edges.</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>An inset repeats part of the map at a larger scale in a corner of the figure. In the Northeast, small states and many centers close together make the main map hard to read; an inset of Regions 1, 2 and 9 makes them legible without shrinking the rest of the country.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Points on the map</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the result looks like</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Transplant centers are points. Drawn with <span class="in">`geom_sf()`</span> at their true locations, partly transparent, they show where programs are and where they cluster. The original maps used <span class="in">`geom_jitter()`</span>, which separates overlapping points by moving each one randomly, so no center is where it should be.</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="al">![The ggplot2 version of a region map, drawn from **synthetic values**, not study results, with synthetic center locations. The Northeast is crowded, which is what the tmap inset addresses.](../images/synthetic_region_map.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots and small states in the Northeast crowd together."}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## tmap and insets</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>tmap is a second mapping package, built for thematic maps; Walker introduces it in <span class="co">[</span><span class="ot">§6.3</span><span class="co">](https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-tmap)</span>. His examples use tmap 3. This site uses tmap 4, whose syntax changed: <span class="in">`tm_polygons(fill = ...)`</span> with <span class="in">`fill.scale`</span> and <span class="in">`fill.legend`</span> replaces arguments such as <span class="in">`col`</span>, <span class="in">`style`</span> and <span class="in">`palette`</span>. The <span class="co">[</span><span class="ot">tmap website</span><span class="co">](https://r-tmap.github.io/tmap/)</span> documents version 4.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>An inset repeats part of the map at a larger scale in a corner. In the Northeast, small states and many centers close together make the main map hard to read; tmap's <span class="in">`tm_inset()`</span> draws Regions 1, 2 and 9 enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris's <span class="in">`shift_geometry()`</span> in <span class="co">[</span><span class="ot">§5.5.1</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping)</span>; the maps here leave those places out, as the published maps did.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the result looks like</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="al">![The ggplot2 version of a region map, drawn from **synthetic values**, not study results, with synthetic center locations. The Northeast is crowded, which is what the tmap inset addresses.](../images/synthetic_region_map.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots and small states in the Northeast crowd together."}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

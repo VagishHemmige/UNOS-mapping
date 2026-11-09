@@ -34,7 +34,7 @@ Four documents describe the project. In short: the plan is the scientific intent
 ## Pages
 
 -   [**Clinical background**](background.qmd): the three studies and why each mapped regional variation.
--   [**Methodological background**](methodological_background.qmd): UNOS regions, region-level shading, projections, jitter and insets.
+-   [**Methodological background**](methodological_background.qmd): an introduction to mapping in R (sf, projections, choropleths, tmap and insets), pointing to Walker's *Analyzing US Census Data*.
 -   [**Study design and methods**](study_methods.qmd): what the maps show and the choices behind them, in plain language.
 -   [**Setup**](setup.qmd): packages and shared constants.
 -   [**Functions**](functions.qmd): reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.

@@ -433,62 +433,62 @@
     "href": "quarto/methodological_background.html",
     "title": "Methodological background",
     "section": "",
-    "text": "General mapping ideas the code relies on, with nothing specific to one study.",
+    "text": "A short introduction to drawing maps in R, enough to follow the code on this site. For a fuller treatment, Kyle Walker’s Analyzing US Census Data is free online (Walker 2023). Its chapters on Census geographic data, mapping and spatial analysis cover everything here in more depth, with US examples. The links below point to the relevant sections.",
     "crumbs": [
       "Background",
       "Methodological background"
     ]
   },
   {
-    "objectID": "quarto/methodological_background.html#unos-regions",
-    "href": "quarto/methodological_background.html#unos-regions",
+    "objectID": "quarto/methodological_background.html#spatial-data-are-data-frames-with-a-geometry-column",
+    "href": "quarto/methodological_background.html#spatial-data-are-data-frames-with-a-geometry-column",
     "title": "Methodological background",
-    "section": "UNOS regions",
-    "text": "UNOS regions\nThe Organ Procurement and Transplantation Network divides the United States into eleven regions, each a group of states. Several UNOS regions do not follow state lines exactly (for example, parts of a state can belong to a neighbouring region); sRtr assigns each state to a single region, so a state-level map is an approximation at those edges (Hemmige and Czeresnia 2026).",
+    "section": "Spatial data are data frames with a geometry column",
+    "text": "Spatial data are data frames with a geometry column\nThe sf package stores spatial data as an ordinary data frame with one extra column, geometry, holding a point, line or polygon for each row. So the usual dplyr verbs work on it: filter() keeps some regions, left_join() attaches a table of values, and group_by() with summarise() merges polygons, which is how states become regions. Walker introduces sf objects in §5.1.1.\nOn this site, sRtr supplies the sf objects: UNOS_regions_sf (one polygon per state, tagged with its UNOS region), get_hrsa_optn_regions() (one polygon per region) and get_hrsa_transplant_centers() (one point per center and organ) (Hemmige and Czeresnia 2026). Walker uses the tigris package for Census boundaries in the same way; sRtr’s state polygons come from the same Census cartographic boundary files.",
     "crumbs": [
       "Background",
       "Methodological background"
     ]
   },
   {
-    "objectID": "quarto/methodological_background.html#a-region-level-choropleth",
-    "href": "quarto/methodological_background.html#a-region-level-choropleth",
+    "objectID": "quarto/methodological_background.html#coordinate-reference-systems",
+    "href": "quarto/methodological_background.html#coordinate-reference-systems",
     "title": "Methodological background",
-    "section": "A region-level choropleth",
-    "text": "A region-level choropleth\nWhen the value being mapped belongs to a region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone.",
+    "section": "Coordinate reference systems",
+    "text": "Coordinate reference systems\nEvery geometry is stored in a coordinate reference system (CRS). Longitude and latitude are angles, not distances; drawn as if they were x and y, they stretch the United States east to west and make northern states look larger than they are. A projected CRS such as NAD83 / Conus Albers (EPSG:5070) is designed for the contiguous states and keeps areas comparable, which matters when the eye reads shaded area.\nTwo habits follow. Transform every layer to the one CRS with sf::st_transform() before combining or plotting them, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them. And set the CRS of the plot itself with coord_sf(crs = ...). Walker covers both, and how to choose a projection with the crsuggest package, in §5.4.",
     "crumbs": [
       "Background",
       "Methodological background"
     ]
   },
   {
-    "objectID": "quarto/methodological_background.html#projections",
-    "href": "quarto/methodological_background.html#projections",
+    "objectID": "quarto/methodological_background.html#a-choropleth-shading-areas-by-a-value",
+    "href": "quarto/methodological_background.html#a-choropleth-shading-areas-by-a-value",
     "title": "Methodological background",
-    "section": "Projections",
-    "text": "Projections\nSpatial data store positions in a coordinate reference system (CRS). Longitude and latitude are angles, not distances, and drawing them as if they were x and y stretches the United States east to west and makes northern states look larger than they are. An equal-area projection such as NAD83 / Conus Albers (EPSG:5070) keeps areas comparable across the country, which matters when shaded area is what the eye reads. The safest habit is to transform every layer to the one CRS with sf::st_transform() before plotting, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them.",
+    "section": "A choropleth: shading areas by a value",
+    "text": "A choropleth: shading areas by a value\nA choropleth shades each area by a value. In ggplot2, geom_sf(aes(fill = value)) draws it; a sequential colour scale suits a quantity that runs from low to high. Walker builds one step by step in §6.2, including the theme_void() and labs() calls used here.\nWhen the value belongs to a UNOS region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone. Several UNOS regions also cross state lines (Northern Virginia is in Region 2, for example); sRtr assigns each state to one region, so the map is an approximation at those edges.",
     "crumbs": [
       "Background",
       "Methodological background"
     ]
   },
   {
-    "objectID": "quarto/methodological_background.html#points-not-jitter",
-    "href": "quarto/methodological_background.html#points-not-jitter",
+    "objectID": "quarto/methodological_background.html#points-on-the-map",
+    "href": "quarto/methodological_background.html#points-on-the-map",
     "title": "Methodological background",
-    "section": "Points, not jitter",
-    "text": "Points, not jitter\nJittering adds random noise to positions so that overlapping points separate. On a map it moves each place somewhere it is not. Drawing points at their true positions, partly transparent, and enlarging crowded areas in an inset shows overlap honestly.",
+    "section": "Points on the map",
+    "text": "Points on the map\nTransplant centers are points. Drawn with geom_sf() at their true locations, partly transparent, they show where programs are and where they cluster. The original maps used geom_jitter(), which separates overlapping points by moving each one randomly, so no center is where it should be.",
     "crumbs": [
       "Background",
       "Methodological background"
     ]
   },
   {
-    "objectID": "quarto/methodological_background.html#insets",
-    "href": "quarto/methodological_background.html#insets",
+    "objectID": "quarto/methodological_background.html#tmap-and-insets",
+    "href": "quarto/methodological_background.html#tmap-and-insets",
     "title": "Methodological background",
-    "section": "Insets",
-    "text": "Insets\nAn inset repeats part of the map at a larger scale in a corner of the figure. In the Northeast, small states and many centers close together make the main map hard to read; an inset of Regions 1, 2 and 9 makes them legible without shrinking the rest of the country.",
+    "section": "tmap and insets",
+    "text": "tmap and insets\ntmap is a second mapping package, built for thematic maps; Walker introduces it in §6.3. His examples use tmap 3. This site uses tmap 4, whose syntax changed: tm_polygons(fill = ...) with fill.scale and fill.legend replaces arguments such as col, style and palette. The tmap website documents version 4.\nAn inset repeats part of the map at a larger scale in a corner. In the Northeast, small states and many centers close together make the main map hard to read; tmap’s tm_inset() draws Regions 1, 2 and 9 enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris’s shift_geometry() in §5.5.1; the maps here leave those places out, as the published maps did.",
     "crumbs": [
       "Background",
       "Methodological background"
@@ -597,7 +597,7 @@
     "href": "quarto/about.html#pages",
     "title": "About",
     "section": "Pages",
-    "text": "Pages\n\nClinical background: the three studies and why each mapped regional variation.\nMethodological background: UNOS regions, region-level shading, projections, jitter and insets.\nStudy design and methods: what the maps show and the choices behind them, in plain language.\nSetup: packages and shared constants.\nFunctions: reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.\n1. Map geography: regions, outlines, labels, centers and the inset extent, shared by every study.\n2. HCV donors (2021): the HCV-donor maps.\n3. DCD donors (2024): the four DCD-donor maps.\n4. Machine perfusion (2025): the machine-perfusion map.\nOriginal RMDs: the code that drew the published maps.",
+    "text": "Pages\n\nClinical background: the three studies and why each mapped regional variation.\nMethodological background: an introduction to mapping in R (sf, projections, choropleths, tmap and insets), pointing to Walker’s Analyzing US Census Data.\nStudy design and methods: what the maps show and the choices behind them, in plain language.\nSetup: packages and shared constants.\nFunctions: reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.\n1. Map geography: regions, outlines, labels, centers and the inset extent, shared by every study.\n2. HCV donors (2021): the HCV-donor maps.\n3. DCD donors (2024): the four DCD-donor maps.\n4. Machine perfusion (2025): the machine-perfusion map.\nOriginal RMDs: the code that drew the published maps.",
     "crumbs": [
       "About"
     ]
