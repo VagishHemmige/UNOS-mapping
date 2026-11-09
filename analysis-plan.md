@@ -62,10 +62,11 @@ No new cohort is drawn and no new statistic is estimated.
   `sRtr::get_hrsa_transplant_centers()` [@hrsa_otc_layer]. The original maps used a downloaded
   copy of an HRSA transplant-center file.
 
-**Open:** which transplant-center list to map. The HRSA layer describes centers as of the day it
-is downloaded, not as of each study period. The options are the current layer, a dated snapshot
-saved once per study, or the original HRSA file (decision D1 in `SETUP-NOTES.md`; issue to be
-filed).
+The maps use the current HRSA layer, downloaded each time the code runs. It describes centers as
+of the day it is downloaded, not as of each study period, so a center that opened or closed since a
+study period may be shown wrongly; this is accepted because the maps teach the method rather than
+restate each paper's center list (decided by Vagish Hemmige, 2026-11-09; recorded in
+`SETUP-NOTES.md`, D1).
 
 ## 5. Study populations and unit definitions
 

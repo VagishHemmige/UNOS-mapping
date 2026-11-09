@@ -137,17 +137,6 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   content: '⏳';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
-  background-image: none;
-}
 div.callout-Rcode.callout {
   border-left-color: #d63384;
 }
@@ -157,6 +146,17 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -433,19 +433,6 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </header>
 
 
-<div class="callout callout-style-default callout-Pending callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Provisional
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="pending">Text highlighted like this</span> is provisional: it depends on a decision the analysis plan has not yet made.</p>
-</div>
-</div>
 <p>This script builds the map layers every study shares: states with their UNOS region, region outlines, region numbers, adult heart-transplant centers and the extent of the Northeast inset.</p>
 <div class="callout callout-style-default callout-Rcode callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -503,9 +490,7 @@ Source code
 <section id="transplant-centers" class="level2">
 <h2 class="anchored" data-anchor-id="transplant-centers">Transplant centers</h2>
 <p>The original maps used a copy of an HRSA transplant-center file downloaded once. <code>get_hrsa_transplant_centers()</code> downloads the current layer from HRSA each time it runs <span class="citation" data-cites="hrsa_otc_layer">(<a href="#ref-hrsa_otc_layer" role="doc-biblioref">Health Resources and Services Administration, n.d.</a>)</span>, which is then narrowed to adult heart centers (see <a href="../quarto/functions.html#choosing-the-transplant-centers">Functions</a>).</p>
-<div class="pending-note">
-<p><strong>Decision pending:</strong> the current layer shows centers as they are today, not as they were during each study period. Whether to use it, a dated snapshot for each study, or the original file is decision D1 in <code>SETUP-NOTES.md</code>.</p>
-</div>
+<p>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<a href="../quarto/analysis-plan.html#4-data-sources-and-measurement-periods">plan §4</a>).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -1055,7 +1040,7 @@ Health Resources and Services Administration. n.d. <span>“Organ Procurement an
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>The original maps used a copy of an HRSA transplant-center file downloaded once. <span class="in">`get_hrsa_transplant_centers()`</span> downloads the current layer from HRSA each time it runs <span class="co">[</span><span class="ot">@hrsa_otc_layer</span><span class="co">]</span>, which is then narrowed to adult heart centers (see <span class="co">[</span><span class="ot">Functions</span><span class="co">](functions.qmd#choosing-the-transplant-centers)</span>).</span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>**Decision pending:** the current layer shows centers as they are today, not as they were during each study period. Whether to use it, a dated snapshot for each study, or the original file is decision D1 in <span class="in">`SETUP-NOTES.md`</span>.</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<span class="co">[</span><span class="ot">plan §4</span><span class="co">](analysis-plan.qmd#4-data-sources-and-measurement-periods)</span>).</span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: heart-centers</span></span>

@@ -29,7 +29,7 @@ Each source this project uses is listed below with the package that accesses it.
 | Source | Accessed through | Package documentation | Package maintained by | Access | What AI agents may do |
 |---|---|---|---|---|---|
 | Regional counts for each study (published in its paper) | Written out with `tibble::tribble()` in each study script (`R/hcv_map.R`, `R/dcd_map.R`, `R/evmp_map.R`) | The papers cited in `references.bib` | n/a | Public: published region-level counts (stated by Vagish Hemmige, 2026-11-09; see `SETUP-NOTES.md`) | No restriction (public data) |
-| Original HRSA transplant-center file used by the published maps (`data/hrsa/Transplant centers.csv`) | Not used by the code yet (decision D1) | https://data.hrsa.gov/data/download | n/a | Public | No restriction (public data) |
+| Original HRSA transplant-center file used by the published maps (`data/hrsa/Transplant centers.csv`) | Kept for provenance and for checking the pediatric-center rule (D2); the maps use the live HRSA layer | https://data.hrsa.gov/data/download | n/a | Public | No restriction (public data) |
 | UNOS region geography (state polygons tagged with region) | sRtr (`UNOS_regions_sf`, `get_hrsa_optn_regions()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
 | HRSA transplant centers | sRtr (`get_hrsa_transplant_centers()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
 

@@ -13,11 +13,12 @@ Non-sensitive setup decisions and open items for this repository. Open decisions
 - The website is published from a committed `docs/` folder by GitHub Pages.
 - The original RMDs are kept in `original/`, unchanged except that local folder paths were removed (2026-11-09, at Vagish Hemmige's request).
 
-## Decisions for the deciders (to be filed as decision issues)
+## Decisions for the deciders (open ones to be filed as decision issues)
 
 **D1. Which transplant-center list to map.** `get_hrsa_transplant_centers()` returns the HRSA layer as of the day it runs, not as of each study period.
 Options: (a) the current layer, accepting that centers opened or closed since the study period are wrong; (b) a dated snapshot saved once per study, closest to its study period; (c) the original HRSA file used for the published maps.
 Plan §4. Code: `R/map_geography.R`, `heart-centers`.
+**Decided:** (a), the current layer. Vagish Hemmige, 2026-11-09, in a Claude session: "I am fine with the live HRSA". The plan (§4) and the Map geography page now state this.
 
 **D2. How to exclude pediatric centers.** The original rule drops names containing "Children" except two named centers. HRSA layer names may differ from the original file's, so the two exceptions may no longer match, and other combined adult-pediatric centers may be dropped.
 Options: (a) keep the name rule and check the exceptions against the HRSA names; (b) use another HRSA field, if one identifies adult programs; (c) use a center list confirmed against each study's own center list.
@@ -41,7 +42,7 @@ These change how the maps look, not what they show.
 
 - [ ] Confirm the deciders and their areas in `AGENTS.md` (Shivank Madan and Vagish Hemmige, as drafted).
 - [ ] Run `R/main.R`, commit `figures/`, and add a Results page showing the maps.
-- [ ] File D1 to D3 as decision issues and replace the `SETUP-NOTES.md` references in the plan and pages with their links.
+- [ ] File D2 and D3 as decision issues and replace the `SETUP-NOTES.md` references in the plan and pages with their links.
 - [ ] Run `R/main.R` with tmap 4.x and the HRSA download, which could not be tested during setup (see below), and check the inset maps by eye.
 - [ ] Write `ARCHITECTURE.md`.
 - [ ] Maintainer: protect the `main` branch, and turn on GitHub Pages (from `main`, `/docs`) once the first pull request containing `docs/` is merged.

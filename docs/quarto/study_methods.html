@@ -451,8 +451,9 @@ Provisional
 <h2 class="anchored" data-anchor-id="which-transplant-centers-are-shown">Which transplant centers are shown</h2>
 <p>Adult heart-transplant centers, from HRSA’s transplant-center layer, at their true locations. Pediatric centers are left out by the original maps’ rule: centers whose name contains “Children”, except two that also transplant adults.</p>
 <p><strong>Specified in:</strong> <a href="../quarto/analysis-plan.html#5-study-populations-and-unit-definitions">§5</a>.</p>
+<p>The centers are today’s, from the live HRSA layer, not those of each study period.</p>
 <div class="pending-note">
-<p><strong>Decision pending:</strong> whether to use today’s HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in <code>SETUP-NOTES.md</code>.</p>
+<p><strong>Decision pending:</strong> whether the name rule still identifies pediatric centers in the HRSA layer (D2 in <code>SETUP-NOTES.md</code>).</p>
 </div>
 </section>
 <section id="how-the-maps-are-drawn" class="level2">
@@ -966,19 +967,21 @@ Provisional
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§5</span><span class="co">](analysis-plan.qmd#5-study-populations-and-unit-definitions)</span>.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>**Decision pending:** whether to use today's HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in <span class="in">`SETUP-NOTES.md`</span>.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>The centers are today's, from the live HRSA layer, not those of each study period.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the maps are drawn</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>**Decision pending:** whether the name rule still identifies pediatric centers in the HRSA layer (D2 in <span class="in">`SETUP-NOTES.md`</span>).</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the maps are drawn</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§2</span><span class="co">](analysis-plan.qmd#2-objectives)</span>, <span class="co">[</span><span class="ot">§7 Linkage and geography</span><span class="co">](analysis-plan.qmd#7-linkage-and-geography)</span>.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publication of the regional values</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§2</span><span class="co">](analysis-plan.qmd#2-objectives)</span>, <span class="co">[</span><span class="ot">§7 Linkage and geography</span><span class="co">](analysis-plan.qmd#7-linkage-and-geography)</span>.</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The regional counts are published in each paper, so they are written out in the code and the maps are public.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publication of the regional values</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§12 Disclosure control</span><span class="co">](analysis-plan.qmd#12-disclosure-control)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>The regional counts are published in each paper, so they are written out in the code and the maps are public.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§12 Disclosure control</span><span class="co">](analysis-plan.qmd#12-disclosure-control)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -31,7 +31,9 @@ Adult heart-transplant centers, from HRSA's transplant-center layer, at their tr
 
 **Specified in:** [§5](analysis-plan.qmd#5-study-populations-and-unit-definitions).
 
-**Decision pending:** whether to use today's HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in `SETUP-NOTES.md`.
+The centers are today's, from the live HRSA layer, not those of each study period.
+
+**Decision pending:** whether the name rule still identifies pediatric centers in the HRSA layer (D2 in `SETUP-NOTES.md`).
 
 ## How the maps are drawn
 

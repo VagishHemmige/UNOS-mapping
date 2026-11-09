@@ -47,7 +47,7 @@ In the original scripts this took three files: a spreadsheet listing each region
 
 The original maps used a copy of an HRSA transplant-center file downloaded once. `get_hrsa_transplant_centers()` downloads the current layer from HRSA each time it runs [@hrsa_otc_layer], which is then narrowed to adult heart centers (see [Functions](functions.qmd#choosing-the-transplant-centers)).
 
-**Decision pending:** the current layer shows centers as they are today, not as they were during each study period. Whether to use it, a dated snapshot for each study, or the original file is decision D1 in `SETUP-NOTES.md`.
+The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method ([plan §4](analysis-plan.qmd#4-data-sources-and-measurement-periods)).
 
 ```{r}
 #| label: heart-centers
