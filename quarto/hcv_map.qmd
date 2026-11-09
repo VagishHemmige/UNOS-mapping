@@ -30,11 +30,11 @@ knitr::read_chunk("../R/hcv_map.R")
 
 ## Regional summary
 
-The spreadsheet `UNOS regions.xlsx` has one row per region. The original map shaded each region by `Percentage_HT_HCV`, which `clean_names()` turns into `percentage_ht_hcv`. Its two percentage columns are stored as proportions and multiplied by 100, as in the original code.
+The original map read these counts from a spreadsheet, `UNOS regions.xlsx`. With eleven rows they fit in the script itself, written out with `tribble()`, a table laid out row by row. The totals are the paper's: 109 multiorgan heart transplants with HCV donors out of 1,322. The map shows each region's share of the 109, which is what the spreadsheet's `Percentage_HT_HCV` held.
 
-The spreadsheet is kept in `data/regional/`; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.
+Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.
 
-**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in `SETUP-NOTES.md`.
+**Decision pending:** a share of the national count is highest where the most transplants are done, so it shows where HCV-donor transplants happened rather than how often each region used HCV donors. Whether to add a map of each region's own rate (`n_hcv / n_total`) is decision D3 in `SETUP-NOTES.md`.
 
 ```{r}
 #| label: hcv-region-summary

@@ -15,7 +15,7 @@ Read the three files before making changes. Each covers its own topic and does n
 
 ## The project
 
-This is a teaching repository. It reproduces the UNOS-region maps from a series of published heart-transplantation registry studies (HCV donors, DCD donors and ex vivo machine perfusion so far) and shows how to draw them with the [sRtr](https://github.com/VagishHemmige/sRtr) package instead of hand-built region tables, local shapefiles and downloaded center lists. Each study's regional summary (one row per UNOS region) comes from its paper's analysis of UNOS registry data. The original RMDs are kept in `original/`, with local folder paths removed. The code and methods are published as a Quarto website, with one page per study.
+This is a teaching repository. It reproduces the UNOS-region maps from a series of published heart-transplantation registry studies (HCV donors, DCD donors and ex vivo machine perfusion so far) and shows how to draw them with the [sRtr](https://github.com/VagishHemmige/sRtr) package instead of hand-built region tables, local shapefiles and downloaded center lists. Each study's regional counts (one row per UNOS region) come from its paper's analysis of UNOS registry data and are written out in its script. The original RMDs are kept in `original/`, with local folder paths removed. The code and methods are published as a Quarto website, with one page per study.
 
 - **`analysis-plan.md` is the source of truth for design.** Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the deciders. Once a decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.
 - **Deciders.** Scientific decisions are made by: Shivank Madan (study questions, regional summaries and which measures each map shows) and Vagish Hemmige (mapping methods and code). *To be confirmed by both.* Anyone may open or contribute to a decision issue; only a decider settles it (see "Working with agents").
@@ -28,7 +28,8 @@ Each source this project uses is listed below with the package that accesses it.
 
 | Source | Accessed through | Package documentation | Package maintained by | Access | What AI agents may do |
 |---|---|---|---|---|---|
-| Regional summary spreadsheets, one per study, derived from UNOS registry data (`UNOS regions.xlsx`, `DCD by UNOS regions.xlsx`, `DBD EVMP UNOS regions_corrected.xlsx`) | readxl, through `read_region_summary()` in `R/functions.R`; kept in `data/regional/` | https://readxl.tidyverse.org/ | External | Public: region-level values published in each paper (stated by Vagish Hemmige, 2026-11-09; see `SETUP-NOTES.md`) | No restriction (public data) |
+| Regional counts for each study (published in its paper) | Written out with `tibble::tribble()` in each study script (`R/hcv_map.R`, `R/dcd_map.R`, `R/evmp_map.R`) | The papers cited in `references.bib` | n/a | Public: published region-level counts (stated by Vagish Hemmige, 2026-11-09; see `SETUP-NOTES.md`) | No restriction (public data) |
+| Original HRSA transplant-center file used by the published maps (`data/hrsa/Transplant centers.csv`) | Not used by the code yet (decision D1) | https://data.hrsa.gov/data/download | n/a | Public | No restriction (public data) |
 | UNOS region geography (state polygons tagged with region) | sRtr (`UNOS_regions_sf`, `get_hrsa_optn_regions()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
 | HRSA transplant centers | sRtr (`get_hrsa_transplant_centers()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
 

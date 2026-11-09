@@ -495,26 +495,26 @@ gives this page GitHub-style IDs and those links work on both.
 <thead>
 <tr class="header">
 <th>Study</th>
-<th>Measures mapped by region (spreadsheet columns as shown in the original maps)</th>
+<th>Measures mapped by region</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>HCV donors in multiorgan heart transplantation, 2015–2020 <span class="citation" data-cites="madan2021hcv">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>)</span></td>
-<td><code>Percentage_HT_HCV</code></td>
+<td>Region’s share of all U.S. multiorgan HTs with HCV donors (of 109)</td>
 </tr>
 <tr class="even">
 <td>DCD donors in multiorgan heart transplantation, 2020–2023 <span class="citation" data-cites="madan2024dcd">(<a href="#ref-madan2024dcd" role="doc-biblioref">Madan et al. 2024</a>)</span></td>
-<td>Number of multiorgan HTs using DCD donors; its percentage; total number of multiorgan HTs; its percentage</td>
+<td>Number of multiorgan HTs with DCD donors, and the region’s share of them (of 87); number of all multiorgan HTs, and the region’s share of them (of 1,581)</td>
 </tr>
 <tr class="odd">
 <td>Ex vivo machine perfusion in DBD heart transplantation, 2020–2024 <span class="citation" data-cites="madan2025evmp">(<a href="#ref-madan2025evmp" role="doc-biblioref">Madan et al. 2025</a>)</span></td>
-<td><code>Percentage</code></td>
+<td>Share of the region’s own DBD HTs using ex vivo machine perfusion</td>
 </tr>
 </tbody>
 </table>
 <div class="pending-note">
-<p><strong>Open:</strong> what each percentage is a share of (the region’s own transplants, or the national total), which sets each map’s legend (decision D3 in <code>SETUP-NOTES.md</code>; issue to be filed).</p>
+<p><strong>Open:</strong> whether the HCV and DCD maps should also show each region’s own rate (its HCV- or DCD-donor transplants as a share of its own multiorgan transplants), since a share of the national count largely follows regional volume (decision D3 in <code>SETUP-NOTES.md</code>; issue to be filed).</p>
 </div>
 <p>The COVID-19 donor study <span class="citation" data-cites="madan2023covid">(<a href="#ref-madan2023covid" role="doc-biblioref">Madan et al. 2023</a>)</span> and the donor offer acceptance study <span class="citation" data-cites="ramineni2026doa">(<a href="#ref-ramineni2026doa" role="doc-biblioref">Ramineni et al. 2026</a>)</span> join this table when their mapping code is added.</p>
 </section>
@@ -525,7 +525,7 @@ gives this page GitHub-style IDs and those links work on both.
 <section id="4-data-sources-and-measurement-periods" class="level2">
 <h2 class="anchored" data-anchor-id="4-data-sources-and-measurement-periods">4. Data sources and measurement periods</h2>
 <ul>
-<li><strong>Regional summaries:</strong> one spreadsheet per study in <code>data/regional/</code>, holding one row per UNOS region with the study’s counts and percentages. Each was computed from the UNOS registry for the study period in the table above, as described in its paper.</li>
+<li><strong>Regional counts:</strong> for each study, the number of transplants by UNOS region, written out in that study’s script. They are the counts behind the published regional figures, and their totals match the papers (109 of 1,322; 87 of 1,581; 561 of 12,363) <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>. Each was computed from the UNOS registry for the study period above.</li>
 <li><strong>Region geography:</strong> <code>UNOS_regions_sf</code> from sRtr, state polygons from the 2018 Census cartographic boundary file (1:20,000,000) with each state’s UNOS region <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>.</li>
 <li><strong>Transplant centers:</strong> the HRSA organ procurement and transplantation layer, downloaded with <code>sRtr::get_hrsa_transplant_centers()</code> <span class="citation" data-cites="hrsa_otc_layer">(<a href="#ref-hrsa_otc_layer" role="doc-biblioref">Health Resources and Services Administration, n.d.</a>)</span>. The original maps used a downloaded copy of an HRSA transplant-center file.</li>
 </ul>
@@ -546,11 +546,11 @@ gives this page GitHub-style IDs and those links work on both.
 </section>
 <section id="6-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="6-estimation">6. Estimation</h2>
-<p>None. Values are taken from each study’s regional summary as published. Proportions stored as fractions are multiplied by 100 for display as percentages.</p>
+<p>None beyond arithmetic. Percentages are computed from the published counts: for the HCV and DCD studies, each region’s count divided by the national total; for the machine-perfusion study, each region’s EVMP count divided by its own DBD count.</p>
 </section>
 <section id="7-linkage-and-geography" class="level2">
 <h2 class="anchored" data-anchor-id="7-linkage-and-geography">7. Linkage and geography</h2>
-<p>Regional summaries join to <code>UNOS_regions_sf</code> by region number. A join that does not match all eleven regions stops the script.</p>
+<p>Regional counts join to <code>UNOS_regions_sf</code> by region name (“Region 1” to “Region 11”). A join that does not match all eleven regions stops the script.</p>
 </section>
 <section id="8-measures-and-outcomes" class="level2">
 <h2 class="anchored" data-anchor-id="8-measures-and-outcomes">8. Measures and outcomes</h2>
@@ -570,7 +570,7 @@ gives this page GitHub-style IDs and those links work on both.
 </section>
 <section id="12-disclosure-control" class="level2">
 <h2 class="anchored" data-anchor-id="12-disclosure-control">12. Disclosure control</h2>
-<p>Each regional summary holds region-level values that are published in its paper <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>. The spreadsheets and the maps drawn from them are therefore public, as stated by Vagish Hemmige on 2026-11-09 (recorded in <code>SETUP-NOTES.md</code>). No patient-level data are used.</p>
+<p>Each regional summary holds region-level values that are published in its paper <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>. The counts and the maps drawn from them are therefore public, as stated by Vagish Hemmige on 2026-11-09 (recorded in <code>SETUP-NOTES.md</code>). No patient-level data are used.</p>
 </section>
 <section id="13-limitations-to-address-in-reporting" class="level2">
 <h2 class="anchored" data-anchor-id="13-limitations-to-address-in-reporting">13. Limitations to address in reporting</h2>

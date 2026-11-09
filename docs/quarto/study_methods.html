@@ -437,8 +437,9 @@ Provisional
 <h2 class="anchored" data-anchor-id="what-is-mapped">What is mapped</h2>
 <p>Each study’s paper computed a few summaries for every UNOS region: how many transplants used a donor type or technology, and what percentage that was. The maps show those summaries as published; nothing new is estimated. Every state in a region is shaded with the region’s value.</p>
 <p><strong>Specified in:</strong> <a href="../quarto/analysis-plan.html#2-objectives">§2 Objectives</a>, <a href="../quarto/analysis-plan.html#6-estimation">§6 Estimation</a>.</p>
+<p>The HCV and DCD percentages are each region’s share of the national count; the machine-perfusion percentage is each region’s own rate. The legends say which.</p>
 <div class="pending-note">
-<p><strong>Decision pending:</strong> what each percentage is a share of, and so how its legend should read (D3 in <code>SETUP-NOTES.md</code>).</p>
+<p><strong>Decision pending:</strong> whether to add maps of each region’s own rate for the HCV and DCD studies (D3 in <code>SETUP-NOTES.md</code>).</p>
 </div>
 </section>
 <section id="where-the-geography-comes-from" class="level2">
@@ -461,7 +462,7 @@ Provisional
 </section>
 <section id="publication-of-the-regional-values" class="level2">
 <h2 class="anchored" data-anchor-id="publication-of-the-regional-values">Publication of the regional values</h2>
-<p>The regional values are published in each paper, so the spreadsheets and the maps drawn from them are public and kept in the repository.</p>
+<p>The regional counts are published in each paper, so they are written out in the code and the maps are public.</p>
 <p><strong>Specified in:</strong> <a href="../quarto/analysis-plan.html#12-disclosure-control">§12 Disclosure control</a>.</p>
 
 
@@ -949,33 +950,35 @@ Provisional
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§2 Objectives</span><span class="co">](analysis-plan.qmd#2-objectives)</span>, <span class="co">[</span><span class="ot">§6 Estimation</span><span class="co">](analysis-plan.qmd#6-estimation)</span>.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>**Decision pending:** what each percentage is a share of, and so how its legend should read (D3 in <span class="in">`SETUP-NOTES.md`</span>).</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The HCV and DCD percentages are each region's share of the national count; the machine-perfusion percentage is each region's own rate. The legends say which.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Where the geography comes from</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>**Decision pending:** whether to add maps of each region's own rate for the HCV and DCD studies (D3 in <span class="in">`SETUP-NOTES.md`</span>).</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>The region assignment of each state and the region outlines come from sRtr, built from the same Census boundaries and region table the original maps used. Alaska, Hawaii and Puerto Rico are left out, as in the original maps.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Where the geography comes from</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§4 Data sources</span><span class="co">](analysis-plan.qmd#4-data-sources-and-measurement-periods)</span>, <span class="co">[</span><span class="ot">§5 Study populations and unit definitions</span><span class="co">](analysis-plan.qmd#5-study-populations-and-unit-definitions)</span>.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>The region assignment of each state and the region outlines come from sRtr, built from the same Census boundaries and region table the original maps used. Alaska, Hawaii and Puerto Rico are left out, as in the original maps.</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which transplant centers are shown</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§4 Data sources</span><span class="co">](analysis-plan.qmd#4-data-sources-and-measurement-periods)</span>, <span class="co">[</span><span class="ot">§5 Study populations and unit definitions</span><span class="co">](analysis-plan.qmd#5-study-populations-and-unit-definitions)</span>.</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Adult heart-transplant centers, from HRSA's transplant-center layer, at their true locations. Pediatric centers are left out by the original maps' rule: centers whose name contains "Children", except two that also transplant adults.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which transplant centers are shown</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§5</span><span class="co">](analysis-plan.qmd#5-study-populations-and-unit-definitions)</span>.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Adult heart-transplant centers, from HRSA's transplant-center layer, at their true locations. Pediatric centers are left out by the original maps' rule: centers whose name contains "Children", except two that also transplant adults.</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>**Decision pending:** whether to use today's HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in <span class="in">`SETUP-NOTES.md`</span>.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§5</span><span class="co">](analysis-plan.qmd#5-study-populations-and-unit-definitions)</span>.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the maps are drawn</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>**Decision pending:** whether to use today's HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in <span class="in">`SETUP-NOTES.md`</span>.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the maps are drawn</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§2</span><span class="co">](analysis-plan.qmd#2-objectives)</span>, <span class="co">[</span><span class="ot">§7 Linkage and geography</span><span class="co">](analysis-plan.qmd#7-linkage-and-geography)</span>.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publication of the regional values</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§2</span><span class="co">](analysis-plan.qmd#2-objectives)</span>, <span class="co">[</span><span class="ot">§7 Linkage and geography</span><span class="co">](analysis-plan.qmd#7-linkage-and-geography)</span>.</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>The regional values are published in each paper, so the spreadsheets and the maps drawn from them are public and kept in the repository.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Publication of the regional values</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§12 Disclosure control</span><span class="co">](analysis-plan.qmd#12-disclosure-control)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The regional counts are published in each paper, so they are written out in the code and the maps are public.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**Specified in:** <span class="co">[</span><span class="ot">§12 Disclosure control</span><span class="co">](analysis-plan.qmd#12-disclosure-control)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

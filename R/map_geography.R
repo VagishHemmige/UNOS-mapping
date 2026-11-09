@@ -28,6 +28,7 @@ heart_centers <- get_hrsa_transplant_centers() |>
   select_adult_centers(
     organ = center_organ,
     adult_exceptions = adult_center_exceptions,
+    mapped_states = region_states,
     crs = map_crs
   )
 

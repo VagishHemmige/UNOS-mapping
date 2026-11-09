@@ -125,15 +125,15 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Results.callout {
-  border-left-color: #198754;
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
 }
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
 }
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 div.callout-Rcode.callout {
@@ -147,15 +147,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
+div.callout-Results.callout {
+  border-left-color: #198754;
 }
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
 }
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -446,7 +446,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 </section>
 <section id="status" class="level2">
 <h2 class="anchored" data-anchor-id="status">Status</h2>
-<p>In development. The code is in place for three studies; the maps themselves are added to the site once they have been drawn from the regional spreadsheets. The COVID-19 donor study <span class="citation" data-cites="madan2023covid">(<a href="#ref-madan2023covid" role="doc-biblioref">Madan et al. 2023</a>)</span> and the donor offer acceptance study <span class="citation" data-cites="ramineni2026doa">(<a href="#ref-ramineni2026doa" role="doc-biblioref">Ramineni et al. 2026</a>)</span> have no maps yet. Open decisions are listed in <code>SETUP-NOTES.md</code> until they are filed as <a href="https://github.com/VagishHemmige/UNOS-mapping/issues">issues</a>.</p>
+<p>In development. The code and data are in place for three studies; the maps are added to the site once they have been drawn with the live HRSA center layer. The COVID-19 donor study <span class="citation" data-cites="madan2023covid">(<a href="#ref-madan2023covid" role="doc-biblioref">Madan et al. 2023</a>)</span> and the donor offer acceptance study <span class="citation" data-cites="ramineni2026doa">(<a href="#ref-ramineni2026doa" role="doc-biblioref">Ramineni et al. 2026</a>)</span> have no maps yet.</p>
 
 
 <!-- -->
@@ -949,7 +949,7 @@ Ramineni, Shreya, Lorenzo D’Angelo, Brandon Ferrell, Vagish Hemmige, Stephen F
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Status</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>In development. The code is in place for three studies; the maps themselves are added to the site once they have been drawn from the regional spreadsheets. The COVID-19 donor study <span class="co">[</span><span class="ot">@madan2023covid</span><span class="co">]</span> and the donor offer acceptance study <span class="co">[</span><span class="ot">@ramineni2026doa</span><span class="co">]</span> have no maps yet. Open decisions are listed in <span class="in">`SETUP-NOTES.md`</span> until they are filed as <span class="co">[</span><span class="ot">issues</span><span class="co">](https://github.com/VagishHemmige/UNOS-mapping/issues)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>In development. The code and data are in place for three studies; the maps are added to the site once they have been drawn with the live HRSA center layer. The COVID-19 donor study <span class="co">[</span><span class="ot">@madan2023covid</span><span class="co">]</span> and the donor offer acceptance study <span class="co">[</span><span class="ot">@ramineni2026doa</span><span class="co">]</span> have no maps yet.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

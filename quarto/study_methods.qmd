@@ -15,7 +15,9 @@ Each study's paper computed a few summaries for every UNOS region: how many tran
 
 **Specified in:** [§2 Objectives](analysis-plan.qmd#2-objectives), [§6 Estimation](analysis-plan.qmd#6-estimation).
 
-**Decision pending:** what each percentage is a share of, and so how its legend should read (D3 in `SETUP-NOTES.md`).
+The HCV and DCD percentages are each region's share of the national count; the machine-perfusion percentage is each region's own rate. The legends say which.
+
+**Decision pending:** whether to add maps of each region's own rate for the HCV and DCD studies (D3 in `SETUP-NOTES.md`).
 
 ## Where the geography comes from
 
@@ -39,6 +41,6 @@ Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: w
 
 ## Publication of the regional values
 
-The regional values are published in each paper, so the spreadsheets and the maps drawn from them are public and kept in the repository.
+The regional counts are published in each paper, so they are written out in the code and the maps are public.
 
 **Specified in:** [§12 Disclosure control](analysis-plan.qmd#12-disclosure-control).

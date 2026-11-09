@@ -431,19 +431,6 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 </header>
 
 
-<div class="callout callout-style-default callout-Pending callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Provisional
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="pending">Text highlighted like this</span> is provisional: it depends on a decision the analysis plan has not yet made.</p>
-</div>
-</div>
 <p>This script draws the regional maps for the study of ex vivo machine perfusion in heart transplantation from donation after brain death (DBD) donors, January 2020 to June 2024, which reported substantial regional variation in its use <span class="citation" data-cites="madan2025evmp">(<a href="#ref-madan2025evmp" role="doc-biblioref">Madan et al. 2025</a>)</span>.</p>
 <div class="callout callout-style-default callout-Rcode callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -471,33 +458,37 @@ Source code
 </div>
 <section id="regional-summary" class="level2">
 <h2 class="anchored" data-anchor-id="regional-summary">Regional summary</h2>
-<p>The spreadsheet <code>DBD EVMP UNOS regions_corrected.xlsx</code> has one percentage per region, stored as a proportion and multiplied by 100, as in the original code.</p>
-<p>The spreadsheet is kept in <code>data/regional/</code>; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.</p>
-<div class="pending-note">
-<p><strong>Decision pending:</strong> the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in <code>SETUP-NOTES.md</code>.</p>
-</div>
+<p>The original map read these counts from a spreadsheet, <code>DBD EVMP UNOS regions_corrected.xlsx</code>; here they are written out in the script with <code>tribble()</code>. The totals are the paper’s: 561 DBD heart transplants with ex vivo machine perfusion out of 12,363. Unlike the HCV and DCD maps, this percentage is each region’s own rate: the share of its DBD transplants that used machine perfusion.</p>
+<p>Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage from the regional spreadsheet, the measure the original map</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># showed. The spreadsheet stores proportions, shown here as percentages.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend title as in the original map; its exact meaning is to be confirmed (D3).</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>evmp_measures <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">percentage =</span> <span class="st">"Percentage of transplants"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>evmp_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(region_data_dir, region_files<span class="sc">$</span>evmp)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(evmp_file)) {</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  evmp_summary <span class="ot">&lt;-</span> <span class="fu">make_synthetic_region_summary</span>(<span class="fu">names</span>(evmp_measures))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  evmp_summary <span class="ot">&lt;-</span> <span class="fu">read_region_summary</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    evmp_file,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_columns =</span> <span class="st">"percentage"</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>evmp_states <span class="ot">&lt;-</span> <span class="fu">join_region_values</span>(region_states, evmp_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DBD heart transplants by UNOS region, January 2020 to June 2024: all of</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># them, and those using ex vivo machine perfusion (EVMP). The totals (12,363</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and 561) are the paper's. The percentage is the share of each region's own</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DBD transplants that used EVMP, as in the regional spreadsheet the original</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># map read.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>evmp_summary <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>region,     <span class="sc">~</span>n_dbd, <span class="sc">~</span>n_evmp,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 1"</span>,     <span class="dv">577</span>,      <span class="dv">79</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 2"</span>,    <span class="dv">1247</span>,      <span class="dv">19</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 3"</span>,    <span class="dv">1523</span>,      <span class="dv">66</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 4"</span>,    <span class="dv">1109</span>,      <span class="dv">27</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 5"</span>,    <span class="dv">1993</span>,      <span class="dv">61</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 6"</span>,     <span class="dv">399</span>,      <span class="dv">21</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 7"</span>,    <span class="dv">1069</span>,      <span class="dv">53</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 8"</span>,     <span class="dv">849</span>,      <span class="dv">10</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 9"</span>,     <span class="dv">958</span>,      <span class="dv">56</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 10"</span>,    <span class="dv">952</span>,      <span class="dv">40</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Region 11"</span>,   <span class="dv">1687</span>,     <span class="dv">129</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct_evmp =</span> <span class="dv">100</span> <span class="sc">*</span> n_evmp <span class="sc">/</span> n_dbd)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>evmp_measures <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">pct_evmp =</span> <span class="st">"DBD HTs in the region</span><span class="sc">\n</span><span class="st">using EVMP (%)"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>evmp_states <span class="ot">&lt;-</span> <span class="fu">join_region_values</span>(region_states, evmp_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1043,11 +1034,11 @@ Madan, Shivank, Lorenzo D’Angelo, Jill Teitelbaum, Brandon Ferrell, Vagish Hem
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regional summary</span></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>The spreadsheet <span class="in">`DBD EVMP UNOS regions_corrected.xlsx`</span> has one percentage per region, stored as a proportion and multiplied by 100, as in the original code.</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>The original map read these counts from a spreadsheet, <span class="in">`DBD EVMP UNOS regions_corrected.xlsx`</span>; here they are written out in the script with <span class="in">`tribble()`</span>. The totals are the paper's: 561 DBD heart transplants with ex vivo machine perfusion out of 12,363. Unlike the HCV and DCD maps, this percentage is each region's own rate: the share of its DBD transplants that used machine perfusion.</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>The spreadsheet is kept in <span class="in">`data/regional/`</span>; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.</span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in <span class="in">`SETUP-NOTES.md`</span>.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: evmp-region-summary</span></span>

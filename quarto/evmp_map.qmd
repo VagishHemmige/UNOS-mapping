@@ -30,11 +30,11 @@ knitr::read_chunk("../R/evmp_map.R")
 
 ## Regional summary
 
-The spreadsheet `DBD EVMP UNOS regions_corrected.xlsx` has one percentage per region, stored as a proportion and multiplied by 100, as in the original code.
+The original map read these counts from a spreadsheet, `DBD EVMP UNOS regions_corrected.xlsx`; here they are written out in the script with `tribble()`. The totals are the paper's: 561 DBD heart transplants with ex vivo machine perfusion out of 12,363. Unlike the HCV and DCD maps, this percentage is each region's own rate: the share of its DBD transplants that used machine perfusion.
 
-The spreadsheet is kept in `data/regional/`; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.
+Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.
 
-**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in `SETUP-NOTES.md`.
+
 
 ```{r}
 #| label: evmp-region-summary

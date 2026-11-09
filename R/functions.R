@@ -1,31 +1,6 @@
 # Purpose: reusable helper functions. Each takes its inputs as arguments.
 # Needs: setup.R. Produces: functions only.
 
-## ---- read-region-summary
-# Read one study's regional summary spreadsheet. The original spreadsheets
-# name each region as "Region 1: Connecticut, Maine, ...", so only the
-# "Region N" part is kept; sRtr already knows which states each region holds.
-read_region_summary <- function(path, percent_columns = character()) {
-  read_excel(path) |>
-    clean_names() |>
-    mutate(
-      region = str_extract(region, "^Region \\d+"),
-      across(all_of(percent_columns), \(x) 100 * x)
-    )
-}
-
-## ---- make-synthetic-region-summary
-# Synthetic stand-in for a regional summary, used when the real spreadsheet is
-# not available. The values are random and mean nothing.
-make_synthetic_region_summary <- function(measures, max_value = 15, seed = 1) {
-  set.seed(seed)
-  summary <- tibble::tibble(region = str_c("Region ", 1:11))
-  for (measure in measures) {
-    summary[[measure]] <- round(runif(11, min = 0, max = max_value), 1)
-  }
-  summary
-}
-
 ## ---- join-region-values
 # Attach a regional summary to the state polygons. Every state takes its
 # region's values. Stops if any region is missing from the summary.
@@ -49,12 +24,16 @@ join_region_values <- function(region_states, region_summary) {
 # Keep centers that list the organ, one row per center, excluding pediatric
 # centers by name. The HRSA layer has one row per center and organ, so
 # distinct() is needed or each center is drawn several times.
-select_adult_centers <- function(centers, organ, adult_exceptions, crs) {
+# Centers outside the mapped states (Alaska, Hawaii, Puerto Rico) are dropped,
+# since the map shows only the 48 contiguous states and DC.
+select_adult_centers <- function(centers, organ, adult_exceptions,
+                                 mapped_states, crs) {
   centers |>
     filter(str_detect(Service_Lst, str_c("\\b", organ, "\\b"))) |>
     distinct(OTC_CD, .keep_all = TRUE) |>
     filter(!str_detect(OTC_NM, "Children") | OTC_NM %in% adult_exceptions) |>
-    st_transform(crs)
+    st_transform(crs) |>
+    st_filter(mapped_states)
 }
 
 ## ---- map-regions-ggplot

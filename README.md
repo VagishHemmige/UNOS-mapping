@@ -36,6 +36,6 @@ The website, which explains the code step by step, is available at:
 
 Run `R/main.R` from the project root. It needs sRtr
 (`remotes::install_github("VagishHemmige/sRtr")`), tmap 4.x and an
-internet connection for the HRSA transplant-center layer. The regional
-summary spreadsheets are in `data/regional/`; their values are published
-in the papers. Maps are saved to `figures/`.
+internet connection for the HRSA transplant-center layer. Each study’s
+regional counts, published in its paper, are written out in its script.
+Maps are saved to `figures/`.

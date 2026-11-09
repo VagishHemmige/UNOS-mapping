@@ -44,5 +44,5 @@
 /tables/
 
 # Approved public files: add narrow exceptions here, never a whole format.
-# Regional summaries: published region-level values, cleared 2026-11-09
-!data/regional/*.xlsx
+# Original HRSA transplant-center file used by the published maps (public)
+!data/hrsa/Transplant centers.csv

@@ -136,17 +136,6 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
-  background-image: none;
-}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -156,6 +145,17 @@ div.callout-Results.callout-style-default > .callout-header {
 div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
   content: '📊';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 </style>
@@ -443,13 +443,13 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 </section>
 <section id="this-repository" class="level2">
 <h2 class="anchored" data-anchor-id="this-repository">This repository</h2>
-<p><code>R/main.R</code> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. The regional summary spreadsheets are in <code>data/regional/</code>; a study whose spreadsheet is missing is drawn from synthetic values. The original RMDs are kept unchanged in <code>original/</code>.</p>
+<p><code>R/main.R</code> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study’s regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <code>original/</code>.</p>
 <p>Contributions follow the rules in <a href="../quarto/agents.html"><code>AGENTS.md</code></a>.</p>
 </section>
 <section id="how-this-website-was-created" class="level2">
 <h2 class="anchored" data-anchor-id="how-this-website-was-created">How this website was created</h2>
 <p>The site is built with <a href="https://quarto.org">Quarto</a> from the scripts themselves. Each code page imports the labelled sections of its script from <code>R/</code> and shows them with an explanation; the site never runs the analysis.</p>
-<p>The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer. The regional summary spreadsheets are public, published values.</p>
+<p>The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer.</p>
 <p>Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and <code>AGENTS.md</code> holds the rules for working together.</p>
 <ul>
 <li><a href="../quarto/analysis-plan.html"><strong>Analysis plan</strong></a>: <em>what the maps are meant to show, and why.</em></li>
@@ -968,7 +968,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## This repository</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">`R/main.R`</span> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. The regional summary spreadsheets are in <span class="in">`data/regional/`</span>; a study whose spreadsheet is missing is drawn from synthetic values. The original RMDs are kept unchanged in <span class="in">`original/`</span>.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">`R/main.R`</span> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <span class="in">`original/`</span>.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Contributions follow the rules in <span class="co">[</span><span class="ot">`AGENTS.md`</span><span class="co">](agents.qmd)</span>.</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
@@ -976,7 +976,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>The site is built with <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org)</span> from the scripts themselves. Each code page imports the labelled sections of its script from <span class="in">`R/`</span> and shows them with an explanation; the site never runs the analysis.</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer. The regional summary spreadsheets are public, published values.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer.</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and <span class="in">`AGENTS.md`</span> holds the rules for working together.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>

@@ -30,11 +30,11 @@ knitr::read_chunk("../R/dcd_map.R")
 
 ## Regional summary
 
-The spreadsheet `DCD by UNOS regions.xlsx` holds four measures per region, each mapped in the original RMD: the number of multiorgan heart transplants with DCD donors, a percentage of those, the total number of multiorgan heart transplants, and a percentage of that total. The column names are the spreadsheet's own headers after `clean_names()`. The third mentions HCV because the header was carried over from the HCV spreadsheet.
+The original maps read these counts from a spreadsheet, `DCD by UNOS regions.xlsx`; here they are written out in the script with `tribble()`. The totals are the paper's: 87 multiorgan heart transplants with DCD donors out of 1,581. The four maps are those the original RMD drew: the DCD count, each region's share of the 87, the total count, and each region's share of the 1,581.
 
-The spreadsheet is kept in `data/regional/`; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.
+Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.
 
-**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in `SETUP-NOTES.md`.
+**Decision pending:** both percentages are shares of the national count, so they largely follow each region's volume. Whether to add a map of each region's own rate (`n_dcd / n_total`) is decision D3 in `SETUP-NOTES.md`.
 
 ```{r}
 #| label: dcd-region-summary

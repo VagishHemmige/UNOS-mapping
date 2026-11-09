@@ -33,13 +33,13 @@ transplant-center layer, so the same maps can be drawn from a few package calls.
 - **Secondary:** overlay the locations of adult heart-transplant centers on the same map.
 - **Teaching:** show the original code and the sRtr version side by side for each study.
 
-| Study | Measures mapped by region (spreadsheet columns as shown in the original maps) |
+| Study | Measures mapped by region |
 |---|---|
-| HCV donors in multiorgan heart transplantation, 2015–2020 [@madan2021hcv] | `Percentage_HT_HCV` |
-| DCD donors in multiorgan heart transplantation, 2020–2023 [@madan2024dcd] | Number of multiorgan HTs using DCD donors; its percentage; total number of multiorgan HTs; its percentage |
-| Ex vivo machine perfusion in DBD heart transplantation, 2020–2024 [@madan2025evmp] | `Percentage` |
+| HCV donors in multiorgan heart transplantation, 2015–2020 [@madan2021hcv] | Region's share of all U.S. multiorgan HTs with HCV donors (of 109) |
+| DCD donors in multiorgan heart transplantation, 2020–2023 [@madan2024dcd] | Number of multiorgan HTs with DCD donors, and the region's share of them (of 87); number of all multiorgan HTs, and the region's share of them (of 1,581) |
+| Ex vivo machine perfusion in DBD heart transplantation, 2020–2024 [@madan2025evmp] | Share of the region's own DBD HTs using ex vivo machine perfusion |
 
-**Open:** what each percentage is a share of (the region's own transplants, or the national total), which sets each map's legend (decision D3 in `SETUP-NOTES.md`; issue to be filed).
+**Open:** whether the HCV and DCD maps should also show each region's own rate (its HCV- or DCD-donor transplants as a share of its own multiorgan transplants), since a share of the national count largely follows regional volume (decision D3 in `SETUP-NOTES.md`; issue to be filed).
 
 The COVID-19 donor study [@madan2023covid] and the donor offer acceptance study
 [@ramineni2026doa] join this table when their mapping code is added.
@@ -51,9 +51,11 @@ No new cohort is drawn and no new statistic is estimated.
 
 ## 4. Data sources and measurement periods
 
-- **Regional summaries:** one spreadsheet per study in `data/regional/`, holding one row per UNOS
-  region with the study's counts and percentages. Each was computed from the UNOS registry for the study period
-  in the table above, as described in its paper.
+- **Regional counts:** for each study, the number of transplants by UNOS region, written out in
+  that study's script. They are the counts behind the published regional figures, and their totals
+  match the papers (109 of 1,322; 87 of 1,581; 561 of 12,363)
+  [@madan2021hcv; @madan2024dcd; @madan2025evmp]. Each was computed from the UNOS registry for the
+  study period above.
 - **Region geography:** `UNOS_regions_sf` from sRtr, state polygons from the 2018 Census
   cartographic boundary file (1:20,000,000) with each state's UNOS region [@srtr_package].
 - **Transplant centers:** the HRSA organ procurement and transplantation layer, downloaded with
@@ -81,12 +83,13 @@ issue to be filed).
 
 ## 6. Estimation
 
-None. Values are taken from each study's regional summary as published. Proportions stored as
-fractions are multiplied by 100 for display as percentages.
+None beyond arithmetic. Percentages are computed from the published counts: for the HCV and DCD
+studies, each region's count divided by the national total; for the machine-perfusion study, each
+region's EVMP count divided by its own DBD count.
 
 ## 7. Linkage and geography
 
-Regional summaries join to `UNOS_regions_sf` by region number. A join that does not match all
+Regional counts join to `UNOS_regions_sf` by region name ("Region 1" to "Region 11"). A join that does not match all
 eleven regions stops the script.
 
 ## 8. Measures and outcomes
@@ -110,7 +113,7 @@ None.
 ## 12. Disclosure control
 
 Each regional summary holds region-level values that are published in its paper
-[@madan2021hcv; @madan2024dcd; @madan2025evmp]. The spreadsheets and the maps drawn from them are
+[@madan2021hcv; @madan2024dcd; @madan2025evmp]. The counts and the maps drawn from them are
 therefore public, as stated by Vagish Hemmige on 2026-11-09 (recorded in `SETUP-NOTES.md`). No
 patient-level data are used.
 

@@ -1,37 +1,39 @@
 # Purpose: regional maps for the DCD-donor multiorgan heart-transplant study
 #   (Madan et al., Clin Transplant 2024).
 # Needs: setup.R, functions.R, map_geography.R.
-# Produces: dcd_states and maps saved in figures/dcd/.
+# Produces: dcd_summary, dcd_states and maps saved in figures/dcd/.
 
 ## ---- dcd-region-summary
-# Four measures per region. Column names are the spreadsheet's headers after
-# clean_names(). Legend titles are those of the original maps; what each
-# percentage is a share of is to be confirmed (SETUP-NOTES.md, D3). The third
-# header mentions HCV because it was carried over from the HCV spreadsheet.
-dcd_measures <- c(
-  number_of_multiorgan_h_ts_using_dcd_donors =
-    "Number of transplants",
-  percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period =
-    "Percentage of transplants",
-  total_number_of_multiorgan_h_ts_irrespective_of_donor_hcv_status =
-    "Total number of transplants",
-  percentage_of_total_multiorgan_h_ts_during_study_period =
-    "Percentage of transplants"
-)
-
-dcd_file <- file.path(region_data_dir, region_files$dcd)
-
-if (!file.exists(dcd_file)) {
-  dcd_summary <- make_synthetic_region_summary(names(dcd_measures))
-} else {
-  dcd_summary <- read_region_summary(
-    dcd_file,
-    percent_columns = c(
-      "percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period",
-      "percentage_of_total_multiorgan_h_ts_during_study_period"
-    )
+# Multiorgan heart transplants by UNOS region, January 2020 to June 2023:
+# those using DCD donors, and all of them. The totals (87 and 1,581) are the
+# paper's. Percentages are each region's share of the national count, as in
+# the regional spreadsheet the original maps read.
+dcd_summary <- tibble::tribble(
+  ~region,     ~n_dcd, ~n_total,
+  "Region 1",      15,       66,
+  "Region 2",       0,       96,
+  "Region 3",       7,      138,
+  "Region 4",       3,      182,
+  "Region 5",      19,      374,
+  "Region 6",       0,       27,
+  "Region 7",       7,      166,
+  "Region 8",       3,       38,
+  "Region 9",       9,      179,
+  "Region 10",      1,      104,
+  "Region 11",     23,      211
+) |>
+  mutate(
+    pct_of_us_dcd = 100 * n_dcd / sum(n_dcd),
+    pct_of_us_total = 100 * n_total / sum(n_total)
   )
-}
+
+# The four maps the original RMD drew
+dcd_measures <- c(
+  n_dcd = "DCD-donor multiorgan HTs (n)",
+  pct_of_us_dcd = "Share of U.S. DCD-donor\nmultiorgan HTs (%)",
+  n_total = "All multiorgan HTs (n)",
+  pct_of_us_total = "Share of all U.S.\nmultiorgan HTs (%)"
+)
 
 dcd_states <- join_region_values(region_states, dcd_summary)
 

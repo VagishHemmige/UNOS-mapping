@@ -14,7 +14,7 @@ Scientific decisions are made by the people named in [`AGENTS.md`](agents.qmd); 
 
 ## This repository
 
-`R/main.R` runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. The regional summary spreadsheets are in `data/regional/`; a study whose spreadsheet is missing is drawn from synthetic values. The original RMDs are kept unchanged in `original/`.
+`R/main.R` runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in `original/`.
 
 Contributions follow the rules in [`AGENTS.md`](agents.qmd).
 
@@ -22,7 +22,7 @@ Contributions follow the rules in [`AGENTS.md`](agents.qmd).
 
 The site is built with [Quarto](https://quarto.org) from the scripts themselves. Each code page imports the labelled sections of its script from `R/` and shows them with an explanation; the site never runs the analysis.
 
-The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer. The regional summary spreadsheets are public, published values.
+The repository was set up with the R Analysis Workflow plugin and an AI assistant (Claude), working on branches and through pull requests reviewed by the maintainer.
 
 Four documents describe the project. In short: the plan is the scientific intent, the architecture is the workflow as implemented, and `AGENTS.md` holds the rules for working together.
 
