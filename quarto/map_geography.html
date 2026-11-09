@@ -126,6 +126,17 @@ div.csl-indent {
   }
 }</script>
 <style>
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
+  background-image: none;
+}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -146,17 +157,6 @@ div.callout-Pending.callout-style-default > .callout-header {
 div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
   content: '⏳';
-  background-image: none;
-}
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
-}
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
-}
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
   background-image: none;
 }
 </style>
@@ -417,9 +417,9 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
    
   <ul>
   <li><a href="#states-and-regions" id="toc-states-and-regions" class="nav-link active" data-scroll-target="#states-and-regions">States and regions</a></li>
-  <li><a href="#region-numbers" id="toc-region-numbers" class="nav-link" data-scroll-target="#region-numbers">Region numbers</a></li>
   <li><a href="#transplant-centers" id="toc-transplant-centers" class="nav-link" data-scroll-target="#transplant-centers">Transplant centers</a></li>
   <li><a href="#the-corridor-inset" id="toc-the-corridor-inset" class="nav-link" data-scroll-target="#the-corridor-inset">The corridor inset</a></li>
+  <li><a href="#region-numbers" id="toc-region-numbers" class="nav-link" data-scroll-target="#region-numbers">Region numbers</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/map_geography.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -491,51 +491,64 @@ Source code
 </details>
 </div>
 </section>
-<section id="region-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="region-numbers">Region numbers</h2>
-<p><code>st_point_on_surface()</code> returns a point guaranteed to fall inside each region. A centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A point inside each region for its number, replacing the hand-entered</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># label positions in "UNOS region labels.xlsx"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>region_labels <span class="ot">&lt;-</span> region_outlines <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_point_on_surface</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">str_remove</span>(Region, <span class="st">"Region "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
 <section id="transplant-centers" class="level2">
 <h2 class="anchored" data-anchor-id="transplant-centers">Transplant centers</h2>
 <p>The original maps used a copy of an HRSA transplant-center file downloaded once. <code>get_hrsa_transplant_centers()</code> downloads the current layer from HRSA each time it runs <span class="citation" data-cites="hrsa_otc_layer">(<a href="#ref-hrsa_otc_layer" role="doc-biblioref">Health Resources and Services Administration, n.d.</a>)</span>, which is then narrowed to adult heart centers (see <a href="../quarto/functions.html#choosing-the-transplant-centers">Functions</a>).</p>
-<p>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<a href="../quarto/analysis-plan.html#4-data-sources-and-measurement-periods">plan §4</a>).</p>
+<p>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<a href="../quarto/analysis-plan.html#4-data-sources-and-measurement-periods">plan §4</a>). The download date is recorded, and goes into the note printed under every map, so a figure that leaves this site still says which list its dots come from and that they are not the study period’s centers.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Current HRSA transplant-center layer, filtered to adult heart centers</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>heart_centers <span class="ot">&lt;-</span> <span class="fu">get_hrsa_transplant_centers</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_adult_centers</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">organ =</span> center_organ,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">adult_exceptions =</span> adult_center_exceptions,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapped_states =</span> region_states,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> map_crs</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Current HRSA transplant-center layer, filtered to adult heart centers. The</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># download date goes into the note under every map.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>heart_centers <span class="ot">&lt;-</span> <span class="fu">get_hrsa_transplant_centers</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_adult_centers</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">organ =</span> center_organ,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">adult_exceptions =</span> adult_center_exceptions,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapped_states =</span> region_states,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> map_crs</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>hrsa_retrieved <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>map_note <span class="ot">&lt;-</span> <span class="fu">str_glue</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  map_note_template,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">retrieved =</span> <span class="fu">format</span>(hrsa_retrieved, <span class="st">"%d %B %Y"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="the-corridor-inset" class="level2">
 <h2 class="anchored" data-anchor-id="the-corridor-inset">The corridor inset</h2>
-<p>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <code>R/setup.R</code>, which is easier to read and change than projected coordinates. Here it is turned into a box in <code>map_crs</code>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off.</p>
+<p>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <code>R/setup.R</code>, which is easier to read and change than projected coordinates. Here it is turned into a box in <code>map_crs</code>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <code>corridor_box</code>, because the tmap maps draw it in red on the main map and use it to place the region numbers.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The corridor extent, given in longitude and latitude, as a box in map_crs.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The box is projected as a polygon, then its bounding box taken, so the</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inset covers the whole corridor after projection.</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>corridor_bbox <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(corridor_extent, <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sfc</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(map_crs) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_bbox</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The corridor extent, given in longitude and latitude, as a box in map_crs.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The box is projected as a polygon and its bounding box taken, so the inset</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># covers the whole corridor after projection.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>corridor_box <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(corridor_extent, <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sfc</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(map_crs) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_bbox</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sfc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="region-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="region-numbers">Region numbers</h2>
+<p>Each region’s number sits on a point from <code>st_point_on_surface()</code>, which is guaranteed to fall inside the region; a centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.</p>
+<p>The corridor inset needs two sets of points, made by <code>place_region_labels()</code> (see <a href="../quarto/functions.html#placing-the-region-numbers">Functions</a>). <code>main_labels</code> keeps every number clear of the red box on the main map. <code>inset_labels</code> gives every region that appears in the enlarged view its own number there: Regions 1, 2, 9 and 11.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Click to show/hide R Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A point for each region's number, replacing the hand-entered label</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># positions in "UNOS region labels.xlsx": one set for the main map, kept</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># clear of the corridor box, and one for the inset, inside it</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>main_labels <span class="ot">&lt;-</span> <span class="fu">place_region_labels</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  region_outlines, corridor_box, label_margin, <span class="at">where =</span> <span class="st">"main"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>inset_labels <span class="ot">&lt;-</span> <span class="fu">place_region_labels</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  region_outlines, corridor_box, label_margin, <span class="at">where =</span> <span class="st">"inset"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1048,34 +1061,36 @@ Health Resources and Services Administration. n.d. <span>“Organ Procurement an
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Region numbers</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transplant centers</span></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="in">`st_point_on_surface()`</span> returns a point guaranteed to fall inside each region. A centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>The original maps used a copy of an HRSA transplant-center file downloaded once. <span class="in">`get_hrsa_transplant_centers()`</span> downloads the current layer from HRSA each time it runs <span class="co">[</span><span class="ot">@hrsa_otc_layer</span><span class="co">]</span>, which is then narrowed to adult heart centers (see <span class="co">[</span><span class="ot">Functions</span><span class="co">](functions.qmd#choosing-the-transplant-centers)</span>).</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: region-labels</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transplant centers</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<span class="co">[</span><span class="ot">plan §4</span><span class="co">](analysis-plan.qmd#4-data-sources-and-measurement-periods)</span>). The download date is recorded, and goes into the note printed under every map, so a figure that leaves this site still says which list its dots come from and that they are not the study period's centers.</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: heart-centers</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>The original maps used a copy of an HRSA transplant-center file downloaded once. <span class="in">`get_hrsa_transplant_centers()`</span> downloads the current layer from HRSA each time it runs <span class="co">[</span><span class="ot">@hrsa_otc_layer</span><span class="co">]</span>, which is then narrowed to adult heart centers (see <span class="co">[</span><span class="ot">Functions</span><span class="co">](functions.qmd#choosing-the-transplant-centers)</span>).</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## The corridor inset</span></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method (<span class="co">[</span><span class="ot">plan §4</span><span class="co">](analysis-plan.qmd#4-data-sources-and-measurement-periods)</span>).</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <span class="in">`R/setup.R`</span>, which is easier to read and change than projected coordinates. Here it is turned into a box in <span class="in">`map_crs`</span>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <span class="in">`corridor_box`</span>, because the tmap maps draw it in red on the main map and use it to place the region numbers.</span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: heart-centers</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: corridor-inset</span></span>
 <span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
 <span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## The corridor inset</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Region numbers</span></span>
 <span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <span class="in">`R/setup.R`</span>, which is easier to read and change than projected coordinates. Here it is turned into a box in <span class="in">`map_crs`</span>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off.</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>Each region's number sits on a point from <span class="in">`st_point_on_surface()`</span>, which is guaranteed to fall inside the region; a centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.</span>
 <span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: corridor-inset</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>The corridor inset needs two sets of points, made by <span class="in">`place_region_labels()`</span> (see <span class="co">[</span><span class="ot">Functions</span><span class="co">](functions.qmd#placing-the-region-numbers)</span>). <span class="in">`main_labels`</span> keeps every number clear of the red box on the main map. <span class="in">`inset_labels`</span> gives every region that appears in the enlarged view its own number there: Regions 1, 2, 9 and 11.</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: region-labels</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
