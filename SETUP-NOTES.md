@@ -4,12 +4,12 @@ Non-sensitive setup decisions and open items for this repository. Open decisions
 
 ## Decided at setup (2026-11-09)
 
-- The maps are drawn by a GitHub Actions workflow (`.github/workflows/maps.yml`) that runs `R/main.R`, renders the site and opens a pull request with `figures/` and `docs/` (Vagish Hemmige, 2026-11-09), because the live HRSA download was not reachable from the setup session.
+- The site is rendered and published by a GitHub Actions workflow (`.github/workflows/publish.yml`), which also draws the maps with `R/main.R` and publishes to the `gh-pages` branch (Vagish Hemmige, 2026-11-09: "Let's use GitHub actions for the site rendering"). `docs/` and `figures/` are no longer committed, because the live HRSA download was not reachable from the setup session.
 
 - One repository and one Quarto website, with one code page per study and one shared page for the map layers.
 - Every map uses sRtr for region geography and transplant centers, every layer is projected to EPSG:5070 before plotting, and each map is drawn with ggplot2 and with tmap (inset of the Washington-Boston corridor, as Vagish Hemmige asked on 2026-11-09).
 - The Chagas map is not included yet: its study is not yet published.
-- The regional summaries and maps are public. Vagish Hemmige, 2026-11-09, in a Claude session: "The maps can be published. The raw data is in the papers so that's fair game too." `figures/` is tracked.
+- The regional summaries and maps are public. Vagish Hemmige, 2026-11-09, in a Claude session: "The maps can be published. The raw data is in the papers so that's fair game too." The maps go out with the published site.
 - The regional counts are written out with `tribble()` in each study script instead of read from spreadsheets (Vagish Hemmige, 2026-11-09: "There's very little data in here. Enough you could even define the tibble in the setups"). Percentages are computed from the counts. The typed counts match the supplied spreadsheets exactly, the computed percentages reproduce their percentage columns to four decimals, and the totals match the papers (HCV 109 of 1,322; DCD 87 of 1,581; EVMP 561 of 12,363).
 - The COVID-19 donor and donor offer acceptance studies have no maps yet; the site starts with the three studies that do.
 - The website is published from a committed `docs/` folder by GitHub Pages.
@@ -44,8 +44,7 @@ These change how the maps look, not what they show.
 
 - [ ] Confirm the deciders and their areas in `AGENTS.md` (Shivank Madan and Vagish Hemmige, as drafted).
 - [ ] File D2 and D3 as decision issues and replace the `SETUP-NOTES.md` references in the plan and pages with their links.
-- [ ] Maintainer: turn on "Allow GitHub Actions to create and approve pull requests" (Settings → Actions → General → Workflow permissions), run the "Draw maps and render site" workflow, check the maps on the Results page of its pull request, and merge it.
-- [ ] Maintainer: protect the `main` branch, and turn on GitHub Pages (from `main`, `/docs`) once the first pull request containing `docs/` is merged.
+- [ ] Maintainer: once the publish workflow has run on `main` and created the `gh-pages` branch, turn on GitHub Pages (Settings → Pages → Deploy from a branch → `gh-pages`, `/ (root)`), then protect the `main` branch.
 - [ ] Consider two sRtr issues: `get_hrsa_transplant_centers()` returns one row per center and organ, so callers must de-duplicate; and `get_hrsa_optn_regions()` returns WGS 84 while `UNOS_regions_sf` is EPSG:5070.
 
 ## What was tested during setup

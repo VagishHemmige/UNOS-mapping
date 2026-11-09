@@ -36,4 +36,4 @@ https://vagishhemmige.github.io/UNOS-mapping/
 
 ## Running the analysis
 
-Run `R/main.R` from the project root. It needs sRtr (`remotes::install_github("VagishHemmige/sRtr")`), tmap 4.x and an internet connection for the HRSA transplant-center layer. On GitHub, the "Draw maps and render site" workflow (Actions tab) does the same and opens a pull request with the maps and the rendered site. Each study's regional counts, published in its paper, are written out in its script. Maps are saved to `figures/`.
+Run `R/main.R` from the project root. It needs sRtr (`remotes::install_github("VagishHemmige/sRtr")`), tmap 4.x and an internet connection for the HRSA transplant-center layer. On GitHub, the "Draw maps and publish website" workflow does the same on every push to `main` and publishes the site to GitHub Pages. Each study's regional counts, published in its paper, are written out in its script. Maps are saved to `figures/`.

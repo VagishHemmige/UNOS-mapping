@@ -6,7 +6,7 @@ How the code that draws the regional maps is organized, as implemented on the `s
 
 `R/main.R` runs six scripts in order. The first two set up packages, constants and helper functions. `R/map_geography.R` builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study's regional counts, joins them to the shared layers, and saves two maps per measure to `figures/<study>/`: one drawn with ggplot2 and one with tmap, with an inset of the Washington-Boston corridor.
 
-The Quarto website explains the scripts. Its pages import the scripts' labelled sections with `knitr::read_chunk()` and show them; they never run the analysis. The Results page shows the saved maps. A GitHub Actions workflow runs `R/main.R` and renders the site on GitHub, because the HRSA download needs internet access that some working environments lack.
+The Quarto website explains the scripts. Its pages import the scripts' labelled sections with `knitr::read_chunk()` and show them; they never run the analysis. The Results page shows the saved maps. A GitHub Actions workflow runs `R/main.R`, renders the site and publishes it on every push to `main`, so the maps and the site are always drawn from the code on `main`.
 
 ## Architecture diagram
 
@@ -34,7 +34,8 @@ flowchart TD
     DCD --> FIG
     EVMP --> FIG
 
-    FIG --> SITE[Quarto site in docs/<br/>Results page]
+    FIG --> SITE[Quarto site<br/>Results page]
+    SITE --> PAGES[gh-pages branch<br/>GitHub Pages]
     RSRC[R/*.R labelled sections] -. read_chunk, not run .-> SITE
 ```
 
@@ -94,17 +95,17 @@ flowchart TD
 
 **Purpose**: explains the code and shows the maps.
 
-**Location**: `_quarto.yml`, `index.qmd`, `404.qmd`, `quarto/`, rendered to `docs/`.
+**Location**: `_quarto.yml`, `index.qmd`, `404.qmd`, `quarto/`, rendered to `docs/` (not committed).
 
 **Interactions**: code pages import labelled sections of `R/*.R` with `knitr::read_chunk()` and show them without running them. The Results page (`quarto/results.qmd`) shows the PNG files in `figures/`. The project-document pages include `analysis-plan.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md`, and this file is read by `quarto/architecture.qmd`.
 
-### Map workflow
+### Publish workflow
 
-**Purpose**: runs `R/main.R` and renders the site on GitHub, then opens a pull request with the updated `figures/` and `docs/`.
+**Purpose**: draws the maps with `R/main.R`, renders the site and publishes it to the `gh-pages` branch, which GitHub Pages serves.
 
-**Location**: `.github/workflows/maps.yml`
+**Location**: `.github/workflows/publish.yml`
 
-**Interactions**: runs when started by hand (Actions → Draw maps and render site → Run workflow) or when a change to `R/` reaches `main`. It never pushes to `main`; its pull request is reviewed like any other.
+**Interactions**: runs on every push to `main` and by hand (Actions → Draw maps and publish website → Run workflow). On a pull request it draws and renders without publishing, as a check. It installs sRtr from GitHub and the other packages from CRAN, and needs internet access to the HRSA server. A failed run publishes nothing, so the last good site stays live.
 
 ### Provenance
 
@@ -116,7 +117,7 @@ flowchart TD
 2. `R/map_geography.R` takes the state polygons and region outlines from sRtr, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.
 3. Each study script builds its regional table from counts written in the script, computes percentages (shares of the national count for HCV and DCD; the region's own rate for EVMP), and joins the table to the state polygons.
 4. For each measure, the study script draws the ggplot2 and tmap maps and saves them to `figures/<study>/`.
-5. Quarto renders the site to `docs/`, copying the maps for the Results page.
+5. Quarto renders the site, copying the maps for the Results page, and the publish workflow pushes it to the `gh-pages` branch.
 
 ## Configuration
 
@@ -134,7 +135,7 @@ All settings are constants in `R/setup.R`; no environment variables or data path
 | DCD study | `R/dcd_map.R` | `dcd_summary`, `dcd_measures` |
 | EVMP study | `R/evmp_map.R` | `evmp_summary`, `evmp_measures` |
 | Results page | `quarto/results.qmd` | reads `figures/` |
-| Workflow | `.github/workflows/maps.yml` | runs `R/main.R`, renders, opens a pull request |
+| Workflow | `.github/workflows/publish.yml` | runs `R/main.R`, renders, publishes to `gh-pages` |
 
 ## Glossary
 

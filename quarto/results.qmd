@@ -6,7 +6,7 @@ format: html
 The regional maps for each study, drawn by `R/main.R` from the counts published in each paper. Each map is shown twice: as drawn with ggplot2, and as drawn with tmap with the Washington-Boston corridor enlarged. States are shaded by their UNOS region's value; dots are adult heart-transplant centers from the current HRSA layer, so they show centers as they are now, not as they were during each study period.
 
 ::: {.Results title="Where these maps come from"}
-The maps are saved to `figures/` by the study scripts ([HCV](hcv_map.qmd), [DCD](dcd_map.qmd), [machine perfusion](evmp_map.qmd)) and are redrawn on GitHub by the map workflow described in [Architecture](architecture.qmd). This page only shows the saved files; it runs no code.
+The maps are saved to `figures/` by the study scripts ([HCV](hcv_map.qmd), [DCD](dcd_map.qmd), [machine perfusion](evmp_map.qmd)) and are redrawn on GitHub, from the code on `main`, each time the site is published (see [Architecture](architecture.qmd)). This page only shows the saved files; it runs no code.
 :::
 
 ## HCV donors, 2015–2020
