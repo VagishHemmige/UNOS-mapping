@@ -920,7 +920,7 @@
     "href": "quarto/results.html",
     "title": "Maps",
     "section": "",
-    "text": "The regional maps for each study, drawn by R/main.R from the counts published in each paper. Each map is shown twice: as drawn with ggplot2, and as drawn with tmap with the Washington-Boston corridor enlarged. States are shaded by their UNOS region’s value; dots are adult heart-transplant centers from the current HRSA layer, so they show centers as they are now, not as they were during each study period.",
+    "text": "The regional maps for each study, drawn by R/main.R from the counts published in each paper. Each map opens with the version drawn with tmap, with the Washington-Boston corridor enlarged beside it; the second tab shows the same map drawn with ggplot2, without the inset. States are shaded by their UNOS region’s value; dots are adult heart-transplant centers from the current HRSA layer, so they show centers as they are now, not as they were during each study period.",
     "crumbs": [
       "Results",
       "Maps"
@@ -931,7 +931,7 @@
     "href": "quarto/results.html#hcv-donors-20152020",
     "title": "Maps",
     "section": "HCV donors, 2015–2020",
-    "text": "HCV donors, 2015–2020\nFrom Madan et al. (2021).\n\nShare of U.S. HCV-donor multiorgan heart transplants\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nShare of U.S. HCV-donor multiorgan heart transplants.\n\n\n\n\n\n\n\nShare of U.S. HCV-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.",
+    "text": "HCV donors, 2015–2020\nFrom Madan et al. (2021).\n\nShare of U.S. HCV-donor multiorgan heart transplants\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nShare of U.S. HCV-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of U.S. HCV-donor multiorgan heart transplants.",
     "crumbs": [
       "Results",
       "Maps"
@@ -942,7 +942,7 @@
     "href": "quarto/results.html#dcd-donors-20202023",
     "title": "Maps",
     "section": "DCD donors, 2020–2023",
-    "text": "DCD donors, 2020–2023\nFrom Madan et al. (2024).\n\nNumber of multiorgan heart transplants with DCD donors\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nNumber of multiorgan heart transplants with DCD donors.\n\n\n\n\n\n\n\nNumber of multiorgan heart transplants with DCD donors, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants.\n\n\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nNumber of all multiorgan heart transplants\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nNumber of all multiorgan heart transplants.\n\n\n\n\n\n\n\nNumber of all multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants.\n\n\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants, with the Washington-Boston corridor enlarged.",
+    "text": "DCD donors, 2020–2023\nFrom Madan et al. (2024).\n\nNumber of multiorgan heart transplants with DCD donors\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nNumber of multiorgan heart transplants with DCD donors, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nNumber of multiorgan heart transplants with DCD donors.\n\n\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of U.S. DCD-donor multiorgan heart transplants.\n\n\n\n\n\n\n\nNumber of all multiorgan heart transplants\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nNumber of all multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nNumber of all multiorgan heart transplants.\n\n\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of all U.S. multiorgan heart transplants.",
     "crumbs": [
       "Results",
       "Maps"
@@ -953,7 +953,7 @@
     "href": "quarto/results.html#ex-vivo-machine-perfusion-20202024",
     "title": "Maps",
     "section": "Ex vivo machine perfusion, 2020–2024",
-    "text": "Ex vivo machine perfusion, 2020–2024\nFrom Madan et al. (2025).\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion\n\nggplot2tmap, with corridor inset\n\n\n\n\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion.\n\n\n\n\n\n\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.",
+    "text": "Ex vivo machine perfusion, 2020–2024\nFrom Madan et al. (2025).\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion\n\nWith corridor inset (tmap)Without inset (ggplot2)\n\n\n\n\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.\n\n\n\n\n\n\n\nShare of each region’s DBD heart transplants using ex vivo machine perfusion.",
     "crumbs": [
       "Results",
       "Maps"
