@@ -35,6 +35,9 @@ knitr::read_chunk("../R/setup.R")
 - `corridor_extent` is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.
 - `adult_center_exceptions` are the two centers with "Children" in their name that the original maps kept because they also transplant adults.
 - There is no data path: each study's regional counts are written out in its own script.
+- `label_margin` is the gap, in metres, kept between the corridor box and the region numbers placed beside or inside it.
+- `center_label` and `map_note_template` are the legend entry for the center dots and the note printed under every map; `{retrieved}` in the note becomes the date the HRSA layer was downloaded.
+- `figure_width`, `figure_height`, `base_text_size` and `tiff_dpi` size the saved maps for a double-column journal figure: 7 by 4.6 inches, 8-point text, TIFF at 600 dpi.
 
 ```{r}
 #| label: define-constants

@@ -1,7 +1,8 @@
 # Purpose: regional map for the ex vivo machine perfusion study in DBD heart
 #   transplantation (Madan et al., J Card Fail 2025).
 # Needs: setup.R, functions.R, map_geography.R.
-# Produces: evmp_summary, evmp_states and maps saved in figures/evmp/.
+# Produces: evmp_summary, evmp_states, tables/evmp_regions.csv and maps
+#   saved in figures/evmp/.
 
 ## ---- evmp-region-summary
 # DBD heart transplants by UNOS region, January 2020 to June 2024: all of
@@ -31,23 +32,39 @@ evmp_measures <- c(
 
 evmp_states <- join_region_values(region_states, evmp_summary)
 
+## ---- evmp-region-table
+# The counts and percentages behind the map, for the table on the Maps page
+evmp_summary |>
+  transmute(
+    Region = region,
+    `DBD HTs` = n_dbd,
+    `DBD HTs using EVMP` = n_evmp,
+    `Region's DBD HTs using EVMP (%)` = round(pct_evmp, 1)
+  ) |>
+  write_region_table(study = "evmp")
+
 ## ---- evmp-maps
 for (measure in names(evmp_measures)) {
   evmp_ggplot <- map_regions_ggplot(
-    evmp_states, region_outlines, region_labels,
+    evmp_states, region_outlines, main_labels,
     fill_var = measure,
     legend_title = evmp_measures[[measure]],
     centers = heart_centers,
+    center_label = center_label,
+    note = map_note,
     palette = fill_palette,
     na_fill = missing_fill,
-    crs = map_crs
+    crs = map_crs,
+    base_size = base_text_size
   )
   evmp_tmap <- map_regions_tmap(
-    evmp_states, region_outlines, region_labels,
+    evmp_states, region_outlines, main_labels, inset_labels,
     fill_var = measure,
     legend_title = evmp_measures[[measure]],
     centers = heart_centers,
-    inset_bbox = corridor_bbox,
+    center_label = center_label,
+    inset_box = corridor_box,
+    note = map_note,
     palette = fill_palette,
     na_fill = missing_fill
   )
@@ -56,6 +73,7 @@ for (measure in names(evmp_measures)) {
     study = "evmp",
     name = measure,
     width = figure_width,
-    height = figure_height
+    height = figure_height,
+    dpi = tiff_dpi
   )
 }

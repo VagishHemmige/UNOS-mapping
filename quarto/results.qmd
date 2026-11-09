@@ -3,15 +3,35 @@ title: "Maps"
 format: html
 ---
 
-The regional maps for each study, drawn by `R/main.R` from the counts published in each paper. Each map opens with the version drawn with tmap, with the Washington-Boston corridor enlarged beside it; the second tab shows the same map drawn with ggplot2, without the inset. States are shaded by their UNOS region's value; dots are adult heart-transplant centers from the current HRSA layer, so they show centers as they are now, not as they were during each study period.
+The regional maps for each study, drawn by `R/main.R` from the counts published in each paper. Each map opens with the tmap version, with the Washington-Boston corridor enlarged beside it; the second tab shows the same map drawn with ggplot2. States are shaded by their UNOS region's value. Dots are adult heart-transplant centers from HRSA's current list, so they show centers as they are now, not as they were during each study period, and not which centers performed the transplants mapped.
 
-::: {.Results title="Where these maps come from"}
-The maps are saved to `figures/` by the study scripts ([HCV](hcv_map.qmd), [DCD](dcd_map.qmd), [machine perfusion](evmp_map.qmd)) and are redrawn on GitHub, from the code on `main`, each time the site is published (see [Architecture](architecture.qmd)). This page only shows the saved files; it runs no code.
+::: {.Results title="Two kinds of percentage"}
+The HCV and DCD maps show each region's **share of the national count**: the region's transplants divided by all such transplants in the United States. These shares add up to 100% across the eleven regions and are largest where the most transplants of that kind were done, so they show *where* the country's transplants happened.
+
+The machine-perfusion map shows each region's **own rate**: the region's machine-perfusion transplants divided by the region's own DBD heart transplants. It shows how often each region used the technique.
+
+A high national share does not by itself mean a high rate within the region: a region that does many transplants of every kind tends to have a large share of any one kind.
 :::
+
+```{r}
+#| include: false
+#| eval: true
+# Shows a study's regional table, saved to tables/ by its study script. Reads
+# that file only; runs no analysis.
+show_region_table <- function(study) {
+  path <- file.path("..", "tables", paste0(study, "_regions.csv"))
+  if (!file.exists(path)) {
+    return(knitr::asis_output("*The table appears once `R/main.R` has been run.*"))
+  }
+  knitr::kable(read.csv(path, check.names = FALSE), align = "lrrrr")
+}
+```
 
 ## HCV donors, 2015–2020
 
-From @madan2021hcv.
+From @madan2021hcv. **What the percentage is:** each region's HCV-donor multiorgan heart transplants divided by all 109 in the United States.
+
+Four regions did most of them: Region 11 had 31 of the 109 (28%), Region 9 had 17 (16%), Region 5 had 15 (14%) and Region 10 had 14 (13%), together 71%. Region 11's share of HCV-donor transplants (28%) was more than twice its share of all multiorgan heart transplants (12%); Region 5's was about half of its share of all multiorgan heart transplants (14% against 27%).
 
 ### Share of U.S. HCV-donor multiorgan heart transplants
 
@@ -19,31 +39,29 @@ From @madan2021hcv.
 
 #### With corridor inset (tmap)
 
-![Share of U.S. HCV-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/hcv/pct_of_us_hcv_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
+![Share of U.S. HCV-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/hcv/pct_of_us_hcv_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
 
 #### Without inset (ggplot2)
 
-![Share of U.S. HCV-donor multiorgan heart transplants.](../figures/hcv/pct_of_us_hcv.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
+![Share of U.S. HCV-donor multiorgan heart transplants.](../figures/hcv/pct_of_us_hcv.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
 
 :::
+
+```{r}
+#| echo: false
+#| eval: true
+show_region_table("hcv")
+```
+
+Download as PDF: [HCV-donor share](../figures/hcv/pct_of_us_hcv_inset.pdf) ([without inset](../figures/hcv/pct_of_us_hcv.pdf)).
 
 ## DCD donors, 2020–2023
 
-From @madan2024dcd.
+From @madan2024dcd. **What the percentages are:** each region's DCD-donor multiorgan heart transplants divided by all 87 in the United States, and each region's multiorgan heart transplants of any donor type divided by all 1,581.
 
-### Number of multiorgan heart transplants with DCD donors
+Three regions did about two thirds of the DCD-donor transplants: Region 11 had 23 of the 87 (26%), Region 5 had 19 (22%) and Region 1 had 15 (17%). Regions 2 and 6 had none. Region 1's share of DCD-donor transplants (17%) was about four times its share of all multiorgan heart transplants (4%).
 
-::: {.panel-tabset}
-
-#### With corridor inset (tmap)
-
-![Number of multiorgan heart transplants with DCD donors, with the Washington-Boston corridor enlarged.](../figures/dcd/n_dcd_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing number of multiorgan heart transplants with DCD donors. Region 11 had the most (23), then Regions 5 (19) and 1 (15); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
-
-#### Without inset (ggplot2)
-
-![Number of multiorgan heart transplants with DCD donors.](../figures/dcd/n_dcd.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing number of multiorgan heart transplants with DCD donors. Region 11 had the most (23), then Regions 5 (19) and 1 (15); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
-
-:::
+Because each share is a count divided by one national total, a map of the counts shows exactly the same pattern as the map of the shares. This page shows the two share maps; the table gives both the counts and the shares, and the count maps can be downloaded below.
 
 ### Share of U.S. DCD-donor multiorgan heart transplants
 
@@ -51,25 +69,11 @@ From @madan2024dcd.
 
 #### With corridor inset (tmap)
 
-![Share of U.S. DCD-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_dcd_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
+![Share of U.S. DCD-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_dcd_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
 
 #### Without inset (ggplot2)
 
-![Share of U.S. DCD-donor multiorgan heart transplants.](../figures/dcd/pct_of_us_dcd.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
-
-:::
-
-### Number of all multiorgan heart transplants
-
-::: {.panel-tabset}
-
-#### With corridor inset (tmap)
-
-![Number of all multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/n_total_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing number of all multiorgan heart transplants. Region 5 had the most (374), then Regions 11 (211), 4 (182) and 9 (179); Region 6 had the fewest (27). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
-
-#### Without inset (ggplot2)
-
-![Number of all multiorgan heart transplants.](../figures/dcd/n_total.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing number of all multiorgan heart transplants. Region 5 had the most (374), then Regions 11 (211), 4 (182) and 9 (179); Region 6 had the fewest (27). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
+![Share of U.S. DCD-donor multiorgan heart transplants.](../figures/dcd/pct_of_us_dcd.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
 
 :::
 
@@ -79,17 +83,27 @@ From @madan2024dcd.
 
 #### With corridor inset (tmap)
 
-![Share of all U.S. multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_total_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
+![Share of all U.S. multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_total_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
 
 #### Without inset (ggplot2)
 
-![Share of all U.S. multiorgan heart transplants.](../figures/dcd/pct_of_us_total.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
+![Share of all U.S. multiorgan heart transplants.](../figures/dcd/pct_of_us_total.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
 
 :::
 
+```{r}
+#| echo: false
+#| eval: true
+show_region_table("dcd")
+```
+
+Download as PDF: [DCD-donor share](../figures/dcd/pct_of_us_dcd_inset.pdf) ([without inset](../figures/dcd/pct_of_us_dcd.pdf)); [DCD-donor count](../figures/dcd/n_dcd_inset.pdf) ([without inset](../figures/dcd/n_dcd.pdf)); [share of all multiorgan HTs](../figures/dcd/pct_of_us_total_inset.pdf) ([without inset](../figures/dcd/pct_of_us_total.pdf)); [count of all multiorgan HTs](../figures/dcd/n_total_inset.pdf) ([without inset](../figures/dcd/n_total.pdf)).
+
 ## Ex vivo machine perfusion, 2020–2024
 
-From @madan2025evmp.
+From @madan2025evmp. **What the percentage is:** each region's DBD heart transplants that used ex vivo machine perfusion divided by that region's own DBD heart transplants. Nationally, 561 of 12,363 (4.5%) did.
+
+Region 1 had the highest rate (79 of 577, 14%), followed by Region 11 (129 of 1,687, 8%). Region 11 did the most machine-perfusion transplants of any region but had a lower rate than Region 1, because it did about three times as many DBD heart transplants. Regions 8 (1%) and 2 (2%) had the lowest rates.
 
 ### Share of each region's DBD heart transplants using ex vivo machine perfusion
 
@@ -97,10 +111,20 @@ From @madan2025evmp.
 
 #### With corridor inset (tmap)
 
-![Share of each region's DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.](../figures/evmp/pct_evmp_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
+![Share of each region's DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.](../figures/evmp/pct_evmp_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
 
 #### Without inset (ggplot2)
 
-![Share of each region's DBD heart transplants using ex vivo machine perfusion.](../figures/evmp/pct_evmp.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark adult heart-transplant centers."}
+![Share of each region's DBD heart transplants using ex vivo machine perfusion.](../figures/evmp/pct_evmp.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
 
 :::
+
+```{r}
+#| echo: false
+#| eval: true
+show_region_table("evmp")
+```
+
+Download as PDF: [machine-perfusion rate](../figures/evmp/pct_evmp_inset.pdf) ([without inset](../figures/evmp/pct_evmp.pdf)).
+
+TIFF files at 600 dpi, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then *Artifacts*).

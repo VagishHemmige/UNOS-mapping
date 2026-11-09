@@ -12,6 +12,9 @@ project:
     - index.qmd
     - 404.qmd
     - quarto/**
+  # The PDF maps are linked from the Maps page for download
+  resources:
+    - "figures/**/*.pdf"
 
 bibliography: references.bib
 

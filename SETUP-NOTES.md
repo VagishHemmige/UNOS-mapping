@@ -30,6 +30,10 @@ Plan §5. Code: `R/functions.R`, `select-adult-centers`.
 Options: (a) keep the published measures only; (b) add a map of each region's own rate (`n_hcv / n_total`, `n_dcd / n_total`) alongside, labelled as not in the paper.
 Plan §2. Code: the `*-region-summary` sections of `R/hcv_map.R` and `R/dcd_map.R`.
 
+## Publication readiness (2026-11-09)
+
+Started at Vagish Hemmige's request ("Weren't we going to now see if we can get things more publication ready"), together with issues #6 to #9: boxed region numbers, inset numbers and a locator box clear of the main-map numbers (#6), a center legend and a note with the HRSA retrieval date in every figure (#7), denominators and takeaways on the Maps page (#8), one share map per DCD count/share pair with a table of both (#9), and PDF and 600 dpi TIFF output at 7 inches. Still to consider: classed colour legends with a separate zero class, a 2-by-2 DCD panel, simplified coastlines, and journal-specific sizes once a journal is chosen.
+
 ## Cartographic changes from the original maps, for the maintainer to confirm
 
 These change how the maps look, not what they show.

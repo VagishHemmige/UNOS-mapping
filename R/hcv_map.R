@@ -1,7 +1,8 @@
 # Purpose: regional maps for the HCV-donor multiorgan heart-transplant study
 #   (Madan et al., J Heart Lung Transplant 2021).
 # Needs: setup.R, functions.R, map_geography.R.
-# Produces: hcv_summary, hcv_states and maps saved in figures/hcv/.
+# Produces: hcv_summary, hcv_states, tables/hcv_regions.csv and maps
+#   saved in figures/hcv/.
 
 ## ---- hcv-region-summary
 # Multiorgan heart transplants by UNOS region, August 2015 to August 2020:
@@ -33,23 +34,40 @@ hcv_measures <- c(
 
 hcv_states <- join_region_values(region_states, hcv_summary)
 
+## ---- hcv-region-table
+# The counts and percentages behind the maps, for the table on the Maps page
+hcv_summary |>
+  transmute(
+    Region = region,
+    `HCV-donor multiorgan HTs` = n_hcv,
+    `Share of U.S. HCV-donor multiorgan HTs (%)` = round(pct_of_us_hcv, 1),
+    `All multiorgan HTs` = n_total,
+    `Share of all U.S. multiorgan HTs (%)` = round(pct_of_us_total, 1)
+  ) |>
+  write_region_table(study = "hcv")
+
 ## ---- hcv-maps
 for (measure in names(hcv_measures)) {
   hcv_ggplot <- map_regions_ggplot(
-    hcv_states, region_outlines, region_labels,
+    hcv_states, region_outlines, main_labels,
     fill_var = measure,
     legend_title = hcv_measures[[measure]],
     centers = heart_centers,
+    center_label = center_label,
+    note = map_note,
     palette = fill_palette,
     na_fill = missing_fill,
-    crs = map_crs
+    crs = map_crs,
+    base_size = base_text_size
   )
   hcv_tmap <- map_regions_tmap(
-    hcv_states, region_outlines, region_labels,
+    hcv_states, region_outlines, main_labels, inset_labels,
     fill_var = measure,
     legend_title = hcv_measures[[measure]],
     centers = heart_centers,
-    inset_bbox = corridor_bbox,
+    center_label = center_label,
+    inset_box = corridor_box,
+    note = map_note,
     palette = fill_palette,
     na_fill = missing_fill
   )
@@ -58,6 +76,7 @@ for (measure in names(hcv_measures)) {
     study = "hcv",
     name = measure,
     width = figure_width,
-    height = figure_height
+    height = figure_height,
+    dpi = tiff_dpi
   )
 }

@@ -41,9 +41,18 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 #| eval: false
 ```
 
+## Regional table
+
+The counts and percentages behind the maps, with readable column names, are saved to `tables/hcv_regions.csv` for the table on the [Maps](results.qmd) page.
+
+```{r}
+#| label: hcv-region-table
+#| eval: false
+```
+
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/hcv/`.
+For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/hcv/` as PNG, PDF and TIFF. Both carry the center legend and the note from [Map geography](map_geography.qmd#transplant-centers).
 
 This was the first of these maps, and the later RMDs copied its code. Compared with the original, everything that set up the geography is gone from this script: it is in [Map geography](map_geography.qmd), shared by every study.
 
