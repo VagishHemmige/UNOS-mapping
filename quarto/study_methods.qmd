@@ -37,7 +37,7 @@ The centers are today's, from the live HRSA layer, not those of each study perio
 
 ## How the maps are drawn
 
-Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.
+Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Washington-Boston corridor.
 
 **Specified in:** [§2](analysis-plan.qmd#2-objectives), [§7 Linkage and geography](analysis-plan.qmd#7-linkage-and-geography).
 

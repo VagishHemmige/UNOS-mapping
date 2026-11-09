@@ -10,14 +10,16 @@ library(dplyr)
 library(stringr)
 library(ggplot2)
 library(colorspace)  # sequential "OrYel" palette used in the published maps
-library(tmap)        # maps with a Northeast inset (tmap 4.x)
+library(tmap)        # maps with an inset of the Washington-Boston corridor (tmap 4.x)
 
 ## ---- define-constants
 # Projection for every layer: NAD83 / Conus Albers, as in sRtr and HOPE-CDC
 map_crs <- 5070
 
-# Regions drawn again, enlarged, in the tmap inset
-northeast_regions <- c("Region 1", "Region 2", "Region 9")
+# Extent of the tmap inset, in longitude and latitude: the Washington-Boston
+# corridor, where centers crowd together (DC, Baltimore, Philadelphia, New
+# York, Hartford, Providence, Boston)
+corridor_extent <- c(xmin = -77.6, ymin = 38.6, xmax = -70.5, ymax = 42.9)
 
 # Fill palette and colour for regions with no value
 fill_palette <- "OrYel"

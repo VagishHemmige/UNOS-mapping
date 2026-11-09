@@ -126,17 +126,6 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
-}
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
-}
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
-  background-image: none;
-}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -146,6 +135,17 @@ div.callout-Results.callout-style-default > .callout-header {
 div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
   content: '📊';
+  background-image: none;
+}
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 div.callout-Pending.callout {
@@ -458,14 +458,14 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <section id="tmap-and-insets" class="level2">
 <h2 class="anchored" data-anchor-id="tmap-and-insets">tmap and insets</h2>
 <p>tmap is a second mapping package, built for thematic maps; Walker introduces it in <a href="https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-tmap">§6.3</a>. His examples use tmap 3. This site uses tmap 4, whose syntax changed: <code>tm_polygons(fill = ...)</code> with <code>fill.scale</code> and <code>fill.legend</code> replaces arguments such as <code>col</code>, <code>style</code> and <code>palette</code>. The <a href="https://r-tmap.github.io/tmap/">tmap website</a> documents version 4.</p>
-<p>An inset repeats part of the map at a larger scale in a corner. In the Northeast, small states and many centers close together make the main map hard to read; tmap’s <code>tm_inset()</code> draws Regions 1, 2 and 9 enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris’s <code>shift_geometry()</code> in <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping">§5.5.1</a>; the maps here leave those places out, as the published maps did.</p>
+<p>An inset repeats part of the map at a larger scale beside it. Between Washington and Boston, transplant centers sit so close together that they overlap on a national map; tmap’s <code>tm_inset()</code> draws that corridor enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris’s <code>shift_geometry()</code> in <a href="https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping">§5.5.1</a>; the maps here leave those places out, as the published maps did.</p>
 </section>
 <section id="what-the-result-looks-like" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-result-looks-like">What the result looks like</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/synthetic_region_map.png" class="img-fluid figure-img" alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots and small states in the Northeast crowd together."></p>
-<figcaption>The ggplot2 version of a region map, drawn from <strong>synthetic values</strong>, not study results, with synthetic center locations. The Northeast is crowded, which is what the tmap inset addresses.</figcaption>
+<p><img src="../images/synthetic_region_map.png" class="img-fluid figure-img" alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots between Washington and Boston crowd together."></p>
+<figcaption>The ggplot2 version of a region map, drawn from <strong>synthetic values</strong>, not study results, with synthetic center locations. The centers between Washington and Boston crowd together, which is what the tmap inset addresses.</figcaption>
 </figure>
 </div>
 
@@ -978,11 +978,11 @@ Walker, Kyle E. 2023. <em>Analyzing <span>US</span> Census Data: Methods, Maps, 
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>tmap is a second mapping package, built for thematic maps; Walker introduces it in <span class="co">[</span><span class="ot">§6.3</span><span class="co">](https://walker-data.com/census-r/mapping-census-data-with-r.html#map-making-with-tmap)</span>. His examples use tmap 3. This site uses tmap 4, whose syntax changed: <span class="in">`tm_polygons(fill = ...)`</span> with <span class="in">`fill.scale`</span> and <span class="in">`fill.legend`</span> replaces arguments such as <span class="in">`col`</span>, <span class="in">`style`</span> and <span class="in">`palette`</span>. The <span class="co">[</span><span class="ot">tmap website</span><span class="co">](https://r-tmap.github.io/tmap/)</span> documents version 4.</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>An inset repeats part of the map at a larger scale in a corner. In the Northeast, small states and many centers close together make the main map hard to read; tmap's <span class="in">`tm_inset()`</span> draws Regions 1, 2 and 9 enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris's <span class="in">`shift_geometry()`</span> in <span class="co">[</span><span class="ot">§5.5.1</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping)</span>; the maps here leave those places out, as the published maps did.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>An inset repeats part of the map at a larger scale beside it. Between Washington and Boston, transplant centers sit so close together that they overlap on a national map; tmap's <span class="in">`tm_inset()`</span> draws that corridor enlarged. For a related problem, fitting Alaska, Hawaii and Puerto Rico onto a national map, Walker shows tigris's <span class="in">`shift_geometry()`</span> in <span class="co">[</span><span class="ot">§5.5.1</span><span class="co">](https://walker-data.com/census-r/census-geographic-data-and-applications-in-r.html#shifting-and-rescaling-geometry-for-national-us-mapping)</span>; the maps here leave those places out, as the published maps did.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the result looks like</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="al">![The ggplot2 version of a region map, drawn from **synthetic values**, not study results, with synthetic center locations. The Northeast is crowded, which is what the tmap inset addresses.](../images/synthetic_region_map.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots and small states in the Northeast crowd together."}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="al">![The ggplot2 version of a region map, drawn from **synthetic values**, not study results, with synthetic center locations. The centers between Washington and Boston crowd together, which is what the tmap inset addresses.](../images/synthetic_region_map.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots between Washington and Boston crowd together."}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -125,6 +125,17 @@ div.csl-indent {
   }
 }</script>
 <style>
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
+  background-image: none;
+}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -145,17 +156,6 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
-  background-image: none;
-}
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
   background-image: none;
 }
 </style>
@@ -438,7 +438,7 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 </section>
 <section id="what-this-site-does" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-site-does">What this site does</h2>
-<p>It reproduces each study’s regional map, and teaches how to draw it with the <a href="https://github.com/VagishHemmige/sRtr">sRtr</a> package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Northeast enlarged in an inset.</p>
+<p>It reproduces each study’s regional map, and teaches how to draw it with the <a href="https://github.com/VagishHemmige/sRtr">sRtr</a> package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Washington-Boston corridor enlarged in an inset.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
@@ -941,7 +941,7 @@ Ramineni, Shreya, Lorenzo D’Angelo, Brandon Ferrell, Vagish Hemmige, Stephen F
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## What this site does</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>It reproduces each study's regional map, and teaches how to draw it with the <span class="co">[</span><span class="ot">sRtr</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Northeast enlarged in an inset.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>It reproduces each study's regional map, and teaches how to draw it with the <span class="co">[</span><span class="ot">sRtr</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Washington-Boston corridor enlarged in an inset.</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methods</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>

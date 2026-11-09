@@ -137,17 +137,6 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
   content: '📊';
   background-image: none;
 }
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
-  background-image: none;
-}
 div.callout-Rcode.callout {
   border-left-color: #d63384;
 }
@@ -157,6 +146,17 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 </style>
@@ -451,7 +451,7 @@ Source code
 </div>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p><a href="https://github.com/VagishHemmige/sRtr">sRtr</a> supplies the region geography and the transplant-center download, so the original scripts’ own data files are no longer needed <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with a Northeast inset. colorspace provides the <code>OrYel</code> palette the published maps used.</p>
+<p><a href="https://github.com/VagishHemmige/sRtr">sRtr</a> supplies the region geography and the transplant-center download, so the original scripts’ own data files are no longer needed <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with an inset of the Washington-Boston corridor. colorspace provides the <code>OrYel</code> palette the published maps used.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -461,7 +461,7 @@ Source code
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)  <span class="co"># sequential "OrYel" palette used in the published maps</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)        <span class="co"># maps with a Northeast inset (tmap 4.x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)        <span class="co"># maps with an inset of the Washington-Boston corridor (tmap 4.x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -469,7 +469,7 @@ Source code
 <h2 class="anchored" data-anchor-id="constants">Constants</h2>
 <ul>
 <li><code>map_crs</code> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.</li>
-<li><code>northeast_regions</code> are the regions enlarged in the inset.</li>
+<li><code>corridor_extent</code> is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</li>
 <li><code>adult_center_exceptions</code> are the two centers with “Children” in their name that the original maps kept because they also transplant adults.</li>
 <li>There is no data path: each study’s regional counts are written out in its own script.</li>
 </ul>
@@ -479,26 +479,28 @@ Source code
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Projection for every layer: NAD83 / Conus Albers, as in sRtr and HOPE-CDC</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>map_crs <span class="ot">&lt;-</span> <span class="dv">5070</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Regions drawn again, enlarged, in the tmap inset</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>northeast_regions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Region 1"</span>, <span class="st">"Region 2"</span>, <span class="st">"Region 9"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill palette and colour for regions with no value</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fill_palette <span class="ot">&lt;-</span> <span class="st">"OrYel"</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>missing_fill <span class="ot">&lt;-</span> <span class="st">"grey85"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Organ whose centers are overlaid</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>center_organ <span class="ot">&lt;-</span> <span class="st">"Heart"</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Centers with "Children" in their name that also transplant adults, carried</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># over from the original maps (analysis plan section 5)</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>adult_center_exceptions <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Memorial Regional Hospital/Joe DiMaggio Children's Hospital"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Providence Sacred Heart Medical Center &amp; Children's Hospital"</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Size of saved maps, in inches</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>figure_width <span class="ot">&lt;-</span> <span class="dv">9</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>figure_height <span class="ot">&lt;-</span> <span class="fl">5.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extent of the tmap inset, in longitude and latitude: the Washington-Boston</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># corridor, where centers crowd together (DC, Baltimore, Philadelphia, New</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># York, Hartford, Providence, Boston)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>corridor_extent <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="fl">77.6</span>, <span class="at">ymin =</span> <span class="fl">38.6</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="fl">70.5</span>, <span class="at">ymax =</span> <span class="fl">42.9</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill palette and colour for regions with no value</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fill_palette <span class="ot">&lt;-</span> <span class="st">"OrYel"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>missing_fill <span class="ot">&lt;-</span> <span class="st">"grey85"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Organ whose centers are overlaid</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>center_organ <span class="ot">&lt;-</span> <span class="st">"Heart"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Centers with "Children" in their name that also transplant adults, carried</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># over from the original maps (analysis plan section 5)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>adult_center_exceptions <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Memorial Regional Hospital/Joe DiMaggio Children's Hospital"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Providence Sacred Heart Medical Center &amp; Children's Hospital"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Size of saved maps, in inches</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>figure_width <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>figure_height <span class="ot">&lt;-</span> <span class="fl">5.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -999,7 +1001,7 @@ Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRt
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Packages</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">sRtr</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with a Northeast inset. colorspace provides the <span class="in">`OrYel`</span> palette the published maps used.</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">sRtr</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with an inset of the Washington-Boston corridor. colorspace provides the <span class="in">`OrYel`</span> palette the published maps used.</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-packages</span></span>
@@ -1009,7 +1011,7 @@ Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRt
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Constants</span></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`map_crs`</span> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`northeast_regions`</span> are the regions enlarged in the inset.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`corridor_extent`</span> is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`adult_center_exceptions`</span> are the two centers with "Children" in their name that the original maps kept because they also transplant adults.</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There is no data path: each study's regional counts are written out in its own script.</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>

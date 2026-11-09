@@ -43,7 +43,7 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/evmp/`.
+For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/evmp/`.
 
 The original RMD set the legend breaks by hand (0%, 5%, 10%, 15%). The continuous scale here chooses breaks from the data, so the code does not need to change if a region's value exceeds 15%.
 
