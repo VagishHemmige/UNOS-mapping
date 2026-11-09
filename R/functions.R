@@ -49,7 +49,7 @@ map_regions_ggplot <- function(region_states, region_outlines, region_labels,
       colour = "grey55",
       linewidth = 0.2
     ) +
-    geom_sf(data = region_outlines, fill = NA, colour = "black", linewidth = 0.7) +
+    geom_sf(data = region_outlines, fill = NA, colour = "black", linewidth = 0.4) +
     geom_sf_text(
       data = region_labels,
       mapping = aes(label = label),
@@ -94,7 +94,7 @@ map_regions_tmap <- function(region_states, region_outlines, region_labels,
       lwd = 0.5
     ) +
     tm_shape(region_outlines) +
-    tm_borders(col = "black", lwd = 1.5) +
+    tm_borders(col = "black", lwd = 1) +
     tm_shape(region_labels) +
     tm_text("label", col = "navy", fontface = "bold", size = 0.8)
 
