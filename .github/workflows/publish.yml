@@ -5,11 +5,13 @@
 # Based on the publish workflow in Cryptococcus-cost-analysis.
 #
 # R/main.R runs here, on GitHub, because it downloads the live HRSA
-# transplant-center layer. Its maps go to figures/, which the Maps page
-# shows; neither figures/ nor the rendered site (docs/) is committed. The
-# pages themselves run only the hidden knitr::read_chunk() imports and the
-# Architecture page's reading of ARCHITECTURE.md. A failed run publishes
-# nothing, so the last good site stays live.
+# transplant-center layer. Its maps go to figures/ and its regional tables
+# to tables/, which the Maps page shows; neither they nor the rendered site
+# (docs/) is committed. Each run keeps the map files, TIFFs included, as an
+# artifact. The pages themselves run only the hidden knitr::read_chunk()
+# imports, the Architecture page's reading of ARCHITECTURE.md, and the Maps
+# page's reading of the tables in tables/. A failed run publishes nothing, so
+# the last good site stays live.
 
 on:
   workflow_dispatch:
@@ -65,6 +67,16 @@ jobs:
 
       - name: Draw the maps
         run: Rscript R/main.R
+
+      # Keeps every map file (PNG, PDF and 600 dpi TIFF) and the regional
+      # tables with the run, for download from its Artifacts section
+      - name: Keep the maps and tables with the run
+        uses: actions/upload-artifact@v4
+        with:
+          name: maps-and-tables
+          path: |
+            figures/
+            tables/
 
       - name: Render (pull requests only)
         if: github.event_name == 'pull_request'

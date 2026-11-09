@@ -41,9 +41,18 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 #| eval: false
 ```
 
+## Regional table
+
+The counts and percentages behind the maps, with readable column names, are saved to `tables/evmp_regions.csv` for the table on the [Maps](results.qmd) page.
+
+```{r}
+#| label: evmp-region-table
+#| eval: false
+```
+
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/evmp/`.
+For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/evmp/` as PNG, PDF and TIFF. Both carry the center legend and the note from [Map geography](map_geography.qmd#transplant-centers).
 
 The original RMD set the legend breaks by hand (0%, 5%, 10%, 15%). The continuous scale here chooses breaks from the data, so the code does not need to change if a region's value exceeds 15%.
 

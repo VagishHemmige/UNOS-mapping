@@ -42,9 +42,27 @@ The HRSA layer that `get_hrsa_transplant_centers()` downloads has one row for ea
 #| eval: false
 ```
 
+## Placing the region numbers
+
+On the main map, a region that the corridor box touches is labelled on the part of it that lies outside the box, enlarged by `label_margin`, so no number sits under the red outline. In the inset, each region the box touches is labelled on its part inside the box, shrunk by the same margin, so every region the enlarged view shows has its number. `st_set_agr("constant")` tells sf that a region's name applies to every piece of it, which silences a warning when the regions are cut.
+
+```{r}
+#| label: place-region-labels
+#| eval: false
+```
+
+## Saving a regional table
+
+Each study script saves the counts and percentages behind its maps to `tables/`, which the [Maps](results.qmd) page shows beside the maps.
+
+```{r}
+#| label: write-region-table
+#| eval: false
+```
+
 ## The map, in ggplot2
 
-This replaces the original maps' `geom_sf()` calls with two changes. First, the plot is drawn in `map_crs` (`coord_sf(crs = ...)`) rather than in longitude and latitude, so the country is not stretched east to west. Second, centers are drawn with `geom_sf()` at their true locations; the original `geom_jitter()` moved each point randomly by up to 0.3 degrees, which is about 30 km. Region numbers are placed by code (see [Map geography](map_geography.qmd)) instead of from a spreadsheet of hand-entered positions.
+This replaces the original maps' `geom_sf()` calls with several changes. The plot is drawn in `map_crs` (`coord_sf(crs = ...)`) rather than in longitude and latitude, so the country is not stretched east to west. Centers are drawn with `geom_sf()` at their true locations; the original `geom_jitter()` moved each point randomly by up to 0.3 degrees, which is about 30 km. Mapping the centers' `shape` to `center_label` gives them their own legend entry. Region numbers sit on a pale box (`geom_sf_label()`) so they read on any fill colour. The note in the caption says what the shading and the dots are, so a figure taken off this site still explains itself. Text is sized from `base_size`, in points.
 
 ```{r}
 #| label: map-regions-ggplot
@@ -53,7 +71,7 @@ This replaces the original maps' `geom_sf()` calls with two changes. First, the 
 
 ## The map, in tmap, with a corridor inset
 
-Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. tmap's `tm_inset()` draws the same map again, enlarged to that corridor, and outlines that extent on the main map. `tm_pos_out()` places the inset outside the map frame, to the right, and the legend along the bottom, so neither hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (`rev = TRUE`) so that high values get the dark end, as they do in `scale_fill_continuous_sequential()`.
+Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map's layers are written once, in `map_layers()`, and used twice: for the main map and, with `bbox` set to the corridor, for the inset. Building the inset as its own map, rather than giving `tm_inset()` a bounding box, lets it carry its own region numbers (`inset_labels`); a red outline of `corridor_box` on the main map shows where it is. `tm_pos_out()` places the inset outside the map frame, to the right, and the colour legend, the center symbol (`tm_add_legend()`) and the note (`tm_credits()`) along the bottom, so none of them hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (`rev = TRUE`) so that high values get the dark end, as they do in `scale_fill_continuous_sequential()`.
 
 ```{r}
 #| label: map-regions-tmap
@@ -62,7 +80,7 @@ Between Washington and Boston, transplant centers crowd so closely that they ove
 
 ## Saving
 
-Each map is saved in both versions under `figures/<study>/`.
+Each map is saved in both versions under `figures/<study>/`, in three formats: PNG at 300 dpi for the website, PDF (vector) and LZW-compressed TIFF at `tiff_dpi` for a journal. The size, 7 by 4.6 inches, fits a double-column figure.
 
 ```{r}
 #| label: save-region-maps

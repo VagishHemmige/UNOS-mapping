@@ -34,20 +34,11 @@ In the original scripts this took three files: a spreadsheet listing each region
 #| eval: false
 ```
 
-## Region numbers
-
-`st_point_on_surface()` returns a point guaranteed to fall inside each region. A centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.
-
-```{r}
-#| label: region-labels
-#| eval: false
-```
-
 ## Transplant centers
 
 The original maps used a copy of an HRSA transplant-center file downloaded once. `get_hrsa_transplant_centers()` downloads the current layer from HRSA each time it runs [@hrsa_otc_layer], which is then narrowed to adult heart centers (see [Functions](functions.qmd#choosing-the-transplant-centers)).
 
-The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method ([plan §4](analysis-plan.qmd#4-data-sources-and-measurement-periods)).
+The layer shows centers as they are on the day the code runs, not as they were during each study period, so a center that has since opened or closed may be shown wrongly. That is accepted here because the maps teach the method ([plan §4](analysis-plan.qmd#4-data-sources-and-measurement-periods)). The download date is recorded, and goes into the note printed under every map, so a figure that leaves this site still says which list its dots come from and that they are not the study period's centers.
 
 ```{r}
 #| label: heart-centers
@@ -56,9 +47,20 @@ The layer shows centers as they are on the day the code runs, not as they were d
 
 ## The corridor inset
 
-The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in `R/setup.R`, which is easier to read and change than projected coordinates. Here it is turned into a box in `map_crs`. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off.
+The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in `R/setup.R`, which is easier to read and change than projected coordinates. Here it is turned into a box in `map_crs`. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, `corridor_box`, because the tmap maps draw it in red on the main map and use it to place the region numbers.
 
 ```{r}
 #| label: corridor-inset
+#| eval: false
+```
+
+## Region numbers
+
+Each region's number sits on a point from `st_point_on_surface()`, which is guaranteed to fall inside the region; a centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.
+
+The corridor inset needs two sets of points, made by `place_region_labels()` (see [Functions](functions.qmd#placing-the-region-numbers)). `main_labels` keeps every number clear of the red box on the main map. `inset_labels` gives every region that appears in the enlarged view its own number there: Regions 1, 2, 9 and 11.
+
+```{r}
+#| label: region-labels
 #| eval: false
 ```

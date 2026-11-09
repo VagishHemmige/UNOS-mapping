@@ -35,6 +35,24 @@ adult_center_exceptions <- c(
   "Providence Sacred Heart Medical Center & Children's Hospital"
 )
 
-# Size of saved maps, in inches
-figure_width <- 9
-figure_height <- 5.5
+# Space, in metres, between the corridor box and the region numbers placed
+# next to it (main map) or inside it (inset)
+label_margin <- 40000
+
+# Legend entry for the center dots, and the note printed under every map.
+# {retrieved} is replaced by the date the HRSA layer was downloaded.
+center_label <- "Adult heart-transplant center (current HRSA list)"
+map_note_template <- str_c(
+  "Shading: regional counts from the published study (OPTN/UNOS registry). ",
+  "Dots: adult heart-transplant centers in HRSA's current list, retrieved ",
+  "{retrieved}; they do not show which centers took part during the study ",
+  "period."
+)
+
+# Saved maps: 7 inches wide, a double-column journal figure, with text at
+# 8 pt. PNG for the website at 300 dpi; PDF (vector) and TIFF at tiff_dpi
+# for journal submission.
+figure_width <- 7
+figure_height <- 4.6
+base_text_size <- 8
+tiff_dpi <- 600
