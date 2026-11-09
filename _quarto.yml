@@ -102,12 +102,11 @@ website:
           #       text: Figures
           #       icon: laptop
 
-      # Add when outputs are cleared for release (references/quarto.md, "Pages"):
-      # - section: Results
-      #   contents:
-      #     - href: quarto/results.qmd
-      #       text: Main results
-      #       icon: clipboard-data
+      - section: Results
+        contents:
+          - href: quarto/results.qmd
+            text: Maps
+            icon: clipboard-data
 
       - section: Project documents
         contents:

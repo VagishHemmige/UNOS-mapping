@@ -105,18 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <style>
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
-}
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
-}
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
-  background-image: none;
-}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -126,6 +118,17 @@ div.callout-Pending.callout-style-default > .callout-header {
 div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
   content: '⏳';
+  background-image: none;
+}
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 div.callout-Results.callout {
@@ -325,12 +328,30 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Project documents</span></a>
+ <span class="menu-text">Results</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../quarto/analysis-plan.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
@@ -378,7 +399,25 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#architecture" id="toc-architecture" class="nav-link active" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link active" data-scroll-target="#architecture">Architecture</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#architecture-diagram" id="toc-architecture-diagram" class="nav-link" data-scroll-target="#architecture-diagram">Architecture diagram</a></li>
+  <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#helper-functions" id="toc-helper-functions" class="nav-link" data-scroll-target="#helper-functions">Helper functions</a></li>
+  <li><a href="#map-geography" id="toc-map-geography" class="nav-link" data-scroll-target="#map-geography">Map geography</a></li>
+  <li><a href="#study-scripts" id="toc-study-scripts" class="nav-link" data-scroll-target="#study-scripts">Study scripts</a></li>
+  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">Website</a></li>
+  <li><a href="#map-workflow" id="toc-map-workflow" class="nav-link" data-scroll-target="#map-workflow">Map workflow</a></li>
+  <li><a href="#provenance" id="toc-provenance" class="nav-link" data-scroll-target="#provenance">Provenance</a></li>
+  </ul></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow">Data flow</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
+  <li><a href="#code-references" id="toc-code-references" class="nav-link" data-scroll-target="#code-references">Code references</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/architecture.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -421,11 +460,196 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 -->
 <section id="architecture" class="level1">
 <h1>Architecture</h1>
-<p><code>ARCHITECTURE.md</code> has not been written yet.</p>
+<p>How the code that draws the regional maps is organized, as implemented on the <code>site-ready</code> branch (November 2026). The <a href="https://github.com/VagishHemmige/UNOS-mapping/blob/main/analysis-plan.md">analysis plan</a> says what the maps must show; <a href="https://github.com/VagishHemmige/UNOS-mapping/blob/main/AGENTS.md">AGENTS.md</a> says how to work on them.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p><code>R/main.R</code> runs six scripts in order. The first two set up packages, constants and helper functions. <code>R/map_geography.R</code> builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study’s regional counts, joins them to the shared layers, and saves two maps per measure to <code>figures/&lt;study&gt;/</code>: one drawn with ggplot2 and one with tmap, with an inset of the Washington-Boston corridor.</p>
+<p>The Quarto website explains the scripts. Its pages import the scripts’ labelled sections with <code>knitr::read_chunk()</code> and show them; they never run the analysis. The Results page shows the saved maps. A GitHub Actions workflow runs <code>R/main.R</code> and renders the site on GitHub, because the HRSA download needs internet access that some working environments lack.</p>
+</section>
+<section id="architecture-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-diagram">Architecture diagram</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="components" class="level2">
+<h2 class="anchored" data-anchor-id="components">Components</h2>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p><strong>Purpose</strong>: attaches every package and defines every constant the other scripts use.</p>
+<p><strong>Location</strong>: <code>R/setup.R</code></p>
+<p><strong>Key symbols</strong>: <code>map_crs</code>, <code>corridor_extent</code>, <code>fill_palette</code>, <code>missing_fill</code>, <code>center_organ</code>, <code>adult_center_exceptions</code>, <code>figure_width</code>, <code>figure_height</code>.</p>
+<p><strong>Interactions</strong>: sourced first by <code>R/main.R</code>; no inputs; produces attached packages and constants.</p>
+</section>
+<section id="helper-functions" class="level3">
+<h3 class="anchored" data-anchor-id="helper-functions">Helper functions</h3>
+<p><strong>Purpose</strong>: reusable steps shared by every study. Each takes its inputs as arguments and reads no global objects.</p>
+<p><strong>Location</strong>: <code>R/functions.R</code></p>
+<p><strong>Key functions</strong>: - <code>join_region_values()</code>: attaches a study’s regional table to the state polygons by region name; stops if any of the eleven regions is missing. - <code>select_adult_centers()</code>: keeps centers listing the organ, one row per <code>OTC_CD</code>, applies the pediatric name rule, projects to <code>map_crs</code>, and drops centers outside the mapped states. - <code>map_regions_ggplot()</code>: the ggplot2 map (states shaded by region value, region outlines, region numbers, centers). - <code>map_regions_tmap()</code>: the same map in tmap 4, with the corridor inset and the legend outside the map frame. - <code>save_region_maps()</code>: saves both versions as PNG under <code>figures/&lt;study&gt;/</code>.</p>
+<p><strong>Interactions</strong>: sourced second; used by <code>R/map_geography.R</code> and the study scripts.</p>
+</section>
+<section id="map-geography" class="level3">
+<h3 class="anchored" data-anchor-id="map-geography">Map geography</h3>
+<p><strong>Purpose</strong>: builds the layers every study shares, all in <code>map_crs</code>.</p>
+<p><strong>Location</strong>: <code>R/map_geography.R</code></p>
+<p><strong>Produces</strong>: - <code>region_states</code>: state polygons tagged with UNOS region (from <code>UNOS_regions_sf</code>). - <code>region_outlines</code>: one polygon per region (from <code>get_hrsa_optn_regions()</code>). - <code>region_labels</code>: one point inside each region, for its number (<code>st_point_on_surface()</code>). - <code>heart_centers</code>: adult heart-transplant centers from the live HRSA layer. - <code>corridor_bbox</code>: the inset extent, <code>corridor_extent</code> projected to <code>map_crs</code>.</p>
+<p><strong>Interactions</strong>: needs setup and functions; downloads the HRSA layer each run; feeds every study script.</p>
+</section>
+<section id="study-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="study-scripts">Study scripts</h3>
+<p><strong>Purpose</strong>: one per published study. Each writes out its regional counts with <code>tibble::tribble()</code>, computes its percentages, joins them to <code>region_states</code>, and draws and saves one pair of maps per measure.</p>
+<p><strong>Location</strong>: <code>R/hcv_map.R</code>, <code>R/dcd_map.R</code>, <code>R/evmp_map.R</code></p>
+<p><strong>Produces</strong>: <code>hcv_summary</code>, <code>hcv_states</code>; <code>dcd_summary</code>, <code>dcd_states</code>; <code>evmp_summary</code>, <code>evmp_states</code>; and the PNG files in <code>figures/hcv/</code>, <code>figures/dcd/</code> and <code>figures/evmp/</code>. Each map is saved twice: <code>&lt;measure&gt;.png</code> (ggplot2) and <code>&lt;measure&gt;_inset.png</code> (tmap).</p>
+<p><strong>Interactions</strong>: need the shared layers; independent of each other.</p>
+</section>
+<section id="website" class="level3">
+<h3 class="anchored" data-anchor-id="website">Website</h3>
+<p><strong>Purpose</strong>: explains the code and shows the maps.</p>
+<p><strong>Location</strong>: <code>_quarto.yml</code>, <code>index.qmd</code>, <code>404.qmd</code>, <code>quarto/</code>, rendered to <code>docs/</code>.</p>
+<p><strong>Interactions</strong>: code pages import labelled sections of <code>R/*.R</code> with <code>knitr::read_chunk()</code> and show them without running them. The Results page (<code>quarto/results.qmd</code>) shows the PNG files in <code>figures/</code>. The project-document pages include <code>analysis-plan.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code>, and this file is read by <code>quarto/architecture.qmd</code>.</p>
+</section>
+<section id="map-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="map-workflow">Map workflow</h3>
+<p><strong>Purpose</strong>: runs <code>R/main.R</code> and renders the site on GitHub, then opens a pull request with the updated <code>figures/</code> and <code>docs/</code>.</p>
+<p><strong>Location</strong>: <code>.github/workflows/maps.yml</code></p>
+<p><strong>Interactions</strong>: runs when started by hand (Actions &lt;U+2192&gt; Draw maps and render site &lt;U+2192&gt; Run workflow) or when a change to <code>R/</code> reaches <code>main</code>. It never pushes to <code>main</code>; its pull request is reviewed like any other.</p>
+</section>
+<section id="provenance" class="level3">
+<h3 class="anchored" data-anchor-id="provenance">Provenance</h3>
+<p><code>original/</code> holds the RMDs that drew the published maps, with local paths removed. <code>data/hrsa/Transplant centers.csv</code> is the HRSA file those maps used; the code does not read it, but it is kept for provenance and for checking the pediatric-center rule (decision D2 in <code>SETUP-NOTES.md</code>).</p>
+</section>
+</section>
+<section id="data-flow" class="level2">
+<h2 class="anchored" data-anchor-id="data-flow">Data flow</h2>
+<ol type="1">
+<li><code>R/setup.R</code> attaches packages and sets constants; <code>R/functions.R</code> defines the helpers.</li>
+<li><code>R/map_geography.R</code> takes the state polygons and region outlines from sRtr, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.</li>
+<li>Each study script builds its regional table from counts written in the script, computes percentages (shares of the national count for HCV and DCD; the region’s own rate for EVMP), and joins the table to the state polygons.</li>
+<li>For each measure, the study script draws the ggplot2 and tmap maps and saves them to <code>figures/&lt;study&gt;/</code>.</li>
+<li>Quarto renders the site to <code>docs/</code>, copying the maps for the Results page.</li>
+</ol>
+</section>
+<section id="configuration" class="level2">
+<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
+<p>All settings are constants in <code>R/setup.R</code>; no environment variables or data paths are needed. The region geography comes with sRtr, and the regional counts are in the study scripts. The HRSA layer is downloaded from <code>gisportal.hrsa.gov</code>, so a run needs internet access to that host.</p>
+</section>
+<section id="code-references" class="level2">
+<h2 class="anchored" data-anchor-id="code-references">Code references</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>File</th>
+<th>Key symbols</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Orchestration</td>
+<td><code>R/main.R</code></td>
+<td>sources the scripts in order</td>
+</tr>
+<tr class="even">
+<td>Setup</td>
+<td><code>R/setup.R</code></td>
+<td><code>map_crs</code>, <code>corridor_extent</code>, <code>adult_center_exceptions</code></td>
+</tr>
+<tr class="odd">
+<td>Helpers</td>
+<td><code>R/functions.R</code></td>
+<td><code>join_region_values()</code>, <code>select_adult_centers()</code>, <code>map_regions_ggplot()</code>, <code>map_regions_tmap()</code>, <code>save_region_maps()</code></td>
+</tr>
+<tr class="even">
+<td>Shared layers</td>
+<td><code>R/map_geography.R</code></td>
+<td><code>region_states</code>, <code>region_outlines</code>, <code>region_labels</code>, <code>heart_centers</code>, <code>corridor_bbox</code></td>
+</tr>
+<tr class="odd">
+<td>HCV study</td>
+<td><code>R/hcv_map.R</code></td>
+<td><code>hcv_summary</code>, <code>hcv_measures</code></td>
+</tr>
+<tr class="even">
+<td>DCD study</td>
+<td><code>R/dcd_map.R</code></td>
+<td><code>dcd_summary</code>, <code>dcd_measures</code></td>
+</tr>
+<tr class="odd">
+<td>EVMP study</td>
+<td><code>R/evmp_map.R</code></td>
+<td><code>evmp_summary</code>, <code>evmp_measures</code></td>
+</tr>
+<tr class="even">
+<td>Results page</td>
+<td><code>quarto/results.qmd</code></td>
+<td>reads <code>figures/</code></td>
+</tr>
+<tr class="odd">
+<td>Workflow</td>
+<td><code>.github/workflows/maps.yml</code></td>
+<td>runs <code>R/main.R</code>, renders, opens a pull request</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>UNOS region</td>
+<td>One of the eleven groups of states the OPTN uses; sRtr assigns each state to one region</td>
+</tr>
+<tr class="even">
+<td><code>map_crs</code></td>
+<td>EPSG:5070, NAD83 / Conus Albers, the projection of every layer</td>
+</tr>
+<tr class="odd">
+<td>Corridor inset</td>
+<td>The enlarged view of DC to Boston in the tmap maps</td>
+</tr>
+<tr class="even">
+<td>Share of the national count</td>
+<td>A region’s count divided by the U.S. total (HCV and DCD percentages)</td>
+</tr>
+<tr class="odd">
+<td>Region’s own rate</td>
+<td>A region’s count divided by its own transplants (EVMP percentage)</td>
+</tr>
+<tr class="even">
+<td><code>OTC_CD</code></td>
+<td>HRSA’s transplant-center code, used to keep one row per center</td>
+</tr>
+</tbody>
+</table>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->

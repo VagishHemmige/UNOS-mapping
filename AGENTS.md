@@ -93,12 +93,12 @@ The site documents the code. It does not run the analysis.
 - **Project documents.** `analysis-plan.md`, `ARCHITECTURE.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md` are shown on the site by pages in `quarto/` that only include the root file, which stays the one source: edit the root file, not the page.
 - Each page loads its script with `knitr::read_chunk("../R/<script>.R")` in a hidden chunk and shows each labelled section with `#| eval: false`, with prose explaining what the section does and why. Pages link to the script on GitHub and to the scripts it depends on.
 - **Never evaluate analysis code in the site.** Pages render without restricted data. Only the `read_chunk()` imports, the Architecture page's chunk that reads `ARCHITECTURE.md`, site helpers that read code or text, and results pages that read cleared outputs run.
-- The site renders to `docs/` and is committed and served by GitHub Pages. When you add a script, add its page and sidebar entry in the same pull request, and re-render.
+- The site renders to `docs/` and is committed and served by GitHub Pages (from `main`, `/docs`). The map workflow also renders it, so its pull request carries an up-to-date `docs/`. When you add a script, add its page and sidebar entry in the same pull request, and re-render.
 - **Prose must match the code.** If a change alters what a section does, update its explanation in the same pull request.
 
 ## Outputs
 
-- Tables and figures are exported by `R/tables.R` and `R/figures.R` to `tables/` and `figures/`. Maps are saved by each study script to `figures/<study>/`; there are no tables. `figures/` is tracked, because the maps show values already published in the papers. Maps drawn from synthetic values are not results, are never described as results, and are not committed to `figures/`.
+- Tables and figures are exported by `R/tables.R` and `R/figures.R` to `tables/` and `figures/`. Maps are saved by each study script to `figures/<study>/`; there are no tables. `figures/` is tracked, because the maps show values already published in the papers. The "Draw maps and render site" workflow (`.github/workflows/maps.yml`) redraws them on GitHub, where the live HRSA download works, and opens a pull request with `figures/` and `docs/`; it runs by hand or when a change to `R/` reaches `main`. The Results page (`quarto/results.qmd`) shows the files in `figures/`. Maps drawn from synthetic values are not results, are never described as results, and are not committed to `figures/`.
 - Published figures need alt text.
 - `README.Rmd` is the source of `README.md`; edit the `.Rmd` and re-knit.
 

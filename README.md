@@ -36,6 +36,8 @@ The website, which explains the code step by step, is available at:
 
 Run `R/main.R` from the project root. It needs sRtr
 (`remotes::install_github("VagishHemmige/sRtr")`), tmap 4.x and an
-internet connection for the HRSA transplant-center layer. Each study’s
+internet connection for the HRSA transplant-center layer. On GitHub, the
+“Draw maps and render site” workflow (Actions tab) does the same and
+opens a pull request with the maps and the rendered site. Each study’s
 regional counts, published in its paper, are written out in its script.
 Maps are saved to `figures/`.
