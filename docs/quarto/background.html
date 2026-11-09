@@ -126,17 +126,6 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
-  background-image: none;
-}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -146,6 +135,17 @@ div.callout-Results.callout-style-default > .callout-header {
 div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
   content: '📊';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 div.callout-Rcode.callout {
@@ -393,11 +393,17 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unos-regions" id="toc-unos-regions" class="nav-link active" data-scroll-target="#unos-regions">UNOS regions</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/background.html">Background</a></li><li class="breadcrumb-item"><a href="../quarto/background.html">Clinical background</a></li></ol></nav>
 <div class="quarto-title">
@@ -406,7 +412,7 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -431,11 +437,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
 <li><strong>Ex vivo machine perfusion.</strong> Keeping a donor heart perfused during transport, rather than on ice, may protect hearts from older donors or travelling long distances. Its use in transplants from brain-death donors rose from about 1% in 2020 to about 11% in 2024, driven by a few high-volume centers, with survival comparable to cold storage <span class="citation" data-cites="madan2025evmp">(<a href="#ref-madan2025evmp" role="doc-biblioref">Madan et al. 2025</a>)</span>.</li>
 </ul>
 <p>In each study, a map showed at a glance where use was concentrated.</p>
+<section id="unos-regions" class="level2">
+<h2 class="anchored" data-anchor-id="unos-regions">UNOS regions</h2>
+<p>The Organ Procurement and Transplantation Network, operated by UNOS, divides the United States into eleven regions, each a group of states, and registry studies often report results by region. The regions mostly follow state lines but not always: Northern Virginia, for example, belongs to Region 2 while the rest of Virginia is in Region 11. The <a href="../quarto/methodological_background.html">Methodological background</a> page explains how the maps here handle that.</p>
 
 
 <!-- -->
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-madan2025evmp" class="csl-entry" role="listitem">
@@ -898,7 +908,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../index.html" class="pagination-link" aria-label="Home">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
@@ -921,11 +931,15 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**DCD donors.** Hearts from donors after circulatory death, rather than brain death, became a growing source of organs. Their use in multiorgan heart transplantation rose from 1% in early 2020 to 12% in early 2023, again with wide regional variation, and six-month survival after heart-kidney transplantation was similar to that with brain-death donors <span class="co">[</span><span class="ot">@madan2024dcd</span><span class="co">]</span>.</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ex vivo machine perfusion.** Keeping a donor heart perfused during transport, rather than on ice, may protect hearts from older donors or travelling long distances. Its use in transplants from brain-death donors rose from about 1% in 2020 to about 11% in 2024, driven by a few high-volume centers, with survival comparable to cold storage <span class="co">[</span><span class="ot">@madan2025evmp</span><span class="co">]</span>.</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>In each study, a map showed at a glance where use was concentrated.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>In each study, a map showed at a glance where use was concentrated.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## UNOS regions</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The Organ Procurement and Transplantation Network, operated by UNOS, divides the United States into eleven regions, each a group of states, and registry studies often report results by region. The regions mostly follow state lines but not always: Northern Virginia, for example, belongs to Region 2 while the rest of Virginia is in Region 11. The <span class="co">[</span><span class="ot">Methodological background</span><span class="co">](methodological_background.qmd)</span> page explains how the maps here handle that.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/background.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
