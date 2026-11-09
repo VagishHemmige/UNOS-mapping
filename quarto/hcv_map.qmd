@@ -1,0 +1,53 @@
+---
+title: "2. HCV donors (2021)"
+format: html
+---
+
+This script draws the regional maps for the study of multiorgan heart transplantation with hepatitis C virus (HCV) donors, August 2015 to August 2020, which reported wide variation in HCV-donor use across UNOS regions [@madan2021hcv].
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/hcv_map.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/hcv_map.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/functions.R)
+-   [`R/map_geography.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/map_geography.R)
+
+The original code is [`original/UNOS_map_2021-2-14_HCV.Rmd`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/original/UNOS_map_2021-2-14_HCV.Rmd), shown on [Original RMDs](original_code.qmd).
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/hcv_map.R")
+```
+
+## Regional summary
+
+The original map read these counts from a spreadsheet, `UNOS regions.xlsx`. With eleven rows they fit in the script itself, written out with `tribble()`, a table laid out row by row. The totals are the paper's: 109 multiorgan heart transplants with HCV donors out of 1,322. The map shows each region's share of the 109, which is what the spreadsheet's `Percentage_HT_HCV` held.
+
+Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.
+
+**Decision pending:** a share of the national count is highest where the most transplants are done, so it shows where HCV-donor transplants happened rather than how often each region used HCV donors. Whether to add a map of each region's own rate (`n_hcv / n_total`) is decision D3 in `SETUP-NOTES.md`.
+
+```{r}
+#| label: hcv-region-summary
+#| eval: false
+```
+
+## Maps
+
+For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/hcv/`.
+
+This was the first of these maps, and the later RMDs copied its code. Compared with the original, everything that set up the geography is gone from this script: it is in [Map geography](map_geography.qmd), shared by every study.
+
+```{r}
+#| label: hcv-maps
+#| eval: false
+```

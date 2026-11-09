@@ -1,0 +1,42 @@
+---
+title: "Setup"
+format: html
+---
+
+This script attaches the packages and defines the constants every other script uses.
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/setup.R")
+```
+
+## Packages
+
+[sRtr](https://github.com/VagishHemmige/sRtr) supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed [@srtr_package]. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with a Northeast inset. colorspace provides the `OrYel` palette the published maps used.
+
+```{r}
+#| label: load-packages
+#| eval: false
+```
+
+## Constants
+
+- `map_crs` is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.
+- `northeast_regions` are the regions enlarged in the inset.
+- `adult_center_exceptions` are the two centers with "Children" in their name that the original maps kept because they also transplant adults.
+- There is no data path: each study's regional counts are written out in its own script.
+
+```{r}
+#| label: define-constants
+#| eval: false
+```

@@ -1,0 +1,53 @@
+---
+title: "4. Machine perfusion (2025)"
+format: html
+---
+
+This script draws the regional maps for the study of ex vivo machine perfusion in heart transplantation from donation after brain death (DBD) donors, January 2020 to June 2024, which reported substantial regional variation in its use [@madan2025evmp].
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/evmp_map.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/evmp_map.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/functions.R)
+-   [`R/map_geography.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/map_geography.R)
+
+The original code is [`original/UNOS_map_2025-3-10_EVMP.Rmd`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/original/UNOS_map_2025-3-10_EVMP.Rmd), shown on [Original RMDs](original_code.qmd).
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/evmp_map.R")
+```
+
+## Regional summary
+
+The original map read these counts from a spreadsheet, `DBD EVMP UNOS regions_corrected.xlsx`; here they are written out in the script with `tribble()`. The totals are the paper's: 561 DBD heart transplants with ex vivo machine perfusion out of 12,363. Unlike the HCV and DCD maps, this percentage is each region's own rate: the share of its DBD transplants that used machine perfusion.
+
+Only the counts are typed in; the percentages are computed from them, so how each is defined can be read in the code. The join to the map stops if any of the eleven regions is missing.
+
+
+
+```{r}
+#| label: evmp-region-summary
+#| eval: false
+```
+
+## Maps
+
+For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/evmp/`.
+
+The original RMD set the legend breaks by hand (0%, 5%, 10%, 15%). The continuous scale here chooses breaks from the data, so the code does not need to change if a region's value exceeds 15%.
+
+```{r}
+#| label: evmp-maps
+#| eval: false
+```
