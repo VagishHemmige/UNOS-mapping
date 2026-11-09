@@ -1,0 +1,12 @@
+---
+title: "Clinical background"
+format: html
+---
+
+Too few donor hearts are available for the patients who need them, and much recent work in heart transplantation has been about safely using donors and techniques that were once avoided. The studies mapped on this site each followed one of these through the UNOS registry.
+
+- **HCV donors.** Effective antiviral treatment made it possible to use organs from donors with hepatitis C. Between 2015 and 2020, the share of multiorgan heart transplants using HCV donors rose from none to 14%, with wide variation across regions and center volumes; one-year survival of heart-kidney recipients was similar with and without HCV donors [@madan2021hcv].
+- **DCD donors.** Hearts from donors after circulatory death, rather than brain death, became a growing source of organs. Their use in multiorgan heart transplantation rose from 1% in early 2020 to 12% in early 2023, again with wide regional variation, and six-month survival after heart-kidney transplantation was similar to that with brain-death donors [@madan2024dcd].
+- **Ex vivo machine perfusion.** Keeping a donor heart perfused during transport, rather than on ice, may protect hearts from older donors or travelling long distances. Its use in transplants from brain-death donors rose from about 1% in 2020 to about 11% in 2024, driven by a few high-volume centers, with survival comparable to cold storage [@madan2025evmp].
+
+In each study, a map showed at a glance where use was concentrated.

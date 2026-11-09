@@ -1,0 +1,30 @@
+---
+title: "Methodological background"
+format: html
+---
+
+General mapping ideas the code relies on, with nothing specific to one study.
+
+## UNOS regions
+
+The Organ Procurement and Transplantation Network divides the United States into eleven regions, each a group of states. Several UNOS regions do not follow state lines exactly (for example, parts of a state can belong to a neighbouring region); sRtr assigns each state to a single region, so a state-level map is an approximation at those edges [@srtr_package].
+
+## A region-level choropleth
+
+When the value being mapped belongs to a region, every state in the region is shaded the same. Thin state lines under thick region outlines remind the reader of that: the shading says nothing about any state alone.
+
+## Projections
+
+Spatial data store positions in a coordinate reference system (CRS). Longitude and latitude are angles, not distances, and drawing them as if they were x and y stretches the United States east to west and makes northern states look larger than they are. An equal-area projection such as NAD83 / Conus Albers (EPSG:5070) keeps areas comparable across the country, which matters when shaded area is what the eye reads. The safest habit is to transform every layer to the one CRS with `sf::st_transform()` before plotting, as the HOPE-CDC analysis does, rather than relying on the plotting function to reconcile them.
+
+## Points, not jitter
+
+Jittering adds random noise to positions so that overlapping points separate. On a map it moves each place somewhere it is not. Drawing points at their true positions, partly transparent, and enlarging crowded areas in an inset shows overlap honestly.
+
+## Insets
+
+An inset repeats part of the map at a larger scale in a corner of the figure. In the Northeast, small states and many centers close together make the main map hard to read; an inset of Regions 1, 2 and 9 makes them legible without shrinking the rest of the country.
+
+## What the result looks like
+
+![The ggplot2 version of a region map, drawn from **synthetic values**, not study results, with synthetic center locations. The Northeast is crowded, which is what the tmap inset addresses.](../images/synthetic_region_map.png){fig-alt="Map of the contiguous United States in an Albers projection. States are shaded orange to red by a synthetic value for their UNOS region, with thick black outlines around the eleven regions, each labelled with its number in navy, and small grey dots for synthetic transplant-center locations. The dots and small states in the Northeast crowd together."}

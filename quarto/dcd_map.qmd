@@ -1,0 +1,53 @@
+---
+title: "3. DCD donors (2024)"
+format: html
+---
+
+This script draws the regional maps for the study of multiorgan heart transplantation with donation after circulatory death (DCD) donors, January 2020 to June 2023, which reported wide variation across UNOS regions and center volumes [@madan2024dcd].
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/dcd_map.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/dcd_map.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/functions.R)
+-   [`R/map_geography.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/map_geography.R)
+
+The original code is [`original/UNOS_map_2024-1-14_DCD.Rmd`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/original/UNOS_map_2024-1-14_DCD.Rmd), shown on [Original RMDs](original_code.qmd).
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/dcd_map.R")
+```
+
+## Regional summary
+
+The spreadsheet `DCD by UNOS regions.xlsx` holds four measures per region, each mapped in the original RMD: the number of multiorgan heart transplants with DCD donors, a percentage of those, the total number of multiorgan heart transplants, and a percentage of that total. The column names are the spreadsheet's own headers after `clean_names()`. The third mentions HCV because the header was carried over from the HCV spreadsheet.
+
+The spreadsheet is kept in `data/regional/`; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.
+
+**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in `SETUP-NOTES.md`.
+
+```{r}
+#| label: dcd-region-summary
+#| eval: false
+```
+
+## Maps
+
+For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/dcd/`.
+
+The original RMD repeated the same two plotting blocks four times, once per measure, changing only the column and the legend. Here a named vector pairs each column with its legend, and one loop draws them all. A fifth measure needs one more line, not two more blocks.
+
+```{r}
+#| label: dcd-maps
+#| eval: false
+```

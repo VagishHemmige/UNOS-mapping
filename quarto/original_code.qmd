@@ -1,0 +1,43 @@
+---
+title: "Original RMDs"
+format: html
+---
+
+The R Markdown files that drew the published maps, kept in [`original/`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/original) as the provenance of each map. They are shown here for comparison and are never run. The only change from the files as written is that the folder paths on the author's computer have been removed, leaving the file names.
+
+All three map RMDs share one pipeline: split a spreadsheet's "Region N: state, state, ..." text into states, join the states to a Census shapefile, dissolve them into regions with `st_union()`, read a downloaded HRSA center file, and plot in longitude and latitude. The [Map geography](map_geography.qmd) and [Functions](functions.qmd) pages show what replaces each step.
+
+Two things in the originals are worth noticing when reading them:
+
+- `geom_jitter()` draws each transplant center up to 0.3 degrees from where it is, so neighbouring centers do not overlap but no center is where it should be.
+- In the Chagas RMD (not yet part of this site), the map saved as "with centers" was the map without them, because `ggsave()` was given the wrong plot object. The DCD and EVMP RMDs fixed this.
+
+## HCV donors, 2021-02-14
+
+```{r}
+#| file: "../original/UNOS_map_2021-2-14_HCV.Rmd"
+#| eval: false
+```
+
+## DCD donors, 2024-01-14
+
+```{r}
+#| file: "../original/UNOS_map_2024-1-14_DCD.Rmd"
+#| eval: false
+```
+
+## Machine perfusion, 2025-03-10
+
+```{r}
+#| file: "../original/UNOS_map_2025-3-10_EVMP.Rmd"
+#| eval: false
+```
+
+## Other figures for the DCD study, 2024-01-27
+
+Not a map: a scatter of center volume against DCD use, and waitlist times by donor type. It is kept for provenance; this site does not reproduce it.
+
+```{r}
+#| file: "../original/DCD_plots_2024-1-27.Rmd"
+#| eval: false
+```

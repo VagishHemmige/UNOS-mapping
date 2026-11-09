@@ -1,0 +1,53 @@
+---
+title: "2. HCV donors (2021)"
+format: html
+---
+
+This script draws the regional maps for the study of multiorgan heart transplantation with hepatitis C virus (HCV) donors, August 2015 to August 2020, which reported wide variation in HCV-donor use across UNOS regions [@madan2021hcv].
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/hcv_map.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/hcv_map.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/functions.R)
+-   [`R/map_geography.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/map_geography.R)
+
+The original code is [`original/UNOS_map_2021-2-14_HCV.Rmd`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/original/UNOS_map_2021-2-14_HCV.Rmd), shown on [Original RMDs](original_code.qmd).
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/hcv_map.R")
+```
+
+## Regional summary
+
+The spreadsheet `UNOS regions.xlsx` has one row per region. The original map shaded each region by `Percentage_HT_HCV`, which `clean_names()` turns into `percentage_ht_hcv`. Its two percentage columns are stored as proportions and multiplied by 100, as in the original code.
+
+The spreadsheet is kept in `data/regional/`; its values are published in the paper. If it is missing, synthetic values stand in, so the code still runs. The join stops if any of the eleven regions is missing.
+
+**Decision pending:** the legend titles are those of the original maps. What each percentage is a share of, and so what the legend should say, is decision D3 in `SETUP-NOTES.md`.
+
+```{r}
+#| label: hcv-region-summary
+#| eval: false
+```
+
+## Maps
+
+For each measure the same two functions draw the ggplot2 map and the tmap map with the Northeast inset, and save both under `figures/hcv/`.
+
+This was the first of these maps, and the later RMDs copied its code. Compared with the original, everything that set up the geography is gone from this script: it is in [Map geography](map_geography.qmd), shared by every study.
+
+```{r}
+#| label: hcv-maps
+#| eval: false
+```

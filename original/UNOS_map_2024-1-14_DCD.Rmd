@@ -1,0 +1,202 @@
+---
+title: "Shivank UNOS map"
+author: "Vagish Hemmige"
+date: "2/14/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r libraries}
+library(tidyverse)
+library(readxl)
+library(sf)
+library(colorspace)
+library(ggtext)
+library(extrafont)
+library(readr)
+library(janitor)
+```
+
+
+Import and clean table of regions and shape files for states
+```{r importdata}
+
+#Import UNOS region data
+UNOS_regions <- 
+  #Import Shivank's data from UNOS regions into R
+  read_excel("DCD by UNOS regions.xlsx")%>%
+  clean_names()%>%
+  mutate(percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period=100*percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period)%>%
+  mutate(percentage_of_total_multiorgan_h_ts_during_study_period=100*percentage_of_total_multiorgan_h_ts_during_study_period)%>%
+  
+  #Split column that contains Regions and which states they contain
+  separate(region, c("Region", "B"),sep=":") %>%
+  #Split list of states into 7 separate variables
+  separate(B, c("State1","State2","State3","State4", "State5", "State6", "State7"), sep=",") %>%
+  #Trim leading spaces
+  mutate_at(vars(contains("State")), str_trim) %>%
+  #Change to long format and drop extraneous variable that results
+   pivot_longer(
+   cols = starts_with("State"),
+   names_to = "StateNumber",
+   values_to = "State",
+   values_drop_na = TRUE) %>%
+  select(-StateNumber)
+  
+
+#Import State level mapping data
+us_states <- read_sf("cb_2018_us_state_20m/cb_2018_us_state_20m.shp") %>%
+  select(NAME, geometry) %>%
+  filter(!(NAME %in% c("Alaska", "Hawaii", "Puerto Rico"))) %>%
+  rename(State=NAME)
+
+#Import region labels
+UNOS_region_labels <- read_excel("UNOS region labels.xlsx")
+
+#Import transplant centers
+#Source https://data.hrsa.gov/data/download
+Transplant_centers <- read_csv("Transplant centers.csv") %>%
+  select(OTCName, OrganTransplantationCenterServiceTypeDescription, Latitude, Longitude) %>%
+  filter(OrganTransplantationCenterServiceTypeDescription=="Heart")
+
+#Looked into removing centers with "Children" in the name, but some may also have adults?
+Transplant_centers<-Transplant_centers %>%filter(str_detect(Transplant_centers$OTCName,"Children")=="FALSE" | 
+                               (OTCName %in% c("Memorial Regional Hospital/Joe DiMaggio Children's Hospital", 
+                                                "Providence Sacred Heart Medical Center & Children's Hospital")))
+
+#Merge files
+
+
+MergedStates<-inner_join(UNOS_regions, us_states, by="State") %>%st_as_sf()
+
+UNOS_region_map<-MergedStates%>%  
+  group_by(Region) %>% 
+  summarize(geometry = st_union(geometry))
+
+```
+
+
+```{r}
+
+ShivankDCDMap20240114_1<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = number_of_multiorgan_h_ts_using_dcd_donors),
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Number of transplants"))
+
+
+ggsave("ShivankDCDMap 20240114_1.png", 
+       plot=ShivankDCDMap20240114_1)
+
+#Will add transplant centers to map
+ShivankDCDMap20240114withcenter_1<-ggplot()+
+    geom_sf(data=MergedStates,mapping=aes(fill = number_of_multiorgan_h_ts_using_dcd_donors), 
+            color="#838383", size = 0.25)+
+    geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+    geom_jitter(data=Transplant_centers, mapping=aes(x=Longitude, y=Latitude), alpha=0.5, 
+                height = 0.3, width = 0.3) +
+    theme_void()+
+    scale_fill_continuous_sequential(palette = "OrYel")+ 
+    guides(fill=guide_legend(title="Number of transplants"))
+
+ggsave("ShivankDCDMap20240114withcenter_1.png", 
+       plot=ShivankDCDMap20240114withcenter_1)
+
+```
+
+```{r}
+
+
+ShivankDCDMap20240114_2<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period),
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Percentage of transplants"))
+
+
+ggsave("ShivankDCDMap 20240114_2.png", 
+       plot=ShivankDCDMap20240114_2)
+
+#Will add transplant centers to map
+ShivankDCDMap20240114withcenter_2<-ggplot()+
+    geom_sf(data=MergedStates,mapping=aes(fill = percentage_of_total_multiorgan_h_ts_using_dcd_donors_during_study_period), 
+            color="#838383", size = 0.25)+
+    geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+    geom_jitter(data=Transplant_centers, mapping=aes(x=Longitude, y=Latitude), alpha=0.5, 
+                height = 0.3, width = 0.3) +
+    theme_void()+
+    scale_fill_continuous_sequential(palette = "OrYel")+ 
+    guides(fill=guide_legend(title="Percentage of transplants"))
+
+ggsave("ShivankDCDMap20240114withcenter_2.png", 
+       plot=ShivankDCDMap20240114withcenter_2)
+
+```
+
+```{r}
+ShivankDCDMap20240114_3<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = total_number_of_multiorgan_h_ts_irrespective_of_donor_hcv_status),
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Total number of transplants"))
+
+
+ggsave("ShivankDCDMap 20240114_3.png", 
+       plot=ShivankDCDMap20240114_3)
+
+#Will add transplant centers to map
+ShivankDCDMap20240114withcenter_3<-ggplot()+
+    geom_sf(data=MergedStates,mapping=aes(fill = total_number_of_multiorgan_h_ts_irrespective_of_donor_hcv_status), 
+            color="#838383", size = 0.25)+
+    geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+    geom_jitter(data=Transplant_centers, mapping=aes(x=Longitude, y=Latitude), alpha=0.5, 
+                height = 0.3, width = 0.3) +
+    theme_void()+
+    scale_fill_continuous_sequential(palette = "OrYel")+ 
+    guides(fill=guide_legend(title="Total number of of transplants"))
+
+ggsave("ShivankDCDMap20240114withcenter_3.png", 
+       plot=ShivankDCDMap20240114withcenter_3)
+
+
+```
+
+```{r}
+ShivankDCDMap20240114_4<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = percentage_of_total_multiorgan_h_ts_during_study_period),
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Percentage of transplants"))
+
+
+ggsave("ShivankDCDMap 20240114_4.png", 
+       plot=ShivankDCDMap20240114_4)
+
+#Will add transplant centers to map
+ShivankDCDMap20240114withcenter_4<-ggplot()+
+    geom_sf(data=MergedStates,mapping=aes(fill = percentage_of_total_multiorgan_h_ts_during_study_period), 
+            color="#838383", size = 0.25)+
+    geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+    geom_jitter(data=Transplant_centers, mapping=aes(x=Longitude, y=Latitude), alpha=0.5, 
+                height = 0.3, width = 0.3) +
+    theme_void()+
+    scale_fill_continuous_sequential(palette = "OrYel")+ 
+    guides(fill=guide_legend(title="Percentage of of transplants"))
+
+ggsave("ShivankDCDMap20240114withcenter_4.png", 
+       plot=ShivankDCDMap20240114withcenter_4)
+
+```
+

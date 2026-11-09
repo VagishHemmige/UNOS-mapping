@@ -1,0 +1,113 @@
+---
+title: "RMD DCD plot 2024-1-27"
+author: "Vagish Hemmige"
+date: "2024-01-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(ggrepel)
+library(ggbeeswarm)
+library(ggpubr)
+```
+
+```{r}
+Center_volume_raw <- read_excel("Center volume_v.xls", 
+     sheet = "Data")
+
+Center_volume_clean<-Center_volume_raw%>%
+  mutate(REGION=as.factor(REGION))
+
+
+waitlist_times_raw <- read_excel("waitlist_times_v.xlsx", 
+    sheet = "data")
+
+waitlist_times_clean<-waitlist_times_raw%>%
+  mutate(dcd=case_when(
+    dcd==0~"DBD-HK",
+    dcd==1~"DCD-HK",
+    dcd==2~"DCD-HK after"))%>%
+    mutate(dcd=as.factor(dcd))%>%
+  mutate(rec_abo_o=case_when(
+    rec_abo_o==0~"Non-O Blood Group",
+    rec_abo_o==1~"Blood Group O"))%>%
+    mutate(rec_abo_o=as.factor(rec_abo_o))
+
+```
+
+
+```{r}
+
+Center_volume_clean%>%ggplot()+
+  geom_point(mapping=aes(x=Freq_total, y=Freq_dcd, color=REGION))+
+  geom_text_repel(mapping=aes(x=Freq_total, y=Freq_dcd, label=REGION),
+                  max.overlaps = Inf)+
+  labs(x="Center volume (Total multiorgan HTs at a center)",
+       y="Multiorgan HTs with DCD donors")+
+  ylim(-2, 20)+
+  theme_bw()
+  ggsave("DCD Figure 2.png")
+  
+
+```
+
+```{r}
+
+my_comparisons <- list( c("DBD-HK", "DCD-HK"), 
+                        c("DBD-HK", "DCD-HK after recipient agreed to DCD-donor"))
+
+waitlist_times_clean%>%ggplot(mapping = aes(x=dcd, y=total_wait_dcd_month))+
+  geom_violin(color = NA, alpha=0.5,fill = "grey", 
+              draw_quantiles = 1)+
+  ylim(0,20)+ 
+  geom_quasirandom(mapping = aes(x=dcd, y=total_wait_dcd_month, color=dcd), 
+                   cex=2, alpha=0.7)+
+  stat_summary(fun = median, fun.min = median, 
+               fun.max = median, 
+               geom = "crossbar", width = 0.9, fatten=1.5)+
+  #stat_summary(mapping = aes(x=dcd, y=total_wait_dcd_month),fun = median, 
+   #            fun.min = median, fun.max = median, 
+  #             geom = "crossbar", width = 0.9, fatten=1.5)+
+  #stat_compare_means(mapping = aes(x=dcd, y=total_wait_dcd_month),
+  #                   label.y = 20)+
+  #stat_compare_means(comparisons = my_comparisons,
+  #                   label.y=c(9,11))+
+  labs(x = "", y="Wait list time")+
+  theme_classic()+ 
+  theme(legend.position = "none")
+ggsave("Figure 4A.png")
+  
+waitlist_times_clean%>%ggplot(mapping = aes(x=dcd, y=total_wait_dcd_month))+
+  geom_violin(color = NA, alpha=0.5,fill = "grey", 
+              draw_quantiles = 1)+
+  ylim(0,20)+ 
+  geom_quasirandom(mapping = aes(x=dcd, y=total_wait_dcd_month, color=dcd), 
+                   cex=2, alpha=0.7)+
+  stat_summary(fun = median, fun.min = median, 
+               fun.max = median, 
+               geom = "crossbar", width = 0.9, fatten=1.5)+
+  #stat_summary(mapping = aes(x=dcd, y=total_wait_dcd_month),fun = median, 
+   #            fun.min = median, fun.max = median, 
+  #             geom = "crossbar", width = 0.9, fatten=1.5)+
+  #stat_compare_means(mapping = aes(x=dcd, y=total_wait_dcd_month),
+  #                   label.y = 20)+
+  #stat_compare_means(comparisons = my_comparisons,
+  #                   label.y=c(9,11))+
+  labs(x = "", y="Wait list time")+
+  facet_wrap(~rec_abo_o)+
+  theme_classic()+ 
+  theme(legend.position = "none")
+ggsave("Figure 4B.png")
+                                   
+  
+
+
+```
+

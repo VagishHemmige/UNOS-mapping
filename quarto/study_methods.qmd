@@ -1,0 +1,44 @@
+---
+title: "Study design and methods"
+format: html
+---
+
+This page explains, in plain language and without code, what the maps show and why they are drawn this way. The general background is on [Methodological background](methodological_background.qmd). The formal specification is the [analysis plan](analysis-plan.qmd). Three kinds of note mark where the description stands:
+
+- **Specified in:** the section of the analysis plan that defines the method.
+- **Current code:** where the code does not yet do what the plan says.
+- **Decision pending:** a choice the plan has not yet made. A paragraph that starts with **Decision pending:** is highlighted in yellow automatically.
+
+## What is mapped
+
+Each study's paper computed a few summaries for every UNOS region: how many transplants used a donor type or technology, and what percentage that was. The maps show those summaries as published; nothing new is estimated. Every state in a region is shaded with the region's value.
+
+**Specified in:** [§2 Objectives](analysis-plan.qmd#2-objectives), [§6 Estimation](analysis-plan.qmd#6-estimation).
+
+**Decision pending:** what each percentage is a share of, and so how its legend should read (D3 in `SETUP-NOTES.md`).
+
+## Where the geography comes from
+
+The region assignment of each state and the region outlines come from sRtr, built from the same Census boundaries and region table the original maps used. Alaska, Hawaii and Puerto Rico are left out, as in the original maps.
+
+**Specified in:** [§4 Data sources](analysis-plan.qmd#4-data-sources-and-measurement-periods), [§5 Study populations and unit definitions](analysis-plan.qmd#5-study-populations-and-unit-definitions).
+
+## Which transplant centers are shown
+
+Adult heart-transplant centers, from HRSA's transplant-center layer, at their true locations. Pediatric centers are left out by the original maps' rule: centers whose name contains "Children", except two that also transplant adults.
+
+**Specified in:** [§5](analysis-plan.qmd#5-study-populations-and-unit-definitions).
+
+**Decision pending:** whether to use today's HRSA layer, a dated snapshot for each study, or the original file (D1), and whether the name rule still identifies pediatric centers in the HRSA layer (D2), both in `SETUP-NOTES.md`.
+
+## How the maps are drawn
+
+Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Northeast.
+
+**Specified in:** [§2](analysis-plan.qmd#2-objectives), [§7 Linkage and geography](analysis-plan.qmd#7-linkage-and-geography).
+
+## Publication of the regional values
+
+The regional values are published in each paper, so the spreadsheets and the maps drawn from them are public and kept in the repository.
+
+**Specified in:** [§12 Disclosure control](analysis-plan.qmd#12-disclosure-control).

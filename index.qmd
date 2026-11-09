@@ -1,0 +1,20 @@
+---
+title: "Overview"
+format: html
+---
+
+## Clinical background
+
+A series of heart-transplantation studies from Montefiore and Albert Einstein College of Medicine used the UNOS registry to follow how new kinds of donors and new technologies entered practice: hepatitis C virus (HCV) donors in multiorgan transplantation [@madan2021hcv], donation after circulatory death (DCD) donors [@madan2024dcd] and ex vivo machine perfusion of donor hearts [@madan2025evmp]. Each found that uptake varied widely across the eleven UNOS regions, and each showed that variation with a map. More on the [clinical background](quarto/background.qmd) page.
+
+## What this site does
+
+It reproduces each study's regional map, and teaches how to draw it with the [sRtr](https://github.com/VagishHemmige/sRtr) package. The original maps were built from a hand-split region table, a local Census shapefile, a hand-entered sheet of label positions and a downloaded list of transplant centers. sRtr holds the region geography and downloads the current HRSA transplant-center layer, so each map now takes a few package calls. Every layer is projected to NAD83 / Conus Albers before plotting, and each map is drawn twice: once with ggplot2, and once with tmap with the crowded Northeast enlarged in an inset.
+
+## Methods
+
+Each study's regional summary, one row per region, is joined to sRtr's state polygons and shaded by region. [Study design and methods](quarto/study_methods.qmd) explains each choice, and the authoritative specification is the [analysis plan](quarto/analysis-plan.qmd). The original code is on [Original RMDs](quarto/original_code.qmd).
+
+## Status
+
+In development. The code is in place for three studies; the maps themselves are added to the site once they have been drawn from the regional spreadsheets. The COVID-19 donor study [@madan2023covid] and the donor offer acceptance study [@ramineni2026doa] have no maps yet. Open decisions are listed in `SETUP-NOTES.md` until they are filed as [issues](https://github.com/VagishHemmige/UNOS-mapping/issues).

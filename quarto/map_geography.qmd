@@ -1,0 +1,64 @@
+---
+title: "1. Map geography"
+format: html
+---
+
+This script builds the map layers every study shares: states with their UNOS region, region outlines, region numbers, adult heart-transplant centers and the extent of the Northeast inset.
+
+::: {.Rcode title="Source code"}
+The full R script is available at:
+
+-   [`R/map_geography.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/map_geography.R)
+
+This R script file is itself reliant on the following helper files:
+
+-   [`R/setup.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/setup.R)
+-   [`R/functions.R`](https://github.com/VagishHemmige/UNOS-mapping/blob/main/R/functions.R)
+
+The code sections below are imported directly from that script when this page is rendered.
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| cache: false
+knitr::read_chunk("../R/map_geography.R")
+```
+
+## States and regions
+
+In the original scripts this took three files: a spreadsheet listing each region's states, the 2018 Census state shapefile, and code to split, pivot and join them. sRtr was built from exactly that code, so the result now ships with the package as `UNOS_regions_sf`: one row per state (the 48 contiguous states and the District of Columbia) with its region. `get_hrsa_optn_regions()` dissolves the states into one outline per region. Both are put in `map_crs`, so every layer shares one projection.
+
+```{r}
+#| label: region-geography
+#| eval: false
+```
+
+## Region numbers
+
+`st_point_on_surface()` returns a point guaranteed to fall inside each region. A centroid can fall outside a region whose shape is irregular. These points replace the hand-entered label positions the original maps read from a spreadsheet.
+
+```{r}
+#| label: region-labels
+#| eval: false
+```
+
+## Transplant centers
+
+The original maps used a copy of an HRSA transplant-center file downloaded once. `get_hrsa_transplant_centers()` downloads the current layer from HRSA each time it runs [@hrsa_otc_layer], which is then narrowed to adult heart centers (see [Functions](functions.qmd#choosing-the-transplant-centers)).
+
+**Decision pending:** the current layer shows centers as they are today, not as they were during each study period. Whether to use it, a dated snapshot for each study, or the original file is decision D1 in `SETUP-NOTES.md`.
+
+```{r}
+#| label: heart-centers
+#| eval: false
+```
+
+## The Northeast inset
+
+The inset shows the bounding box of Regions 1, 2 and 9, from Maine to West Virginia.
+
+```{r}
+#| label: northeast-inset
+#| eval: false
+```

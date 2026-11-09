@@ -1,0 +1,131 @@
+---
+title: "RMD EVMP plot 2025-3-10"
+author: "Vagish Hemmige"
+date: "2025-03-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(sf)
+library(colorspace)
+library(ggtext)
+library(extrafont)
+library(readr)
+library(janitor)
+```
+
+```{r}
+
+DBD_EVMP_UNOS_regions_corrected_raw <- read_excel("DBD EVMP UNOS regions_corrected.xlsx")
+
+
+UNOS_regions <- 
+  #Import Shivank's data from UNOS regions into R
+  read_excel("DBD EVMP UNOS regions_corrected.xlsx")%>%
+  #Split column that contains Regions and which states they contain
+  separate(Region, c("Region", "B"),sep=":") %>%
+  #Split list of states into 7 separate variables
+  separate(B, c("State1","State2","State3","State4", "State5", "State6", "State7"), sep=",") %>%
+  #Trim leading spaces
+  mutate_at(vars(contains("State")), str_trim) %>%
+  #Change to long format and drop extraneous variable that results
+   pivot_longer(
+   cols = starts_with("State"),
+   names_to = "StateNumber",
+   values_to = "State",
+   values_drop_na = TRUE) %>%
+  select(-StateNumber)%>%
+  mutate(Percentage=100*Percentage)
+
+
+```
+
+
+```{r}
+
+#Import State level mapping data
+us_states <- read_sf("cb_2018_us_state_20m/cb_2018_us_state_20m.shp") %>%
+  select(NAME, geometry) %>%
+  filter(!(NAME %in% c("Alaska", "Hawaii", "Puerto Rico"))) %>%
+  rename(State=NAME)
+
+
+```
+
+```{r}
+
+UNOS_region_labels <- read_excel("UNOS region labels.xlsx")
+
+Transplant_centers <- read_csv("Transplant centers.csv") %>%
+  select(OTCName, OrganTransplantationCenterServiceTypeDescription, Latitude, Longitude) %>%
+  filter(OrganTransplantationCenterServiceTypeDescription=="Heart")
+
+```
+
+```{r}
+MergedStates<-inner_join(UNOS_regions, us_states, by="State") %>%st_as_sf()
+
+UNOS_region_map<-MergedStates%>%  
+  group_by(Region) %>% 
+  summarize(geometry = st_union(geometry))
+
+```
+
+```{r}
+
+ShivankEVMPMap<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = Percentage), 
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Percentage of transplants"))
+
+ggsave("ShivankEVMPMap.png", 
+       plot=ShivankEVMPMap)
+
+```
+```{r}
+#Will add transplant centers to map
+ShivankEVMPMapwithcenter<-ggplot()+
+    geom_sf(data=MergedStates,mapping=aes(fill = Percentage), 
+            color="#838383", size = 0.25)+
+    geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+    geom_jitter(data=Transplant_centers, mapping=aes(x=Longitude, y=Latitude), alpha=0.5, 
+                height = 0.3, width = 0.3) +
+    theme_void()+
+    scale_fill_continuous_sequential(palette = "OrYel",
+                                     breaks = c(0, 5, 10, 15), 
+                                   labels = c("0%", "5%", "10%", "15%")
+                                     )
+
+ggsave("ShivankEVMPMapwithcenter.png", 
+       plot=ShivankEVMPMapwithcenter)
+```
+
+```{r}
+
+MergedStates%>%ggplot()+geom_sf(mapping=aes(fill = Percentage), 
+                                color="white")+theme_void()+
+  scale_fill_continuous_diverging(palette = "Purple-Green")
+
+ShivankEVMPMapPlot3<-ggplot()+
+  geom_sf(data=MergedStates,mapping=aes(fill = Percentage), 
+                                color="black", size = 0.25)+
+  geom_sf(data=UNOS_region_map,color="black", fill=NA, size = 1)+
+  theme_void()+
+  scale_fill_continuous_sequential(palette = "OrYel")+ 
+  guides(fill=guide_legend(title="Percentage"))+
+  geom_richtext(data=UNOS_region_labels, fill = NA, color="blue", label.color = NA, 
+                mapping=aes(x=Lon, y=Lat, label=Region, family="Comic Sans MS"))
+ggsave("ShivankEVMPMapPlot3.png", 
+       plot=ShivankEVMPMapPlot3)
+
+```
+
