@@ -106,15 +106,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
+div.callout-Results.callout {
+  border-left-color: #198754;
 }
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
 }
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 div.callout-Rcode.callout {
@@ -128,15 +128,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
 }
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
 }
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 </style>
@@ -325,12 +325,30 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Project documents</span></a>
+ <span class="menu-text">Results</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../quarto/analysis-plan.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
@@ -583,14 +601,14 @@ edit that file, not this page. Its first heading is the page title.
 <li><strong>Project documents.</strong> <code>analysis-plan.md</code>, <code>ARCHITECTURE.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code> are shown on the site by pages in <code>quarto/</code> that only include the root file, which stays the one source: edit the root file, not the page.</li>
 <li>Each page loads its script with <code>knitr::read_chunk("../R/&lt;script&gt;.R")</code> in a hidden chunk and shows each labelled section with <code>#| eval: false</code>, with prose explaining what the section does and why. Pages link to the script on GitHub and to the scripts it depends on.</li>
 <li><strong>Never evaluate analysis code in the site.</strong> Pages render without restricted data. Only the <code>read_chunk()</code> imports, the Architecture page’s chunk that reads <code>ARCHITECTURE.md</code>, site helpers that read code or text, and results pages that read cleared outputs run.</li>
-<li>The site renders to <code>docs/</code> and is committed and served by GitHub Pages. When you add a script, add its page and sidebar entry in the same pull request, and re-render.</li>
+<li>The site renders to <code>docs/</code> and is committed and served by GitHub Pages (from <code>main</code>, <code>/docs</code>). The map workflow also renders it, so its pull request carries an up-to-date <code>docs/</code>. When you add a script, add its page and sidebar entry in the same pull request, and re-render.</li>
 <li><strong>Prose must match the code.</strong> If a change alters what a section does, update its explanation in the same pull request.</li>
 </ul>
 </section>
 <section id="outputs" class="level2">
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
-<li>Tables and figures are exported by <code>R/tables.R</code> and <code>R/figures.R</code> to <code>tables/</code> and <code>figures/</code>. Maps are saved by each study script to <code>figures/&lt;study&gt;/</code>; there are no tables. <code>figures/</code> is tracked, because the maps show values already published in the papers. Maps drawn from synthetic values are not results, are never described as results, and are not committed to <code>figures/</code>.</li>
+<li>Tables and figures are exported by <code>R/tables.R</code> and <code>R/figures.R</code> to <code>tables/</code> and <code>figures/</code>. Maps are saved by each study script to <code>figures/&lt;study&gt;/</code>; there are no tables. <code>figures/</code> is tracked, because the maps show values already published in the papers. The “Draw maps and render site” workflow (<code>.github/workflows/maps.yml</code>) redraws them on GitHub, where the live HRSA download works, and opens a pull request with <code>figures/</code> and <code>docs/</code>; it runs by hand or when a change to <code>R/</code> reaches <code>main</code>. The Results page (<code>quarto/results.qmd</code>) shows the files in <code>figures/</code>. Maps drawn from synthetic values are not results, are never described as results, and are not committed to <code>figures/</code>.</li>
 <li>Published figures need alt text.</li>
 <li><code>README.Rmd</code> is the source of <code>README.md</code>; edit the <code>.Rmd</code> and re-knit.</li>
 </ul>

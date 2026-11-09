@@ -1,0 +1,62 @@
+# Draw the maps and render the site on GitHub, then open a pull request with
+# the updated figures/ and docs/. Runs on GitHub because R/main.R downloads
+# the live HRSA transplant-center layer. It never pushes to main.
+#
+# Needs one repository setting: Settings > Actions > General > Workflow
+# permissions > "Allow GitHub Actions to create and approve pull requests".
+
+name: Draw maps and render site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "R/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  maps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install R packages
+        run: |
+          install.packages("pak")
+          pak::pak(c(
+            "VagishHemmige/sRtr",
+            "sf", "dplyr", "stringr", "tibble", "ggplot2", "colorspace",
+            "tmap", "knitr", "rmarkdown"
+          ))
+        shell: Rscript {0}
+
+      - name: Draw the maps
+        run: Rscript R/main.R
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render the site
+        run: quarto render
+
+      - name: Open a pull request with the maps and site
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: maps-update
+          delete-branch: true
+          add-paths: |
+            figures/**
+            docs/**
+          commit-message: "Update maps and rendered site"
+          title: "Update maps and rendered site"
+          body: |
+            Drawn by the "Draw maps and render site" workflow from `R/main.R`, using the live HRSA transplant-center layer, then rendered with Quarto.
+
+            Check the maps on the Results page before merging.

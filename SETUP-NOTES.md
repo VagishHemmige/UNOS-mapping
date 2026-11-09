@@ -4,6 +4,8 @@ Non-sensitive setup decisions and open items for this repository. Open decisions
 
 ## Decided at setup (2026-11-09)
 
+- The maps are drawn by a GitHub Actions workflow (`.github/workflows/maps.yml`) that runs `R/main.R`, renders the site and opens a pull request with `figures/` and `docs/` (Vagish Hemmige, 2026-11-09), because the live HRSA download was not reachable from the setup session.
+
 - One repository and one Quarto website, with one code page per study and one shared page for the map layers.
 - Every map uses sRtr for region geography and transplant centers, every layer is projected to EPSG:5070 before plotting, and each map is drawn with ggplot2 and with tmap (inset of the Washington-Boston corridor, as Vagish Hemmige asked on 2026-11-09).
 - The Chagas map is not included yet: its study is not yet published.
@@ -41,10 +43,8 @@ These change how the maps look, not what they show.
 ## Still to do
 
 - [ ] Confirm the deciders and their areas in `AGENTS.md` (Shivank Madan and Vagish Hemmige, as drafted).
-- [ ] Run `R/main.R`, commit `figures/`, and add a Results page showing the maps.
 - [ ] File D2 and D3 as decision issues and replace the `SETUP-NOTES.md` references in the plan and pages with their links.
-- [ ] Run `R/main.R` with the live HRSA download (not reachable from the setup session; see below), then commit `figures/`.
-- [ ] Write `ARCHITECTURE.md`.
+- [ ] Maintainer: turn on "Allow GitHub Actions to create and approve pull requests" (Settings → Actions → General → Workflow permissions), run the "Draw maps and render site" workflow, check the maps on the Results page of its pull request, and merge it.
 - [ ] Maintainer: protect the `main` branch, and turn on GitHub Pages (from `main`, `/docs`) once the first pull request containing `docs/` is merged.
 - [ ] Consider two sRtr issues: `get_hrsa_transplant_centers()` returns one row per center and organ, so callers must de-duplicate; and `get_hrsa_optn_regions()` returns WGS 84 while `UNOS_regions_sf` is EPSG:5070.
 
