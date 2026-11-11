@@ -35,7 +35,7 @@ hcv_measures <- c(
 hcv_states <- join_region_values(region_states, hcv_summary)
 
 ## ---- hcv-region-table
-# The counts and percentages behind the maps, for the table on the Maps page
+# The counts and percentages behind the maps, for the table on its results page
 hcv_summary |>
   transmute(
     Region = region,

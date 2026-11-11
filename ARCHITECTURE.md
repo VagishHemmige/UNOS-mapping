@@ -6,7 +6,7 @@ How the code that draws the regional maps is organized, as implemented on the `s
 
 `R/main.R` runs six scripts in order. The first two set up packages, constants and helper functions. `R/map_geography.R` builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study's regional counts, joins them to the shared layers, and saves two maps per measure to `figures/<study>/` (one drawn with ggplot2, and one with tmap with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to `tables/`.
 
-The Quarto website explains the scripts. Its pages import the scripts' labelled sections with `knitr::read_chunk()` and show them; they never run the analysis. The Maps page (`quarto/results.qmd`) shows the saved maps and tables. A GitHub Actions workflow runs `R/main.R`, renders the site and publishes it on every push to `main`, so the maps and the site are always drawn from the code on `main`.
+The Quarto website explains the scripts. Its pages import the scripts' labelled sections with `knitr::read_chunk()` and show them; they never run the analysis. The Results pages (`quarto/results.qmd` and one `quarto/results_<study>.qmd` per study) show the saved maps and tables. A GitHub Actions workflow runs `R/main.R`, renders the site and publishes it on every push to `main`, so the maps and the site are always drawn from the code on `main`.
 
 ## Architecture diagram
 
@@ -99,7 +99,7 @@ flowchart TD
 
 **Location**: `_quarto.yml`, `index.qmd`, `404.qmd`, `quarto/`, rendered to `docs/` (not committed).
 
-**Interactions**: code pages import labelled sections of `R/*.R` with `knitr::read_chunk()` and show them without running them. The Maps page (`quarto/results.qmd`) shows the PNG files in `figures/`, links the PDFs for download, and shows the tables in `tables/`, which is the one piece of R it runs besides the imports. The project-document pages include `analysis-plan.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md`, and this file is read by `quarto/architecture.qmd`.
+**Interactions**: code pages import labelled sections of `R/*.R` with `knitr::read_chunk()` and show them without running them. Each study's results page (`quarto/results_<study>.qmd`) shows its PNG files in `figures/`, links the PDFs for download, and shows its table in `tables/` with a helper shared through `quarto/_region-table.qmd`; reading that table is the one piece of R the results pages run besides the imports. `quarto/results.qmd` explains how to read the maps and runs no R. The project-document pages include `analysis-plan.md`, `AGENTS.md` and `REPOSITORY-BLUEPRINT.md`, and this file is read by `quarto/architecture.qmd`.
 
 ### Publish workflow
 
@@ -136,7 +136,8 @@ All settings are constants in `R/setup.R`; no environment variables or data path
 | HCV study | `R/hcv_map.R` | `hcv_summary`, `hcv_measures` |
 | DCD study | `R/dcd_map.R` | `dcd_summary`, `dcd_measures` |
 | EVMP study | `R/evmp_map.R` | `evmp_summary`, `evmp_measures` |
-| Maps page | `quarto/results.qmd` | shows `figures/`, reads `tables/` |
+| Reading the maps | `quarto/results.qmd` | explains the maps; runs no R |
+| Study results pages | `quarto/results_hcv.qmd`, `results_dcd.qmd`, `results_evmp.qmd` | show `figures/<study>/`, read `tables/<study>_regions.csv` |
 | Workflow | `.github/workflows/publish.yml` | runs `R/main.R`, renders, publishes to `gh-pages` |
 
 ## Glossary

@@ -1,0 +1,15 @@
+```{r}
+#| include: false
+#| eval: true
+# Shared by the study results pages (included, not rendered on its own: the
+# leading underscore keeps Quarto from making it a page). Shows a study's
+# regional table, saved to tables/ by its study script. Reads that file only;
+# runs no analysis.
+show_region_table <- function(study) {
+  path <- file.path("..", "tables", paste0(study, "_regions.csv"))
+  if (!file.exists(path)) {
+    return(knitr::asis_output("*The table appears once `R/main.R` has been run.*"))
+  }
+  knitr::kable(read.csv(path, check.names = FALSE), align = "lrrrr")
+}
+```

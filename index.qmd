@@ -17,4 +17,4 @@ Each study's regional summary, one row per region, is joined to sRtr's state pol
 
 ## Status
 
-The code, data and maps are in place for three studies; the [Maps](quarto/results.qmd) page shows them. The COVID-19 donor study [@madan2023covid] and the donor offer acceptance study [@ramineni2026doa] have no maps yet.
+The code, data and maps are in place for three studies; the Results pages show them, starting with [Reading the maps](quarto/results.qmd). The COVID-19 donor study [@madan2023covid] and the donor offer acceptance study [@ramineni2026doa] have no maps yet.

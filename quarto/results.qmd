@@ -1,130 +1,91 @@
 ---
-title: "Maps"
+title: "Reading the maps"
 format: html
 ---
 
-The regional maps for each study, drawn by `R/main.R` from the counts published in each paper. Each map opens with the tmap version, with the Washington-Boston corridor enlarged beside it; the second tab shows the same map drawn with ggplot2. States are shaded by their UNOS region's value. Dots are adult heart-transplant centers from HRSA's current list, so they show centers as they are now, not as they were during each study period, and not which centers performed the transplants mapped.
+This page explains what is on every map and how to read it. Each study then has its own page, with its maps, its regional table and what they show:
 
-::: {.Results title="Two kinds of percentage"}
-The HCV and DCD maps show each region's **share of the national count**: the region's transplants divided by all such transplants in the United States. These shares add up to 100% across the eleven regions and are largest where the most transplants of that kind were done, so they show *where* the country's transplants happened.
+-   [**HCV donors, 2015–2020**](results_hcv.qmd): one map, each region's share of the country's multiorgan heart transplants from hepatitis C virus (HCV) donors [@madan2021hcv].
+-   [**DCD donors, 2020–2023**](results_dcd.qmd): two maps, each region's share of the country's multiorgan heart transplants from donors after circulatory death (DCD), and its share of all multiorgan heart transplants [@madan2024dcd].
+-   [**Machine perfusion, 2020–2024**](results_evmp.qmd): one map, how often each region used ex vivo machine perfusion in heart transplants from donors after brain death (DBD) [@madan2025evmp].
 
-The machine-perfusion map shows each region's **own rate**: the region's machine-perfusion transplants divided by the region's own DBD heart transplants. It shows how often each region used the technique.
+The maps are drawn by `R/main.R` from the regional counts published in each paper. The code that draws them is under Code in the sidebar, one page per study.
 
-A high national share does not by itself mean a high rate within the region: a region that does many transplants of every kind tends to have a large share of any one kind.
+## What is on every map
+
+Every map is built from the same layers, in the same order, so once you can read one you can read them all.
+
+| On the map | What it shows | Where it comes from |
+|---|---|---|
+| **Shaded states** | The value for the state's UNOS region. Every state in a region has the same colour. | The region's count in the published study |
+| **Thin grey lines** | State borders | Census state boundaries, through sRtr [@srtr_package] |
+| **Thick black lines** | The borders of the eleven UNOS regions | sRtr's region outlines |
+| **Navy numbers on pale boxes** | Each region's number, 1 to 11 | Placed inside each region by the code |
+| **Dots** | Adult heart-transplant centers, at their true locations. They are partly transparent, so where several overlap the dot looks darker. | HRSA's current transplant-center list [@hrsa_otc_layer] |
+| **Grey states** | A region with no value | Shown as *no data*, never as zero |
+| **Note under the map** | Where the shading and the dots come from, and the date the center list was downloaded | Printed on every map |
+
+The tmap version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.
+
+Light colours are low values and dark red ones are high. The legend gives the numbers. No map on this site uses a grey state: every region has a value in all three studies, even when that value is zero.
+
+## Which states are in each region
+
+The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in sRtr's region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.
+
+| Region | States on the maps |
+|---|---|
+| 1 | Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island |
+| 2 | Delaware, District of Columbia, Maryland, New Jersey, Pennsylvania, West Virginia, and Northern Virginia |
+| 3 | Alabama, Arkansas, Florida, Georgia, Louisiana, Mississippi |
+| 4 | Oklahoma, Texas |
+| 5 | Arizona, California, Nevada, New Mexico, Utah |
+| 6 | Idaho, Montana, Oregon, Washington |
+| 7 | Illinois, Minnesota, North Dakota, South Dakota, Wisconsin |
+| 8 | Colorado, Iowa, Kansas, Missouri, Nebraska, Wyoming |
+| 9 | New York, Vermont |
+| 10 | Indiana, Michigan, Ohio |
+| 11 | Kentucky, North Carolina, South Carolina, Tennessee, Virginia (except Northern Virginia) |
+
+The regions differ a great deal in size and in how many transplants they do. Region 6 covers four large states in the Northwest but does few transplants; Region 9 is mostly New York State; Region 5 includes California and does the most multiorgan heart transplants of any region. A region's colour says nothing about its area, but a large region catches the eye, so read the legend and the table rather than the amount of colour.
+
+The [Clinical background](background.qmd) page says more about the regions, and [Methodological background](methodological_background.qmd) explains how a region that crosses a state line is handled.
+
+## Two kinds of percentage
+
+The maps use two different percentages, and they answer different questions. The legend of every map says which one it shows.
+
+::: {.Results title="Share of the national count, or the region's own rate"}
+**A region's share of the national count** is the region's transplants of one kind divided by all such transplants in the United States. The eleven shares add up to 100%. The HCV and DCD maps show this. It answers the question *where in the country were these transplants done?*
+
+**A region's own rate** is the region's transplants of one kind divided by the region's own transplants. The rates do not add up to anything. The machine-perfusion map shows this. It answers the question *how often did this region use the technique?*
 :::
 
-```{r}
-#| include: false
-#| eval: true
-# Shows a study's regional table, saved to tables/ by its study script. Reads
-# that file only; runs no analysis.
-show_region_table <- function(study) {
-  path <- file.path("..", "tables", paste0(study, "_regions.csv"))
-  if (!file.exists(path)) {
-    return(knitr::asis_output("*The table appears once `R/main.R` has been run.*"))
-  }
-  knitr::kable(read.csv(path, check.names = FALSE), align = "lrrrr")
-}
-```
+The two can tell different stories about the same region. A worked example from the machine-perfusion study: Region 11 did 129 of the country's 561 machine-perfusion transplants, the largest share of any region (23%). But it also did many transplants overall, so only 129 of its 1,687 DBD heart transplants (8%) used machine perfusion. Region 1 did fewer machine-perfusion transplants (79, a 14% share), but they were 79 of only 577 transplants, so its own rate (14%) was the highest in the country [@madan2025evmp].
 
-## HCV donors, 2015–2020
+The general rule: a region that does many transplants of every kind tends to have a large share of any one kind. A high share of the national count is therefore partly a sign of a busy region. To see whether a region used a donor type more than its size would predict, compare its share of that donor type with its share of all transplants. The HCV and DCD tables give both, and their pages make that comparison.
 
-From @madan2021hcv. **What the percentage is:** each region's HCV-donor multiorgan heart transplants divided by all 109 in the United States.
+**Decision pending:** whether to add maps of each region's own rate for the HCV and DCD studies, beside the published share maps (D3 in `SETUP-NOTES.md`).
 
-Four regions did most of them: Region 11 had 31 of the 109 (28%), Region 9 had 17 (16%), Region 5 had 15 (14%) and Region 10 had 14 (13%), together 71%. Region 11's share of HCV-donor transplants (28%) was more than twice its share of all multiorgan heart transplants (12%); Region 5's was about half of its share of all multiorgan heart transplants (14% against 27%).
+## Each map has its own colour scale
 
-### Share of U.S. HCV-donor multiorgan heart transplants
+The colour scale of each map runs from that map's lowest value to its highest. Dark red on the HCV map means about 28%; on the machine-perfusion map it means about 14%. Colours cannot be compared from one map to another, only within a map. To compare across maps, read the legends or the tables.
 
-::: {.panel-tabset}
+## What the maps cannot tell you
 
-#### With corridor inset (tmap)
+-   **Nothing about a single state.** The whole region carries one value. A dark state may have done none of the region's transplants; a neighbouring state in the same region may have done all of them.
+-   **Not why regions differ.** The studies described variation; they did not test what caused it. Differences may reflect a few centers' practice, local donor supply, distances, or chance where numbers are small.
+-   **Not which centers took part.** The dots are adult heart-transplant centers in HRSA's list on the day the maps were drawn, not the centers that existed during each study period, and not the centers that did the transplants mapped. A center that opened after a study ended still has a dot; one that closed has none. This was decided for the teaching purpose of the maps (D1 in `SETUP-NOTES.md`; plan §4).
+-   **Not how many transplants a center did.** Every dot is the same size. A region with many dots does not necessarily do many transplants.
+-   **Not how certain the values are.** Where a region did only a few transplants of a kind, one or two more or fewer would change its colour a lot. The tables give the counts so this can be judged.
 
-![Share of U.S. HCV-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/hcv/pct_of_us_hcv_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
+The paper behind each map gives the full analysis, including trends over time and patient outcomes, which a regional map cannot show.
 
-#### Without inset (ggplot2)
+## Two versions of each map
 
-![Share of U.S. HCV-donor multiorgan heart transplants.](../figures/hcv/pct_of_us_hcv.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. HCV-donor multiorgan heart transplants. Region 11 had the largest share (28%), followed by Regions 9 (16%), 5 (14%) and 10 (13%); Region 8 had the smallest (under 1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
+Each map is drawn twice, and the study pages show both in tabs:
 
-:::
+-   **With corridor inset (tmap)**, shown first, with the Washington-Boston corridor enlarged beside the main map.
+-   **Without inset (ggplot2)**, closest in look to the maps in the published papers.
 
-```{r}
-#| echo: false
-#| eval: true
-show_region_table("hcv")
-```
-
-Download as PDF: [HCV-donor share](../figures/hcv/pct_of_us_hcv_inset.pdf) ([without inset](../figures/hcv/pct_of_us_hcv.pdf)).
-
-## DCD donors, 2020–2023
-
-From @madan2024dcd. **What the percentages are:** each region's DCD-donor multiorgan heart transplants divided by all 87 in the United States, and each region's multiorgan heart transplants of any donor type divided by all 1,581.
-
-Three regions did about two thirds of the DCD-donor transplants: Region 11 had 23 of the 87 (26%), Region 5 had 19 (22%) and Region 1 had 15 (17%). Regions 2 and 6 had none. Region 1's share of DCD-donor transplants (17%) was about four times its share of all multiorgan heart transplants (4%).
-
-Because each share is a count divided by one national total, a map of the counts shows exactly the same pattern as the map of the shares. This page shows the two share maps; the table gives both the counts and the shares, and the count maps can be downloaded below.
-
-### Share of U.S. DCD-donor multiorgan heart transplants
-
-::: {.panel-tabset}
-
-#### With corridor inset (tmap)
-
-![Share of U.S. DCD-donor multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_dcd_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
-
-#### Without inset (ggplot2)
-
-![Share of U.S. DCD-donor multiorgan heart transplants.](../figures/dcd/pct_of_us_dcd.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of U.S. DCD-donor multiorgan heart transplants. Region 11 had the largest share (26%), then Regions 5 (22%) and 1 (17%); Regions 2 and 6 had none. Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
-
-:::
-
-### Share of all U.S. multiorgan heart transplants
-
-::: {.panel-tabset}
-
-#### With corridor inset (tmap)
-
-![Share of all U.S. multiorgan heart transplants, with the Washington-Boston corridor enlarged.](../figures/dcd/pct_of_us_total_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
-
-#### Without inset (ggplot2)
-
-![Share of all U.S. multiorgan heart transplants.](../figures/dcd/pct_of_us_total.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of all U.S. multiorgan heart transplants. Region 5 had the largest share (24%), then Regions 11 (13%), 4 (12%) and 9 (11%); Region 6 had the smallest (2%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
-
-:::
-
-```{r}
-#| echo: false
-#| eval: true
-show_region_table("dcd")
-```
-
-Download as PDF: [DCD-donor share](../figures/dcd/pct_of_us_dcd_inset.pdf) ([without inset](../figures/dcd/pct_of_us_dcd.pdf)); [DCD-donor count](../figures/dcd/n_dcd_inset.pdf) ([without inset](../figures/dcd/n_dcd.pdf)); [share of all multiorgan HTs](../figures/dcd/pct_of_us_total_inset.pdf) ([without inset](../figures/dcd/pct_of_us_total.pdf)); [count of all multiorgan HTs](../figures/dcd/n_total_inset.pdf) ([without inset](../figures/dcd/n_total.pdf)).
-
-## Ex vivo machine perfusion, 2020–2024
-
-From @madan2025evmp. **What the percentage is:** each region's DBD heart transplants that used ex vivo machine perfusion divided by that region's own DBD heart transplants. Nationally, 561 of 12,363 (4.5%) did.
-
-Region 1 had the highest rate (79 of 577, 14%), followed by Region 11 (129 of 1,687, 8%). Region 11 did the most machine-perfusion transplants of any region but had a lower rate than Region 1, because it did about three times as many DBD heart transplants. Regions 8 (1%) and 2 (2%) had the lowest rates.
-
-### Share of each region's DBD heart transplants using ex vivo machine perfusion
-
-::: {.panel-tabset}
-
-#### With corridor inset (tmap)
-
-![Share of each region's DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.](../figures/evmp/pct_evmp_inset.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}
-
-#### Without inset (ggplot2)
-
-![Share of each region's DBD heart transplants using ex vivo machine perfusion.](../figures/evmp/pct_evmp.png){fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}
-
-:::
-
-```{r}
-#| echo: false
-#| eval: true
-show_region_table("evmp")
-```
-
-Download as PDF: [machine-perfusion rate](../figures/evmp/pct_evmp_inset.pdf) ([without inset](../figures/evmp/pct_evmp.pdf)).
-
-TIFF files at 600 dpi, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then *Artifacts*).
+The two show the same values with the same colours. Every map can be downloaded as a PDF, a vector file that stays sharp at any size, from the link under it. TIFF files at 600 dots per inch, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then *Artifacts*).

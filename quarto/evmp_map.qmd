@@ -43,7 +43,7 @@ Only the counts are typed in; the percentages are computed from them, so how eac
 
 ## Regional table
 
-The counts and percentages behind the maps, with readable column names, are saved to `tables/evmp_regions.csv` for the table on the [Maps](results.qmd) page.
+The counts and percentages behind the maps, with readable column names, are saved to `tables/evmp_regions.csv` for the table on the [Machine perfusion](results_evmp.qmd) results page, which shows the maps this script draws.
 
 ```{r}
 #| label: evmp-region-table

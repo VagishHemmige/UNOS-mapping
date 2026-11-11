@@ -65,7 +65,7 @@ place_region_labels <- function(region_outlines, box, margin, where) {
 }
 
 ## ---- write-region-table
-# Save one study's regional table, as shown on the Maps page, to
+# Save one study's regional table, as shown on its results page, to
 # tables/<study>_regions.csv.
 write_region_table <- function(region_table, study) {
   dir.create("tables", showWarnings = FALSE)

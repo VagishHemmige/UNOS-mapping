@@ -12,7 +12,7 @@ project:
     - index.qmd
     - 404.qmd
     - quarto/**
-  # The PDF maps are linked from the Maps page for download
+  # The PDF maps are linked from the study results pages for download
   resources:
     - "figures/**/*.pdf"
 
@@ -105,10 +105,21 @@ website:
           #       text: Figures
           #       icon: laptop
 
+      # One page on reading the maps, then one page per study, in the order
+      # of the code pages.
       - section: Results
         contents:
           - href: quarto/results.qmd
-            text: Maps
+            text: Reading the maps
+            icon: clipboard-data
+          - href: quarto/results_hcv.qmd
+            text: HCV donors (2015–2020)
+            icon: clipboard-data
+          - href: quarto/results_dcd.qmd
+            text: DCD donors (2020–2023)
+            icon: clipboard-data
+          - href: quarto/results_evmp.qmd
+            text: Machine perfusion (2020–2024)
             icon: clipboard-data
 
       - section: Project documents
