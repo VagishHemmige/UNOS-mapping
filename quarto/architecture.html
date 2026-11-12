@@ -120,17 +120,6 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
-  background-image: none;
-}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -140,6 +129,17 @@ div.callout-Pending.callout-style-default > .callout-header {
 div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
   content: '⏳';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -338,7 +338,28 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   <div class="sidebar-item-container"> 
   <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
 </i> 
- <span class="menu-text">Maps</span></a>
+ <span class="menu-text">Reading the maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_hcv.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">HCV donors (2015–2020)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_dcd.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">DCD donors (2020–2023)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_evmp.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Machine perfusion (2020–2024)</span></a>
   </div>
 </li>
       </ul>
@@ -464,7 +485,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p><code>R/main.R</code> runs six scripts in order. The first two set up packages, constants and helper functions. <code>R/map_geography.R</code> builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study’s regional counts, joins them to the shared layers, and saves two maps per measure to <code>figures/&lt;study&gt;/</code> (one drawn with ggplot2, and one with tmap with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to <code>tables/</code>.</p>
-<p>The Quarto website explains the scripts. Its pages import the scripts’ labelled sections with <code>knitr::read_chunk()</code> and show them; they never run the analysis. The Maps page (<code>quarto/results.qmd</code>) shows the saved maps and tables. A GitHub Actions workflow runs <code>R/main.R</code>, renders the site and publishes it on every push to <code>main</code>, so the maps and the site are always drawn from the code on <code>main</code>.</p>
+<p>The Quarto website explains the scripts. Its pages import the scripts’ labelled sections with <code>knitr::read_chunk()</code> and show them; they never run the analysis. The Results pages (<code>quarto/results.qmd</code> and one <code>quarto/results_&lt;study&gt;.qmd</code> per study) show the saved maps and tables. A GitHub Actions workflow runs <code>R/main.R</code>, renders the site and publishes it on every push to <code>main</code>, so the maps and the site are always drawn from the code on <code>main</code>.</p>
 </section>
 <section id="architecture-diagram" class="level2">
 <h2 class="anchored" data-anchor-id="architecture-diagram">Architecture diagram</h2>
@@ -514,7 +535,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <h3 class="anchored" data-anchor-id="website">Website</h3>
 <p><strong>Purpose</strong>: explains the code and shows the maps.</p>
 <p><strong>Location</strong>: <code>_quarto.yml</code>, <code>index.qmd</code>, <code>404.qmd</code>, <code>quarto/</code>, rendered to <code>docs/</code> (not committed).</p>
-<p><strong>Interactions</strong>: code pages import labelled sections of <code>R/*.R</code> with <code>knitr::read_chunk()</code> and show them without running them. The Maps page (<code>quarto/results.qmd</code>) shows the PNG files in <code>figures/</code>, links the PDFs for download, and shows the tables in <code>tables/</code>, which is the one piece of R it runs besides the imports. The project-document pages include <code>analysis-plan.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code>, and this file is read by <code>quarto/architecture.qmd</code>.</p>
+<p><strong>Interactions</strong>: code pages import labelled sections of <code>R/*.R</code> with <code>knitr::read_chunk()</code> and show them without running them. Each study’s results page (<code>quarto/results_&lt;study&gt;.qmd</code>) shows its PNG files in <code>figures/</code>, links the PDFs for download, and shows its table in <code>tables/</code> with a helper shared through <code>quarto/_region-table.qmd</code>; reading that table is the one piece of R the results pages run besides the imports. <code>quarto/results.qmd</code> explains how to read the maps and runs no R. The project-document pages include <code>analysis-plan.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code>, and this file is read by <code>quarto/architecture.qmd</code>.</p>
 </section>
 <section id="publish-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="publish-workflow">Publish workflow</h3>
@@ -593,11 +614,16 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <td><code>evmp_summary</code>, <code>evmp_measures</code></td>
 </tr>
 <tr class="even">
-<td>Maps page</td>
+<td>Reading the maps</td>
 <td><code>quarto/results.qmd</code></td>
-<td>shows <code>figures/</code>, reads <code>tables/</code></td>
+<td>explains the maps; runs no R</td>
 </tr>
 <tr class="odd">
+<td>Study results pages</td>
+<td><code>quarto/results_hcv.qmd</code>, <code>results_dcd.qmd</code>, <code>results_evmp.qmd</code></td>
+<td>show <code>figures/&lt;study&gt;/</code>, read <code>tables/&lt;study&gt;_regions.csv</code></td>
+</tr>
+<tr class="even">
 <td>Workflow</td>
 <td><code>.github/workflows/publish.yml</code></td>
 <td>runs <code>R/main.R</code>, renders, publishes to <code>gh-pages</code></td>

@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Vagish Hemmige">
+
+<title>Machine perfusion, 2020–2024 – Mapping UNOS regions with sRtr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../quarto/analysis-plan.html" rel="next">
+<link href="../quarto/results_dcd.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
+  background-image: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/results.html">Results</a></li><li class="breadcrumb-item"><a href="../quarto/results_evmp.html">Machine perfusion (2020–2024)</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Mapping UNOS regions with sRtr</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-house" role="img">
+</i> 
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Background</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/background.html" class="sidebar-item-text sidebar-link"><i class="bi bi-book" role="img">
+</i> 
+ <span class="menu-text">Clinical background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/methodological_background.html" class="sidebar-item-text sidebar-link"><i class="bi bi-book" role="img">
+</i> 
+ <span class="menu-text">Methodological background</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/study_methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-diagram-3" role="img">
+</i> 
+ <span class="menu-text">Study design and methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Code</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Setup and helper functions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/setup.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/functions.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shared map layers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/map_geography.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">1. Map geography</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Maps by study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/hcv_map.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">2. HCV donors (2021)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/dcd_map.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">3. DCD donors (2024)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/evmp_map.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">4. Machine perfusion (2025)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Original code</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/original_code.html" class="sidebar-item-text sidebar-link"><i class="bi bi-laptop" role="img">
+</i> 
+ <span class="menu-text">Original RMDs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Reading the maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_hcv.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">HCV donors (2015–2020)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_dcd.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">DCD donors (2020–2023)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_evmp.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Machine perfusion (2020–2024)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/analysis-plan.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Analysis plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/architecture.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/agents.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">AGENTS.md</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/repository-blueprint.html" class="sidebar-item-text sidebar-link"><i class="bi bi-file-earmark-ruled" role="img">
+</i> 
+ <span class="menu-text">Repository blueprint</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/about.html" class="sidebar-item-text sidebar-link"><i class="bi bi-info-circle" role="img">
+</i> 
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-study-in-brief" id="toc-the-study-in-brief" class="nav-link active" data-scroll-target="#the-study-in-brief">The study in brief</a></li>
+  <li><a href="#what-the-map-shows" id="toc-what-the-map-shows" class="nav-link" data-scroll-target="#what-the-map-shows">What the map shows</a></li>
+  <li><a href="#the-map" id="toc-the-map" class="nav-link" data-scroll-target="#the-map">The map</a></li>
+  <li><a href="#reading-this-map" id="toc-reading-this-map" class="nav-link" data-scroll-target="#reading-this-map">Reading this map</a></li>
+  <li><a href="#rate-and-share-tell-different-stories-here" id="toc-rate-and-share-tell-different-stories-here" class="nav-link" data-scroll-target="#rate-and-share-tell-different-stories-here">Rate and share tell different stories here</a></li>
+  <li><a href="#the-regional-table" id="toc-the-regional-table" class="nav-link" data-scroll-target="#the-regional-table">The regional table</a></li>
+  <li><a href="#points-to-keep-in-mind" id="toc-points-to-keep-in-mind" class="nav-link" data-scroll-target="#points-to-keep-in-mind">Points to keep in mind</a></li>
+  <li><a href="#the-code" id="toc-the-code" class="nav-link" data-scroll-target="#the-code">The code</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/results_evmp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../quarto/results.html">Results</a></li><li class="breadcrumb-item"><a href="../quarto/results_evmp.html">Machine perfusion (2020–2024)</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Machine perfusion, 2020–2024</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vagish Hemmige <a href="mailto:vagish.hemmige@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This page shows how often each UNOS region used ex vivo machine perfusion (EVMP) for heart transplants from donors after brain death (DBD), from <span class="citation" data-cites="madan2025evmp">Madan et al. (<a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>. How to read the maps in general is on <a href="../quarto/results.html">Reading the maps</a>.</p>
+<section id="the-study-in-brief" class="level2">
+<h2 class="anchored" data-anchor-id="the-study-in-brief">The study in brief</h2>
+<p>A donor heart is usually carried to the recipient’s hospital on ice, in what is called <em>static cold storage</em>. The longer the heart is without blood flow (the <em>ischemic time</em>), the greater the risk of injury, and hearts from DBD donors are increasingly from older donors and travel longer distances. Ex vivo machine perfusion instead keeps fluid flowing through the heart from a machine outside the body (“ex vivo”) during transport, which could reduce that risk.</p>
+<p>The study used the UNOS registry to find the 12,363 adult DBD heart transplants done in the United States from January 2020 to June 2024 that met its criteria: 11,802 with static cold storage and 561 with EVMP. EVMP use rose from 1.4% in the first half of 2020 to 10.7% in the first half of 2024, with large differences between regions and with a few high-volume centers doing most of it. Survival at six months and one year was similar with EVMP and with cold storage, although the EVMP hearts came from older donors, travelled farther and had longer ischemic times <span class="citation" data-cites="madan2025evmp">(<a href="#ref-madan2025evmp" role="doc-biblioref">Madan et al. 2025</a>)</span>. The map shows the regional part of that finding.</p>
+</section>
+<section id="what-the-map-shows" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-map-shows">What the map shows</h2>
+<p>Each region is shaded by <strong>its own rate of EVMP use</strong>: the region’s DBD heart transplants that used EVMP divided by all the region’s DBD heart transplants. Nationally, 561 of 12,363 (4.5%) did.</p>
+<p>This is a different kind of percentage from the HCV and DCD maps (see <a href="../quarto/results.html#two-kinds-of-percentage">Two kinds of percentage</a>). The rates do not add up to 100%, and a region’s colour does not depend on how many transplants it does. It answers the question <em>when this region did a DBD heart transplant, how often did it use machine perfusion?</em></p>
+</section>
+<section id="the-map" class="level2">
+<h2 class="anchored" data-anchor-id="the-map">The map</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">With corridor inset (tmap)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Without inset (ggplot2)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/evmp/pct_evmp_inset.png" class="img-fluid figure-img" alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."></p>
+<figcaption>Share of each region’s DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/evmp/pct_evmp.png" class="img-fluid figure-img" alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."></p>
+<figcaption>Share of each region’s DBD heart transplants using ex vivo machine perfusion.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Download as PDF: <a href="../figures/evmp/pct_evmp_inset.pdf">with inset</a>, <a href="../figures/evmp/pct_evmp.pdf">without inset</a>.</p>
+</section>
+<section id="reading-this-map" class="level2">
+<h2 class="anchored" data-anchor-id="reading-this-map">Reading this map</h2>
+<p><strong>The darkest region is Region 1</strong>, New England: 79 of its 577 DBD heart transplants used EVMP (14%), about three times the national rate. It is small on the main map; the enlarged corridor in the tmap version shows it more clearly.</p>
+<p><strong>Next comes Region 11</strong>, from Virginia to Tennessee and the Carolinas, at 8% (129 of 1,687). Regions 9 (6%), 6 (5%) and 7 (5%) are also above the national 4.5%. Regions 3 and 10 are close to it (4% each).</p>
+<p><strong>The lightest regions</strong> are Region 8 in the central Plains (10 of 849, 1%) and Region 2, from Pennsylvania to Washington, DC (19 of 1,247, 2%). Region 4, Texas and Oklahoma, was at 2% and Region 5, from California to New Mexico, at 3%.</p>
+<p>The map shows that use of EVMP was not simply a matter of size. Region 5 did more DBD heart transplants than any other region (1,993) but had one of the lower rates, while Region 1 did among the fewest (577) and had the highest.</p>
+</section>
+<section id="rate-and-share-tell-different-stories-here" class="level2">
+<h2 class="anchored" data-anchor-id="rate-and-share-tell-different-stories-here">Rate and share tell different stories here</h2>
+<p>If the map showed each region’s share of the country’s 561 EVMP transplants instead, the picture would change. Region 11 did 129 of them (23%), the most of any region, and would be the darkest; Region 1, with 79 (14%), would come second. Region 5, with 61, would look middling (11%) rather than light.</p>
+<p>The published map shows the rate, which answers how often each region chose machine perfusion rather than where most perfused hearts ended up. The table gives the counts, so either can be read from it.</p>
+</section>
+<section id="the-regional-table" class="level2">
+<h2 class="anchored" data-anchor-id="the-regional-table">The regional table</h2>
+<p>The counts and rates behind the map. The table is saved by <a href="../quarto/evmp_map.html#regional-table"><code>R/evmp_map.R</code></a> and read here, not recomputed.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 27%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Region</th>
+<th style="text-align: right;">DBD HTs</th>
+<th style="text-align: right;">DBD HTs using EVMP</th>
+<th style="text-align: right;">Region’s DBD HTs using EVMP (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Region 1</td>
+<td style="text-align: right;">577</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">13.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region 2</td>
+<td style="text-align: right;">1247</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Region 3</td>
+<td style="text-align: right;">1523</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">4.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region 4</td>
+<td style="text-align: right;">1109</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">2.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Region 5</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region 6</td>
+<td style="text-align: right;">399</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">5.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Region 7</td>
+<td style="text-align: right;">1069</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">5.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region 8</td>
+<td style="text-align: right;">849</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Region 9</td>
+<td style="text-align: right;">958</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">5.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region 10</td>
+<td style="text-align: right;">952</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">4.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Region 11</td>
+<td style="text-align: right;">1687</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="points-to-keep-in-mind" class="level2">
+<h2 class="anchored" data-anchor-id="points-to-keep-in-mind">Points to keep in mind</h2>
+<ul>
+<li><strong>A few centers drove most of the use.</strong> The paper found that a few high-volume centers did most EVMP transplants <span class="citation" data-cites="madan2025evmp">(<a href="#ref-madan2025evmp" role="doc-biblioref">Madan et al. 2025</a>)</span>. A region’s rate may therefore reflect one or two centers rather than practice across the region.</li>
+<li><strong>A time of rapid change.</strong> EVMP use rose from about 1% to about 11% over the study period. The map adds together all four and a half years, so it shows cumulative use, not current practice.</li>
+<li><strong>DBD transplants only.</strong> The study, and so the map, covered heart transplants from donors after brain death. Transplants from donors after circulatory death are not included.</li>
+<li><strong>The rates rest on larger numbers than the other maps.</strong> Every region did at least 399 DBD heart transplants, so the rates are steadier than the HCV and DCD shares. The smallest EVMP count was Region 8’s 10.</li>
+<li><strong>Whole regions, not states.</strong> The map says nothing about where within a region EVMP was used.</li>
+<li><strong>The dots are today’s centers.</strong> The study ended in June 2024. The dots come from HRSA’s list on the day the map was drawn, and they do not show which centers used EVMP.</li>
+</ul>
+</section>
+<section id="the-code" class="level2">
+<h2 class="anchored" data-anchor-id="the-code">The code</h2>
+<p><a href="../quarto/evmp_map.html">4. Machine perfusion (2025)</a> shows the code that draws this map, and <a href="../quarto/original_code.html">Original RMDs</a> the original code behind the published map.</p>
+
+
+<!-- -->
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-madan2025evmp" class="csl-entry" role="listitem">
+Madan, Shivank, Lorenzo D’Angelo, Jill Teitelbaum, Brandon Ferrell, Vagish Hemmige, Stephen J Forest, Omar Saeed, Daniel J Goldstein, Ulrich P Jorde, and Snehal R Patel. 2025. <span>“Trends in Use and Early Outcomes of Ex Vivo Machine Perfusion in Heart Transplantation from Donation After Brain Death Donors.”</span> <em>J Card Fail</em> 32 (9): 1555–65. <a href="https://doi.org/10.1016/j.cardfail.2025.09.039">https://doi.org/10.1016/j.cardfail.2025.09.039</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/vagishhemmige\.github\.io\/UNOS-mapping");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../quarto/results_dcd.html" class="pagination-link" aria-label="DCD donors (2020–2023)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">DCD donors (2020–2023)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../quarto/analysis-plan.html" class="pagination-link" aria-label="Analysis plan">
+        <span class="nav-page-text">Analysis plan</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Machine perfusion, 2020–2024"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>{{&lt; include _region-table.qmd &gt;}}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This page shows how often each UNOS region used ex vivo machine perfusion (EVMP) for heart transplants from donors after brain death (DBD), from @madan2025evmp. How to read the maps in general is on <span class="co">[</span><span class="ot">Reading the maps</span><span class="co">](results.qmd)</span>.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## The study in brief</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>A donor heart is usually carried to the recipient's hospital on ice, in what is called *static cold storage*. The longer the heart is without blood flow (the *ischemic time*), the greater the risk of injury, and hearts from DBD donors are increasingly from older donors and travel longer distances. Ex vivo machine perfusion instead keeps fluid flowing through the heart from a machine outside the body ("ex vivo") during transport, which could reduce that risk.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>The study used the UNOS registry to find the 12,363 adult DBD heart transplants done in the United States from January 2020 to June 2024 that met its criteria: 11,802 with static cold storage and 561 with EVMP. EVMP use rose from 1.4% in the first half of 2020 to 10.7% in the first half of 2024, with large differences between regions and with a few high-volume centers doing most of it. Survival at six months and one year was similar with EVMP and with cold storage, although the EVMP hearts came from older donors, travelled farther and had longer ischemic times <span class="co">[</span><span class="ot">@madan2025evmp</span><span class="co">]</span>. The map shows the regional part of that finding.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the map shows</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Each region is shaded by **its own rate of EVMP use**: the region's DBD heart transplants that used EVMP divided by all the region's DBD heart transplants. Nationally, 561 of 12,363 (4.5%) did.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>This is a different kind of percentage from the HCV and DCD maps (see <span class="co">[</span><span class="ot">Two kinds of percentage</span><span class="co">](results.qmd#two-kinds-of-percentage)</span>). The rates do not add up to 100%, and a region's colour does not depend on how many transplants it does. It answers the question *when this region did a DBD heart transplant, how often did it use machine perfusion?*</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## The map</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">#### With corridor inset (tmap)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="al">![Share of each region's DBD heart transplants using ex vivo machine perfusion, with the Washington-Boston corridor enlarged.](../figures/evmp/pct_evmp_inset.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers. An enlarged view of the corridor from Washington, DC, to Boston sits to the right of the map."}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Without inset (ggplot2)</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="al">![Share of each region's DBD heart transplants using ex vivo machine perfusion.](../figures/evmp/pct_evmp.png)</span>{fig-alt="Map of the contiguous United States in an Albers projection, with states shaded by UNOS region from light yellow (low) to red (high) showing share of each region's DBD heart transplants using ex vivo machine perfusion. Region 1 had the highest rate (14%), then Regions 11 (8%), 9 (6%) and 6 (5%); Region 8 had the lowest (1%). Thin outlines mark the eleven regions, each labelled with its number, and dots mark current adult heart-transplant centers."}</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Download as PDF: <span class="co">[</span><span class="ot">with inset</span><span class="co">](../figures/evmp/pct_evmp_inset.pdf)</span>, <span class="co">[</span><span class="ot">without inset</span><span class="co">](../figures/evmp/pct_evmp.pdf)</span>.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading this map</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>**The darkest region is Region 1**, New England: 79 of its 577 DBD heart transplants used EVMP (14%), about three times the national rate. It is small on the main map; the enlarged corridor in the tmap version shows it more clearly.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>**Next comes Region 11**, from Virginia to Tennessee and the Carolinas, at 8% (129 of 1,687). Regions 9 (6%), 6 (5%) and 7 (5%) are also above the national 4.5%. Regions 3 and 10 are close to it (4% each).</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>**The lightest regions** are Region 8 in the central Plains (10 of 849, 1%) and Region 2, from Pennsylvania to Washington, DC (19 of 1,247, 2%). Region 4, Texas and Oklahoma, was at 2% and Region 5, from California to New Mexico, at 3%.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>The map shows that use of EVMP was not simply a matter of size. Region 5 did more DBD heart transplants than any other region (1,993) but had one of the lower rates, while Region 1 did among the fewest (577) and had the highest.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rate and share tell different stories here</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>If the map showed each region's share of the country's 561 EVMP transplants instead, the picture would change. Region 11 did 129 of them (23%), the most of any region, and would be the darkest; Region 1, with 79 (14%), would come second. Region 5, with 61, would look middling (11%) rather than light.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>The published map shows the rate, which answers how often each region chose machine perfusion rather than where most perfused hearts ended up. The table gives the counts, so either can be read from it.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## The regional table</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>The counts and rates behind the map. The table is saved by <span class="co">[</span><span class="ot">`R/evmp_map.R`</span><span class="co">](evmp_map.qmd#regional-table)</span> and read here, not recomputed.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">show_region_table</span>(<span class="st">"evmp"</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Points to keep in mind</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**A few centers drove most of the use.** The paper found that a few high-volume centers did most EVMP transplants <span class="co">[</span><span class="ot">@madan2025evmp</span><span class="co">]</span>. A region's rate may therefore reflect one or two centers rather than practice across the region.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**A time of rapid change.** EVMP use rose from about 1% to about 11% over the study period. The map adds together all four and a half years, so it shows cumulative use, not current practice.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**DBD transplants only.** The study, and so the map, covered heart transplants from donors after brain death. Transplants from donors after circulatory death are not included.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**The rates rest on larger numbers than the other maps.** Every region did at least 399 DBD heart transplants, so the rates are steadier than the HCV and DCD shares. The smallest EVMP count was Region 8's 10.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Whole regions, not states.** The map says nothing about where within a region EVMP was used.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**The dots are today's centers.** The study ended in June 2024. The dots come from HRSA's list on the day the map was drawn, and they do not show which centers used EVMP.</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## The code</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">4. Machine perfusion (2025)</span><span class="co">](evmp_map.qmd)</span> shows the code that draws this map, and <span class="co">[</span><span class="ot">Original RMDs</span><span class="co">](original_code.qmd)</span> the original code behind the published map.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/VagishHemmige/UNOS-mapping/edit/main/quarto/results_evmp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/VagishHemmige/UNOS-mapping/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

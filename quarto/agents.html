@@ -106,17 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
-  background-image: none;
-}
 div.callout-Rcode.callout {
   border-left-color: #d63384;
 }
@@ -126,6 +115,17 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
+  background-image: none;
+}
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 div.callout-Results.callout {
@@ -335,7 +335,28 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
   <div class="sidebar-item-container"> 
   <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
 </i> 
- <span class="menu-text">Maps</span></a>
+ <span class="menu-text">Reading the maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_hcv.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">HCV donors (2015–2020)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_dcd.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">DCD donors (2020–2023)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_evmp.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Machine perfusion (2020–2024)</span></a>
   </div>
 </li>
       </ul>
@@ -600,7 +621,7 @@ edit that file, not this page. Its first heading is the page title.
 <li><strong>Provisional content.</strong> <code>quarto/_pending.lua</code> highlights in yellow every paragraph that starts with <strong>Decision pending:</strong> or, in the plan, <strong>Open:</strong>, and any <code>[text]{.pending}</code>, and adds a ⏳ <code>Pending</code> callout to pages that have a mark. Mark only what an open decision could change, and remove the mark when the decision is settled.</li>
 <li><strong>Project documents.</strong> <code>analysis-plan.md</code>, <code>ARCHITECTURE.md</code>, <code>AGENTS.md</code> and <code>REPOSITORY-BLUEPRINT.md</code> are shown on the site by pages in <code>quarto/</code> that only include the root file, which stays the one source: edit the root file, not the page.</li>
 <li>Each page loads its script with <code>knitr::read_chunk("../R/&lt;script&gt;.R")</code> in a hidden chunk and shows each labelled section with <code>#| eval: false</code>, with prose explaining what the section does and why. Pages link to the script on GitHub and to the scripts it depends on.</li>
-<li><strong>Never evaluate analysis code in the site.</strong> Pages render without restricted data. Only the <code>read_chunk()</code> imports, the Architecture page’s chunk that reads <code>ARCHITECTURE.md</code>, site helpers that read code or text, and the Maps page’s chunk that reads <code>tables/</code> run.</li>
+<li><strong>Never evaluate analysis code in the site.</strong> Pages render without restricted data. Only the <code>read_chunk()</code> imports, the Architecture page’s chunk that reads <code>ARCHITECTURE.md</code>, site helpers that read code or text, and the results pages’ chunk that reads <code>tables/</code> run.</li>
 <li><strong>Publishing route:</strong> a GitHub Actions workflow (<code>.github/workflows/publish.yml</code>) draws the maps with <code>R/main.R</code>, renders the site and publishes it to the <code>gh-pages</code> branch, which GitHub Pages serves. It runs on every push to <code>main</code> and by hand; on a pull request it only draws and renders, as a check. <code>docs/</code> is the local render output and is not committed. When you add a script, add its page and sidebar entry in the same pull request.</li>
 <li><strong>Prose must match the code.</strong> If a change alters what a section does, update its explanation in the same pull request.</li>
 </ul>
@@ -608,7 +629,7 @@ edit that file, not this page. Its first heading is the page title.
 <section id="outputs" class="level2">
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
-<li>Tables and figures are exported by <code>R/tables.R</code> and <code>R/figures.R</code> to <code>tables/</code> and <code>figures/</code>. Maps are saved by each study script to <code>figures/&lt;study&gt;/</code> as PNG, PDF and 600 dpi TIFF, and each study’s regional table to <code>tables/&lt;study&gt;_regions.csv</code>. The maps show values already published in the papers, so they are public, but <code>figures/</code> and <code>tables/</code> are not committed: the publish workflow redraws them on every run, where the live HRSA download works, and they go out with the site. The Maps page (<code>quarto/results.qmd</code>) shows the maps and tables and links the PDFs; each workflow run keeps all the files, TIFFs included, as an artifact. Maps drawn from synthetic values are not results, are never described as results, and are not committed to <code>figures/</code>.</li>
+<li>Tables and figures are exported by <code>R/tables.R</code> and <code>R/figures.R</code> to <code>tables/</code> and <code>figures/</code>. Maps are saved by each study script to <code>figures/&lt;study&gt;/</code> as PNG, PDF and 600 dpi TIFF, and each study’s regional table to <code>tables/&lt;study&gt;_regions.csv</code>. The maps show values already published in the papers, so they are public, but <code>figures/</code> and <code>tables/</code> are not committed: the publish workflow redraws them on every run, where the live HRSA download works, and they go out with the site. The Results pages (<code>quarto/results.qmd</code> on how to read the maps, then <code>quarto/results_&lt;study&gt;.qmd</code>, one per study) show the maps and tables and link the PDFs; each workflow run keeps all the files, TIFFs included, as an artifact. Maps drawn from synthetic values are not results, are never described as results, and are not committed to <code>figures/</code>.</li>
 <li>Published figures need alt text.</li>
 <li><code>README.Rmd</code> is the source of <code>README.md</code>; edit the <code>.Rmd</code> and re-knit.</li>
 </ul>

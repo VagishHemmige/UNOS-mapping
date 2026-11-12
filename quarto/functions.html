@@ -106,15 +106,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
 }
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
 }
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 div.callout-Results.callout {
@@ -128,15 +128,15 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
   content: '📊';
   background-image: none;
 }
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
 }
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
 }
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 </style>
@@ -335,7 +335,28 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   <div class="sidebar-item-container"> 
   <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
 </i> 
- <span class="menu-text">Maps</span></a>
+ <span class="menu-text">Reading the maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_hcv.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">HCV donors (2015–2020)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_dcd.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">DCD donors (2020–2023)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_evmp.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Machine perfusion (2020–2024)</span></a>
   </div>
 </li>
       </ul>
@@ -542,11 +563,11 @@ Source code
 </section>
 <section id="saving-a-regional-table" class="level2">
 <h2 class="anchored" data-anchor-id="saving-a-regional-table">Saving a regional table</h2>
-<p>Each study script saves the counts and percentages behind its maps to <code>tables/</code>, which the <a href="../quarto/results.html">Maps</a> page shows beside the maps.</p>
+<p>Each study script saves the counts and percentages behind its maps to <code>tables/</code>, which each study’s results page shows beside its maps (see <a href="../quarto/results.html">Reading the maps</a>).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save one study's regional table, as shown on the Maps page, to</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save one study's regional table, as shown on its results page, to</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tables/&lt;study&gt;_regions.csv.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>write_region_table <span class="ot">&lt;-</span> <span class="cf">function</span>(region_table, study) {</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">"tables"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
@@ -1247,7 +1268,7 @@ Source code
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saving a regional table</span></span>
 <span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>Each study script saves the counts and percentages behind its maps to <span class="in">`tables/`</span>, which the <span class="co">[</span><span class="ot">Maps</span><span class="co">](results.qmd)</span> page shows beside the maps.</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>Each study script saves the counts and percentages behind its maps to <span class="in">`tables/`</span>, which each study's results page shows beside its maps (see <span class="co">[</span><span class="ot">Reading the maps</span><span class="co">](results.qmd)</span>).</span>
 <span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: write-region-table</span></span>

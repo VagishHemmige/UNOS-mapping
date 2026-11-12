@@ -125,15 +125,15 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
+div.callout-Results.callout {
+  border-left-color: #198754;
 }
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
 }
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 div.callout-Rcode.callout {
@@ -147,15 +147,15 @@ div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode
   content: '💻';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
 }
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
 }
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 </style>
@@ -354,7 +354,28 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
   <div class="sidebar-item-container"> 
   <a href="../quarto/results.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
 </i> 
- <span class="menu-text">Maps</span></a>
+ <span class="menu-text">Reading the maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_hcv.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">HCV donors (2015–2020)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_dcd.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">DCD donors (2020–2023)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../quarto/results_evmp.html" class="sidebar-item-text sidebar-link"><i class="bi bi-clipboard-data" role="img">
+</i> 
+ <span class="menu-text">Machine perfusion (2020–2024)</span></a>
   </div>
 </li>
       </ul>
@@ -489,7 +510,10 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
 <li><a href="../quarto/dcd_map.html"><strong>3. DCD donors (2024)</strong></a>: the four DCD-donor maps.</li>
 <li><a href="../quarto/evmp_map.html"><strong>4. Machine perfusion (2025)</strong></a>: the machine-perfusion map.</li>
 <li><a href="../quarto/original_code.html"><strong>Original RMDs</strong></a>: the code that drew the published maps.</li>
-<li><a href="../quarto/results.html"><strong>Maps</strong></a>: every study’s maps, in both versions.</li>
+<li><a href="../quarto/results.html"><strong>Reading the maps</strong></a>: what is on every map, the two kinds of percentage, and what the maps cannot show.</li>
+<li><a href="../quarto/results_hcv.html"><strong>HCV donors (2015–2020)</strong></a>: the HCV-donor map and table, and what they show.</li>
+<li><a href="../quarto/results_dcd.html"><strong>DCD donors (2020–2023)</strong></a>: the DCD-donor and all-multiorgan maps, their table, and how to compare them.</li>
+<li><a href="../quarto/results_evmp.html"><strong>Machine perfusion (2020–2024)</strong></a>: the machine-perfusion map and table, and what they show.</li>
 </ul>
 
 
@@ -1016,7 +1040,10 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**3. DCD donors (2024)**</span><span class="co">](dcd_map.qmd)</span>: the four DCD-donor maps.</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**4. Machine perfusion (2025)**</span><span class="co">](evmp_map.qmd)</span>: the machine-perfusion map.</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Original RMDs**</span><span class="co">](original_code.qmd)</span>: the code that drew the published maps.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Maps**</span><span class="co">](results.qmd)</span>: every study's maps, in both versions.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Reading the maps**</span><span class="co">](results.qmd)</span>: what is on every map, the two kinds of percentage, and what the maps cannot show.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**HCV donors (2015–2020)**</span><span class="co">](results_hcv.qmd)</span>: the HCV-donor map and table, and what they show.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**DCD donors (2020–2023)**</span><span class="co">](results_dcd.qmd)</span>: the DCD-donor and all-multiorgan maps, their table, and how to compare them.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Machine perfusion (2020–2024)**</span><span class="co">](results_evmp.qmd)</span>: the machine-perfusion map and table, and what they show.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
