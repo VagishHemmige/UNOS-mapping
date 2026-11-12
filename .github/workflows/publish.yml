@@ -6,7 +6,7 @@
 #
 # R/main.R runs here, on GitHub, because it downloads the live HRSA
 # transplant-center layer. Its maps go to figures/ and its regional tables
-# to tables/, which the Maps page shows; neither they nor the rendered site
+# to tables/, which the results pages show; neither they nor the rendered site
 # (docs/) is committed. Each run keeps the map files, TIFFs included, as an
 # artifact. The pages themselves run only the hidden knitr::read_chunk()
 # imports, the Architecture page's reading of ARCHITECTURE.md, and the Maps

@@ -43,4 +43,7 @@ Four documents describe the project. In short: the plan is the scientific intent
 -   [**3. DCD donors (2024)**](dcd_map.qmd): the four DCD-donor maps.
 -   [**4. Machine perfusion (2025)**](evmp_map.qmd): the machine-perfusion map.
 -   [**Original RMDs**](original_code.qmd): the code that drew the published maps.
--   [**Maps**](results.qmd): every study's maps, in both versions.
+-   [**Reading the maps**](results.qmd): what is on every map, the two kinds of percentage, and what the maps cannot show.
+-   [**HCV donors (2015–2020)**](results_hcv.qmd): the HCV-donor map and table, and what they show.
+-   [**DCD donors (2020–2023)**](results_dcd.qmd): the DCD-donor and all-multiorgan maps, their table, and how to compare them.
+-   [**Machine perfusion (2020–2024)**](results_evmp.qmd): the machine-perfusion map and table, and what they show.

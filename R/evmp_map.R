@@ -33,7 +33,7 @@ evmp_measures <- c(
 evmp_states <- join_region_values(region_states, evmp_summary)
 
 ## ---- evmp-region-table
-# The counts and percentages behind the map, for the table on the Maps page
+# The counts and percentages behind the map, for the table on its results page
 evmp_summary |>
   transmute(
     Region = region,

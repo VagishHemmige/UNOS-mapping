@@ -39,7 +39,7 @@ dcd_measures <- c(
 dcd_states <- join_region_values(region_states, dcd_summary)
 
 ## ---- dcd-region-table
-# The counts and percentages behind the maps, for the table on the Maps page
+# The counts and percentages behind the maps, for the table on its results page
 dcd_summary |>
   transmute(
     Region = region,

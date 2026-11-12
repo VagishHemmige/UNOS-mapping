@@ -53,7 +53,7 @@ On the main map, a region that the corridor box touches is labelled on the part 
 
 ## Saving a regional table
 
-Each study script saves the counts and percentages behind its maps to `tables/`, which the [Maps](results.qmd) page shows beside the maps.
+Each study script saves the counts and percentages behind its maps to `tables/`, which each study's results page shows beside its maps (see [Reading the maps](results.qmd)).
 
 ```{r}
 #| label: write-region-table
