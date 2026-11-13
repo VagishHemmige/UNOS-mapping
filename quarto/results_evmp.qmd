@@ -37,7 +37,7 @@ Download as PDF: [with inset](../figures/evmp/pct_evmp_inset.pdf), [without inse
 
 ## Reading this map
 
-**The darkest region is Region 1**, New England: 79 of its 577 DBD heart transplants used EVMP (14%), about three times the national rate. It is small on the main map; the enlarged corridor in the tmap version shows it more clearly.
+**The darkest region is Region 1**, New England: 79 of its 577 DBD heart transplants used EVMP (14%), about three times the national rate. It is small on the main map; the enlarged corridor in the [{tmap}](https://r-tmap.github.io/tmap/) version shows it more clearly.
 
 **Next comes Region 11**, from Virginia to Tennessee and the Carolinas, at 8% (129 of 1,687). Regions 9 (6%), 6 (5%) and 7 (5%) are also above the national 4.5%. Regions 3 and 10 are close to it (4% each).
 

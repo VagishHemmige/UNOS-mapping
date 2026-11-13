@@ -21,7 +21,7 @@ The HCV and DCD percentages are each region's share of the national count; the m
 
 ## Where the geography comes from
 
-The region assignment of each state and the region outlines come from sRtr, built from the same Census boundaries and region table the original maps used. Alaska, Hawaii and Puerto Rico are left out, as in the original maps.
+The region assignment of each state and the region outlines come from [{sRtr}](https://vagishhemmige.github.io/sRtr/), built from the same Census boundaries and region table the original maps used. Alaska, Hawaii and Puerto Rico are left out, as in the original maps.
 
 **Specified in:** [§4 Data sources](analysis-plan.qmd#4-data-sources-and-measurement-periods), [§5 Study populations and unit definitions](analysis-plan.qmd#5-study-populations-and-unit-definitions).
 
@@ -37,7 +37,7 @@ The centers are today's, from the live HRSA layer, not those of each study perio
 
 ## How the maps are drawn
 
-Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with ggplot2, matching the published maps' look, and with tmap, adding an inset that enlarges the Washington-Boston corridor.
+Every layer is projected to NAD83 / Conus Albers, and each map is drawn twice: with [{ggplot2}](https://ggplot2.tidyverse.org/), matching the published maps' look, and with [{tmap}](https://r-tmap.github.io/tmap/), adding an inset that enlarges the Washington-Boston corridor.
 
 **Specified in:** [§2](analysis-plan.qmd#2-objectives), [§7 Linkage and geography](analysis-plan.qmd#7-linkage-and-geography).
 

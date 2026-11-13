@@ -26,7 +26,7 @@ knitr::read_chunk("../R/functions.R")
 
 ## Joining values to the map
 
-The original code split each spreadsheet's "Region 1: Connecticut, Maine, ..." text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. sRtr's `UNOS_regions_sf` already records each state's region, so each study's table needs only the region name. Every state takes its region's values. The original code used `inner_join()`, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.
+The original code split each spreadsheet's "Region 1: Connecticut, Maine, ..." text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. [{sRtr}](https://vagishhemmige.github.io/sRtr/)'s `UNOS_regions_sf` already records each state's region, so each study's table needs only the region name. Every state takes its region's values. The original code used `inner_join()`, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.
 
 ```{r}
 #| label: join-region-values
@@ -71,7 +71,7 @@ This replaces the original maps' `geom_sf()` calls with several changes. The plo
 
 ## The map, in tmap, with a corridor inset
 
-Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map's layers are written once, in `map_layers()`, and used twice: for the main map and, with `bbox` set to the corridor, for the inset. Building the inset as its own map, rather than giving `tm_inset()` a bounding box, lets it carry its own region numbers (`inset_labels`); a red outline of `corridor_box` on the main map shows where it is. `tm_pos_out()` places the inset outside the map frame, to the right, and the colour legend, the center symbol (`tm_add_legend()`) and the note (`tm_credits()`) along the bottom, so none of them hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (`rev = TRUE`) so that high values get the dark end, as they do in `scale_fill_continuous_sequential()`.
+Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map's layers are written once, in `map_layers()`, and used twice: for the main map and, with `bbox` set to the corridor, for the inset. Building the inset as its own map, rather than giving `tm_inset()` a bounding box, lets it carry its own region numbers (`inset_labels`); a red outline of `corridor_box` on the main map shows where it is. `tm_pos_out()` places the inset outside the map frame, to the right, and the colour legend, the center symbol (`tm_add_legend()`) and the note (`tm_credits()`) along the bottom, so none of them hides any part of the country. One difference from [{ggplot2}](https://ggplot2.tidyverse.org/): [{tmap}](https://r-tmap.github.io/tmap/) takes the palette as a vector of colours, which has to be reversed (`rev = TRUE`) so that high values get the dark end, as they do in `scale_fill_continuous_sequential()`.
 
 ```{r}
 #| label: map-regions-tmap

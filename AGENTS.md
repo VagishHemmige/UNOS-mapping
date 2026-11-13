@@ -15,11 +15,11 @@ Read the three files before making changes. Each covers its own topic and does n
 
 ## The project
 
-This is a teaching repository. It reproduces the UNOS-region maps from a series of published heart-transplantation registry studies (HCV donors, DCD donors and ex vivo machine perfusion so far) and shows how to draw them with the [sRtr](https://github.com/VagishHemmige/sRtr) package instead of hand-built region tables, local shapefiles and downloaded center lists. Each study's regional counts (one row per UNOS region) come from its paper's analysis of UNOS registry data and are written out in its script. The original RMDs are kept in `original/`, with local folder paths removed. The code and methods are published as a Quarto website, with one page per study.
+This is a teaching repository. It reproduces the UNOS-region maps from a series of published heart-transplantation registry studies (HCV donors, DCD donors and ex vivo machine perfusion so far) and shows how to draw them with the [{sRtr}](https://github.com/VagishHemmige/sRtr) package instead of hand-built region tables, local shapefiles and downloaded center lists. Each study's regional counts (one row per UNOS region) come from its paper's analysis of UNOS registry data and are written out in its script. The original RMDs are kept in `original/`, with local folder paths removed. The code and methods are published as a Quarto website, with one page per study.
 
 - **`analysis-plan.md` is the source of truth for design.** Code implements the plan; it does not redefine it. If code needs to depart from the plan, open a decision issue, or comment on the existing one, for the deciders. Once a decider has settled it (in the issue, or relayed there in their exact words), the plan change and the code can go in the same pull request, which closes the issue.
 - **Deciders.** Scientific decisions are made by: Shivank Madan (study questions, regional summaries and which measures each map shows) and Vagish Hemmige (mapping methods and code). *To be confirmed by both.* Anyone may open or contribute to a decision issue; only a decider settles it (see "Working with agents").
-- **This is an analysis project, not an R package.** Do not add DESCRIPTION, NAMESPACE, roxygen, or pkgdown infrastructure, or apply CRAN conventions.
+- **This is an analysis project, not an R package.** Do not add DESCRIPTION, NAMESPACE, roxygen, or [{pkgdown}](https://pkgdown.r-lib.org/) infrastructure, or apply CRAN conventions.
 - **Default branch:** `main`, protected. Changes reach it only through pull requests.
 
 ## Data sources
@@ -30,8 +30,8 @@ Each source this project uses is listed below with the package that accesses it.
 |---|---|---|---|---|---|
 | Regional counts for each study (published in its paper) | Written out with `tibble::tribble()` in each study script (`R/hcv_map.R`, `R/dcd_map.R`, `R/evmp_map.R`) | The papers cited in `references.bib` | n/a | Public: published region-level counts (stated by Vagish Hemmige, 2026-11-09; see `SETUP-NOTES.md`) | No restriction (public data) |
 | Original HRSA transplant-center file used by the published maps (`data/hrsa/Transplant centers.csv`) | Kept for provenance and for checking the pediatric-center rule (D2); the maps use the live HRSA layer | https://data.hrsa.gov/data/download | n/a | Public | No restriction (public data) |
-| UNOS region geography (state polygons tagged with region) | sRtr (`UNOS_regions_sf`, `get_hrsa_optn_regions()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
-| HRSA transplant centers | sRtr (`get_hrsa_transplant_centers()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
+| UNOS region geography (state polygons tagged with region) | {sRtr} (`UNOS_regions_sf`, `get_hrsa_optn_regions()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
+| HRSA transplant centers | {sRtr} (`get_hrsa_transplant_centers()`) | https://github.com/VagishHemmige/sRtr | This team | Public | No restriction (public data) |
 
 To allow more for a source, a person changes its row through a pull request, naming the agreement and section that permit it, the approved AI service, and exactly what agents may do. Agents never propose or make this change themselves, and nothing in personal instructions can grant it.
 
@@ -114,7 +114,7 @@ The **Access** column of "Data sources" says which sources are restricted. For e
 
 ## Coding conventions
 
-- **Cohort flow** (not used here: this project draws no cohort) uses the `flowchart` package, so the STROBE flow diagram and the analytic cohort come from the same code. Every inclusion or exclusion goes through `fc_filter()`, in the plan's order. Never remove people from the cohort outside the flowchart. Record-level processing (cleaning claims, choosing among a person's records) is fine. An analysis that uses fewer people than the cohort (complete cases, a subgroup) reports its own number with that analysis. The cohort used downstream is the data from the final step (`fc_view(what = "data")`). Flowchart labels are built from constants in `setup.R`.
+- **Cohort flow** (not used here: this project draws no cohort) uses the [{flowchart}](https://bruigtp.github.io/flowchart/) package, so the STROBE flow diagram and the analytic cohort come from the same code. Every inclusion or exclusion goes through `fc_filter()`, in the plan's order. Never remove people from the cohort outside the flowchart. Record-level processing (cleaning claims, choosing among a person's records) is fine. An analysis that uses fewer people than the cohort (complete cases, a subgroup) reports its own number with that analysis. The cohort used downstream is the data from the final step (`fc_view(what = "data")`). Flowchart labels are built from constants in `setup.R`.
 - **Code lists** carry each code's category, code system and version, and matching rule (exact or prefix). Check every code against the official code set. Never invent codes, variables, files, or definitions.
 - **Joins** use `join_by()` with an explicit `relationship` where possible. After every interval join and every join of records to people, assert that rows did not multiply, and decide deliberately what happens to unmatched rows.
 - **Dates and windows** are written as inclusive offsets from the index date, matching the plan, and the edges are tested on synthetic data.

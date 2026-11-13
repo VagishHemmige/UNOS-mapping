@@ -5,7 +5,7 @@ format: html
 
 ## The study
 
-This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry [@madan2021hcv; @madan2024dcd; @madan2025evmp], and teaches how to draw them with the sRtr package [@srtr_package]. The maps' values come from the published analyses and are public.
+This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry [@madan2021hcv; @madan2024dcd; @madan2025evmp], and teaches how to draw them with the [{sRtr}](https://vagishhemmige.github.io/sRtr/) package [@srtr_package]. The maps' values come from the published analyses and are public.
 
 -   **Shivank Madan** (principal investigator of the studies)
 -   **Vagish Hemmige** (mapping and code)
@@ -14,7 +14,7 @@ Scientific decisions are made by the people named in [`AGENTS.md`](agents.qmd); 
 
 ## This repository
 
-`R/main.R` runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in `original/`.
+`R/main.R` runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from {sRtr}. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in `original/`.
 
 Contributions follow the rules in [`AGENTS.md`](agents.qmd).
 
@@ -34,10 +34,10 @@ Four documents describe the project. In short: the plan is the scientific intent
 ## Pages
 
 -   [**Clinical background**](background.qmd): the three studies and why each mapped regional variation.
--   [**Methodological background**](methodological_background.qmd): an introduction to mapping in R (sf, projections, choropleths, tmap and insets), pointing to Walker's *Analyzing US Census Data*.
+-   [**Methodological background**](methodological_background.qmd): an introduction to mapping in R ([{sf}](https://r-spatial.github.io/sf/), projections, choropleths, [{tmap}](https://r-tmap.github.io/tmap/) and insets), pointing to Walker's *Analyzing US Census Data*.
 -   [**Study design and methods**](study_methods.qmd): what the maps show and the choices behind them, in plain language.
 -   [**Setup**](setup.qmd): packages and shared constants.
--   [**Functions**](functions.qmd): reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.
+-   [**Functions**](functions.qmd): reading summaries, choosing centers, and drawing the [{ggplot2}](https://ggplot2.tidyverse.org/) and {tmap} maps.
 -   [**1. Map geography**](map_geography.qmd): regions, outlines, labels, centers and the inset extent, shared by every study.
 -   [**2. HCV donors (2021)**](hcv_map.qmd): the HCV-donor maps.
 -   [**3. DCD donors (2024)**](dcd_map.qmd): the four DCD-donor maps.

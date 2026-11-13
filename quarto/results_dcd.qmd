@@ -42,7 +42,7 @@ Download as PDF: share [with inset](../figures/dcd/pct_of_us_dcd_inset.pdf) or [
 
 ### Reading map 1
 
-**Three regions did about two thirds of the DCD-donor transplants** (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the tmap version.
+**Three regions did about two thirds of the DCD-donor transplants** (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the [{tmap}](https://r-tmap.github.io/tmap/) version.
 
 **Two regions did none.** Region 2, from Pennsylvania to Washington, DC, and Region 6, the Northwest, did no DCD-donor multiorgan heart transplants in the study period. They are drawn in the lightest colour because their value is zero, not grey, because the value is known. Region 10 did one.
 
