@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,17 +117,6 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   content: '⏳';
   background-image: none;
 }
-div.callout-Results.callout {
-  border-left-color: #198754;
-}
-div.callout-Results.callout-style-default > .callout-header {
-  background-color: rgba(25, 135, 84, 0.13);
-}
-div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
-  content: '📊';
-  background-image: none;
-}
 div.callout-Rcode.callout {
   border-left-color: #d63384;
 }
@@ -137,6 +126,17 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
+  background-image: none;
+}
+div.callout-Results.callout {
+  border-left-color: #198754;
+}
+div.callout-Results.callout-style-default > .callout-header {
+  background-color: rgba(25, 135, 84, 0.13);
+}
+div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
+  content: '📊';
   background-image: none;
 }
 </style>
@@ -479,7 +479,7 @@ Source code
 </div>
 <section id="joining-values-to-the-map" class="level2">
 <h2 class="anchored" data-anchor-id="joining-values-to-the-map">Joining values to the map</h2>
-<p>The original code split each spreadsheet’s “Region 1: Connecticut, Maine, …” text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. sRtr’s <code>UNOS_regions_sf</code> already records each state’s region, so each study’s table needs only the region name. Every state takes its region’s values. The original code used <code>inner_join()</code>, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.</p>
+<p>The original code split each spreadsheet’s “Region 1: Connecticut, Maine, …” text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a>’s <code>UNOS_regions_sf</code> already records each state’s region, so each study’s table needs only the region name. Every state takes its region’s values. The original code used <code>inner_join()</code>, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -630,7 +630,7 @@ Source code
 </section>
 <section id="the-map-in-tmap-with-a-corridor-inset" class="level2">
 <h2 class="anchored" data-anchor-id="the-map-in-tmap-with-a-corridor-inset">The map, in tmap, with a corridor inset</h2>
-<p>Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map’s layers are written once, in <code>map_layers()</code>, and used twice: for the main map and, with <code>bbox</code> set to the corridor, for the inset. Building the inset as its own map, rather than giving <code>tm_inset()</code> a bounding box, lets it carry its own region numbers (<code>inset_labels</code>); a red outline of <code>corridor_box</code> on the main map shows where it is. <code>tm_pos_out()</code> places the inset outside the map frame, to the right, and the colour legend, the center symbol (<code>tm_add_legend()</code>) and the note (<code>tm_credits()</code>) along the bottom, so none of them hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (<code>rev = TRUE</code>) so that high values get the dark end, as they do in <code>scale_fill_continuous_sequential()</code>.</p>
+<p>Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map’s layers are written once, in <code>map_layers()</code>, and used twice: for the main map and, with <code>bbox</code> set to the corridor, for the inset. Building the inset as its own map, rather than giving <code>tm_inset()</code> a bounding box, lets it carry its own region numbers (<code>inset_labels</code>); a red outline of <code>corridor_box</code> on the main map shows where it is. <code>tm_pos_out()</code> places the inset outside the map frame, to the right, and the colour legend, the center symbol (<code>tm_add_legend()</code>) and the note (<code>tm_credits()</code>) along the bottom, so none of them hides any part of the country. One difference from <a href="https://ggplot2.tidyverse.org/">{ggplot2}</a>: <a href="https://r-tmap.github.io/tmap/">{tmap}</a> takes the palette as a vector of colours, which has to be reversed (<code>rev = TRUE</code>) so that high values get the dark end, as they do in <code>scale_fill_continuous_sequential()</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -1241,7 +1241,7 @@ Source code
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Joining values to the map</span></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>The original code split each spreadsheet's "Region 1: Connecticut, Maine, ..." text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. sRtr's <span class="in">`UNOS_regions_sf`</span> already records each state's region, so each study's table needs only the region name. Every state takes its region's values. The original code used <span class="in">`inner_join()`</span>, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>The original code split each spreadsheet's "Region 1: Connecticut, Maine, ..." text into seven state columns and pivoted it long, so that it could be joined to a Census shapefile. <span class="co">[</span><span class="ot">{sRtr}</span><span class="co">](https://vagishhemmige.github.io/sRtr/)</span>'s <span class="in">`UNOS_regions_sf`</span> already records each state's region, so each study's table needs only the region name. Every state takes its region's values. The original code used <span class="in">`inner_join()`</span>, which silently drops a region whose name is spelled differently. This function stops instead and names the missing region.</span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: join-region-values</span></span>
@@ -1286,7 +1286,7 @@ Source code
 <span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## The map, in tmap, with a corridor inset</span></span>
 <span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map's layers are written once, in <span class="in">`map_layers()`</span>, and used twice: for the main map and, with <span class="in">`bbox`</span> set to the corridor, for the inset. Building the inset as its own map, rather than giving <span class="in">`tm_inset()`</span> a bounding box, lets it carry its own region numbers (<span class="in">`inset_labels`</span>); a red outline of <span class="in">`corridor_box`</span> on the main map shows where it is. <span class="in">`tm_pos_out()`</span> places the inset outside the map frame, to the right, and the colour legend, the center symbol (<span class="in">`tm_add_legend()`</span>) and the note (<span class="in">`tm_credits()`</span>) along the bottom, so none of them hides any part of the country. One difference from ggplot2: tmap takes the palette as a vector of colours, which has to be reversed (<span class="in">`rev = TRUE`</span>) so that high values get the dark end, as they do in <span class="in">`scale_fill_continuous_sequential()`</span>.</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>Between Washington and Boston, transplant centers crowd so closely that they overlap on a national map. The map's layers are written once, in <span class="in">`map_layers()`</span>, and used twice: for the main map and, with <span class="in">`bbox`</span> set to the corridor, for the inset. Building the inset as its own map, rather than giving <span class="in">`tm_inset()`</span> a bounding box, lets it carry its own region numbers (<span class="in">`inset_labels`</span>); a red outline of <span class="in">`corridor_box`</span> on the main map shows where it is. <span class="in">`tm_pos_out()`</span> places the inset outside the map frame, to the right, and the colour legend, the center symbol (<span class="in">`tm_add_legend()`</span>) and the note (<span class="in">`tm_credits()`</span>) along the bottom, so none of them hides any part of the country. One difference from <span class="co">[</span><span class="ot">{ggplot2}</span><span class="co">](https://ggplot2.tidyverse.org/)</span>: <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> takes the palette as a vector of colours, which has to be reversed (<span class="in">`rev = TRUE`</span>) so that high values get the dark end, as they do in <span class="in">`scale_fill_continuous_sequential()`</span>.</span>
 <span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: map-regions-tmap</span></span>

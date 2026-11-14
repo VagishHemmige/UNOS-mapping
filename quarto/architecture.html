@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,17 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <style>
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
-}
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
-}
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
-  background-image: none;
-}
 div.callout-Pending.callout {
   border-left-color: #f0c400;
 }
@@ -140,6 +129,17 @@ div.callout-Results.callout-style-default > .callout-header {
 div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
   content: '📊';
+  background-image: none;
+}
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 </style>
@@ -484,7 +484,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <p>How the code that draws the regional maps is organized, as implemented on the <code>site-ready</code> branch (November 2026). The <a href="https://github.com/VagishHemmige/UNOS-mapping/blob/main/analysis-plan.md">analysis plan</a> says what the maps must show; <a href="https://github.com/VagishHemmige/UNOS-mapping/blob/main/AGENTS.md">AGENTS.md</a> says how to work on them.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><code>R/main.R</code> runs six scripts in order. The first two set up packages, constants and helper functions. <code>R/map_geography.R</code> builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study’s regional counts, joins them to the shared layers, and saves two maps per measure to <code>figures/&lt;study&gt;/</code> (one drawn with ggplot2, and one with tmap with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to <code>tables/</code>.</p>
+<p><code>R/main.R</code> runs six scripts in order. The first two set up packages, constants and helper functions. <code>R/map_geography.R</code> builds the map layers every study shares, from the <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a> package and the live HRSA transplant-center layer. Each study script then holds that study’s regional counts, joins them to the shared layers, and saves two maps per measure to <code>figures/&lt;study&gt;/</code> (one drawn with <a href="https://ggplot2.tidyverse.org/">{ggplot2}</a>, and one with <a href="https://r-tmap.github.io/tmap/">{tmap}</a> with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to <code>tables/</code>.</p>
 <p>The Quarto website explains the scripts. Its pages import the scripts’ labelled sections with <code>knitr::read_chunk()</code> and show them; they never run the analysis. The Results pages (<code>quarto/results.qmd</code> and one <code>quarto/results_&lt;study&gt;.qmd</code> per study) show the saved maps and tables. A GitHub Actions workflow runs <code>R/main.R</code>, renders the site and publishes it on every push to <code>main</code>, so the maps and the site are always drawn from the code on <code>main</code>.</p>
 </section>
 <section id="architecture-diagram" class="level2">
@@ -514,7 +514,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <h3 class="anchored" data-anchor-id="helper-functions">Helper functions</h3>
 <p><strong>Purpose</strong>: reusable steps shared by every study. Each takes its inputs as arguments and reads no global objects.</p>
 <p><strong>Location</strong>: <code>R/functions.R</code></p>
-<p><strong>Key functions</strong>: - <code>join_region_values()</code>: attaches a study’s regional table to the state polygons by region name; stops if any of the eleven regions is missing. - <code>select_adult_centers()</code>: keeps centers listing the organ, one row per <code>OTC_CD</code>, applies the pediatric name rule, projects to <code>map_crs</code>, and drops centers outside the mapped states. - <code>place_region_labels()</code>: points for the region numbers, kept clear of the corridor box on the main map (<code>where = "main"</code>) or inside it for the inset (<code>where = "inset"</code>). - <code>write_region_table()</code>: saves a study’s regional table to <code>tables/&lt;study&gt;_regions.csv</code>. - <code>map_regions_ggplot()</code>: the ggplot2 map (states shaded by region value, region outlines, boxed region numbers, centers with a legend entry, and the note as caption). - <code>map_regions_tmap()</code>: the same map in tmap 4, with the corridor inset drawn as its own map with its own numbers, a red locator box, and the legend, center symbol and note below. - <code>save_region_maps()</code>: saves both versions as PNG (300 dpi), PDF and TIFF (<code>tiff_dpi</code>) under <code>figures/&lt;study&gt;/</code>.</p>
+<p><strong>Key functions</strong>: - <code>join_region_values()</code>: attaches a study’s regional table to the state polygons by region name; stops if any of the eleven regions is missing. - <code>select_adult_centers()</code>: keeps centers listing the organ, one row per <code>OTC_CD</code>, applies the pediatric name rule, projects to <code>map_crs</code>, and drops centers outside the mapped states. - <code>place_region_labels()</code>: points for the region numbers, kept clear of the corridor box on the main map (<code>where = "main"</code>) or inside it for the inset (<code>where = "inset"</code>). - <code>write_region_table()</code>: saves a study’s regional table to <code>tables/&lt;study&gt;_regions.csv</code>. - <code>map_regions_ggplot()</code>: the {ggplot2} map (states shaded by region value, region outlines, boxed region numbers, centers with a legend entry, and the note as caption). - <code>map_regions_tmap()</code>: the same map in {tmap} 4, with the corridor inset drawn as its own map with its own numbers, a red locator box, and the legend, center symbol and note below. - <code>save_region_maps()</code>: saves both versions as PNG (300 dpi), PDF and TIFF (<code>tiff_dpi</code>) under <code>figures/&lt;study&gt;/</code>.</p>
 <p><strong>Interactions</strong>: sourced second; used by <code>R/map_geography.R</code> and the study scripts.</p>
 </section>
 <section id="map-geography" class="level3">
@@ -528,7 +528,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <h3 class="anchored" data-anchor-id="study-scripts">Study scripts</h3>
 <p><strong>Purpose</strong>: one per published study. Each writes out its regional counts with <code>tibble::tribble()</code>, computes its percentages, joins them to <code>region_states</code>, and draws and saves one pair of maps per measure.</p>
 <p><strong>Location</strong>: <code>R/hcv_map.R</code>, <code>R/dcd_map.R</code>, <code>R/evmp_map.R</code></p>
-<p><strong>Produces</strong>: <code>hcv_summary</code>, <code>hcv_states</code>; <code>dcd_summary</code>, <code>dcd_states</code>; <code>evmp_summary</code>, <code>evmp_states</code>; <code>tables/&lt;study&gt;_regions.csv</code>; and the maps in <code>figures/hcv/</code>, <code>figures/dcd/</code> and <code>figures/evmp/</code>. Each map is saved as <code>&lt;measure&gt;</code> (ggplot2) and <code>&lt;measure&gt;_inset</code> (tmap), each in <code>.png</code>, <code>.pdf</code> and <code>.tiff</code>.</p>
+<p><strong>Produces</strong>: <code>hcv_summary</code>, <code>hcv_states</code>; <code>dcd_summary</code>, <code>dcd_states</code>; <code>evmp_summary</code>, <code>evmp_states</code>; <code>tables/&lt;study&gt;_regions.csv</code>; and the maps in <code>figures/hcv/</code>, <code>figures/dcd/</code> and <code>figures/evmp/</code>. Each map is saved as <code>&lt;measure&gt;</code> ({ggplot2}) and <code>&lt;measure&gt;_inset</code> ({tmap}), each in <code>.png</code>, <code>.pdf</code> and <code>.tiff</code>.</p>
 <p><strong>Interactions</strong>: need the shared layers; independent of each other.</p>
 </section>
 <section id="website" class="level3">
@@ -541,7 +541,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <h3 class="anchored" data-anchor-id="publish-workflow">Publish workflow</h3>
 <p><strong>Purpose</strong>: draws the maps with <code>R/main.R</code>, renders the site and publishes it to the <code>gh-pages</code> branch, which GitHub Pages serves.</p>
 <p><strong>Location</strong>: <code>.github/workflows/publish.yml</code></p>
-<p><strong>Interactions</strong>: runs on every push to <code>main</code> and by hand (Actions → Draw maps and publish website → Run workflow). On a pull request it draws and renders without publishing, as a check. It installs sRtr from GitHub and the other packages from CRAN, and needs internet access to the HRSA server. Each run keeps <code>figures/</code> and <code>tables/</code>, TIFFs included, as a downloadable artifact. A failed run publishes nothing, so the last good site stays live.</p>
+<p><strong>Interactions</strong>: runs on every push to <code>main</code> and by hand (Actions → Draw maps and publish website → Run workflow). On a pull request it draws and renders without publishing, as a check. It installs {sRtr} from GitHub and the other packages from CRAN, and needs internet access to the HRSA server. Each run keeps <code>figures/</code> and <code>tables/</code>, TIFFs included, as a downloadable artifact. A failed run publishes nothing, so the last good site stays live.</p>
 </section>
 <section id="provenance" class="level3">
 <h3 class="anchored" data-anchor-id="provenance">Provenance</h3>
@@ -552,15 +552,15 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <h2 class="anchored" data-anchor-id="data-flow">Data flow</h2>
 <ol type="1">
 <li><code>R/setup.R</code> attaches packages and sets constants; <code>R/functions.R</code> defines the helpers.</li>
-<li><code>R/map_geography.R</code> takes the state polygons and region outlines from sRtr, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.</li>
+<li><code>R/map_geography.R</code> takes the state polygons and region outlines from {sRtr}, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.</li>
 <li>Each study script builds its regional table from counts written in the script, computes percentages (shares of the national count for HCV and DCD; the region’s own rate for EVMP), and joins the table to the state polygons.</li>
-<li>Each study script saves its regional table to <code>tables/</code>, then, for each measure, draws the ggplot2 and tmap maps and saves them to <code>figures/&lt;study&gt;/</code>.</li>
+<li>Each study script saves its regional table to <code>tables/</code>, then, for each measure, draws the {ggplot2} and {tmap} maps and saves them to <code>figures/&lt;study&gt;/</code>.</li>
 <li>Quarto renders the site, copying the maps for the Results page, and the publish workflow pushes it to the <code>gh-pages</code> branch.</li>
 </ol>
 </section>
 <section id="configuration" class="level2">
 <h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
-<p>All settings are constants in <code>R/setup.R</code>; no environment variables or data paths are needed. The region geography comes with sRtr, and the regional counts are in the study scripts. The HRSA layer is downloaded from <code>gisportal.hrsa.gov</code>, so a run needs internet access to that host.</p>
+<p>All settings are constants in <code>R/setup.R</code>; no environment variables or data paths are needed. The region geography comes with {sRtr}, and the regional counts are in the study scripts. The HRSA layer is downloaded from <code>gisportal.hrsa.gov</code>, so a run needs internet access to that host.</p>
 </section>
 <section id="code-references" class="level2">
 <h2 class="anchored" data-anchor-id="code-references">Code references</h2>
@@ -647,7 +647,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 <tbody>
 <tr class="odd">
 <td>UNOS region</td>
-<td>One of the eleven groups of states the OPTN uses; sRtr assigns each state to one region</td>
+<td>One of the eleven groups of states the OPTN uses; {sRtr} assigns each state to one region</td>
 </tr>
 <tr class="even">
 <td><code>map_crs</code></td>
@@ -655,7 +655,7 @@ It reads only ARCHITECTURE.md, never data, and runs no analysis code.
 </tr>
 <tr class="odd">
 <td>Corridor inset</td>
-<td>The enlarged view of DC to Boston in the tmap maps</td>
+<td>The enlarged view of DC to Boston in the {tmap} maps</td>
 </tr>
 <tr class="even">
 <td>Share of the national count</td>

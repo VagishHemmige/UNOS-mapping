@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,6 +126,17 @@ div.csl-indent {
   }
 }</script>
 <style>
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
+}
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
+}
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
+  background-image: none;
+}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -146,17 +157,6 @@ div.callout-Rcode.callout-style-default > .callout-header {
 div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
   content: '💻';
-  background-image: none;
-}
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
-}
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
-}
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
   background-image: none;
 }
 </style>
@@ -498,11 +498,6 @@ Provisional
 <h2 class="anchored" data-anchor-id="what-is-on-every-map">What is on every map</h2>
 <p>Every map is built from the same layers, in the same order, so once you can read one you can read them all.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>On the map</th>
@@ -519,12 +514,12 @@ Provisional
 <tr class="even">
 <td><strong>Thin grey lines</strong></td>
 <td>State borders</td>
-<td>Census state boundaries, through sRtr <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span></td>
+<td>Census state boundaries, through <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a> <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span></td>
 </tr>
 <tr class="odd">
 <td><strong>Thick black lines</strong></td>
 <td>The borders of the eleven UNOS regions</td>
-<td>sRtr’s region outlines</td>
+<td>{sRtr}’s region outlines</td>
 </tr>
 <tr class="even">
 <td><strong>Navy numbers on pale boxes</strong></td>
@@ -548,12 +543,12 @@ Provisional
 </tr>
 </tbody>
 </table>
-<p>The tmap version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.</p>
+<p>The <a href="https://r-tmap.github.io/tmap/">{tmap}</a> version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.</p>
 <p>Light colours are low values and dark red ones are high. The legend gives the numbers. No map on this site uses a grey state: every region has a value in all three studies, even when that value is zero.</p>
 </section>
 <section id="which-states-are-in-each-region" class="level2">
 <h2 class="anchored" data-anchor-id="which-states-are-in-each-region">Which states are in each region</h2>
-<p>The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in sRtr’s region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.</p>
+<p>The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in {sRtr}’s region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -657,8 +652,8 @@ Share of the national count, or the region's own rate
 <h2 class="anchored" data-anchor-id="two-versions-of-each-map">Two versions of each map</h2>
 <p>Each map is drawn twice, and the study pages show both in tabs:</p>
 <ul>
-<li><strong>With corridor inset (tmap)</strong>, shown first, with the Washington-Boston corridor enlarged beside the main map.</li>
-<li><strong>Without inset (ggplot2)</strong>, closest in look to the maps in the published papers.</li>
+<li><strong>With corridor inset ({tmap})</strong>, shown first, with the Washington-Boston corridor enlarged beside the main map.</li>
+<li><strong>Without inset (<a href="https://ggplot2.tidyverse.org/">{ggplot2}</a>)</strong>, closest in look to the maps in the published papers.</li>
 </ul>
 <p>The two show the same values with the same colours. Every map can be downloaded as a PDF, a vector file that stays sharp at any size, from the link under it. TIFF files at 600 dots per inch, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then <em>Artifacts</em>).</p>
 
@@ -1167,20 +1162,20 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> On the map <span class="pp">|</span> What it shows <span class="pp">|</span> Where it comes from <span class="pp">|</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Shaded states** <span class="pp">|</span> The value for the state's UNOS region. Every state in a region has the same colour. <span class="pp">|</span> The region's count in the published study <span class="pp">|</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Thin grey lines** <span class="pp">|</span> State borders <span class="pp">|</span> Census state boundaries, through sRtr <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span> <span class="pp">|</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Thick black lines** <span class="pp">|</span> The borders of the eleven UNOS regions <span class="pp">|</span> sRtr's region outlines <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Thin grey lines** <span class="pp">|</span> State borders <span class="pp">|</span> Census state boundaries, through <span class="co">[</span><span class="ot">{sRtr}</span><span class="co">](https://vagishhemmige.github.io/sRtr/)</span> <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Thick black lines** <span class="pp">|</span> The borders of the eleven UNOS regions <span class="pp">|</span> {sRtr}'s region outlines <span class="pp">|</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Navy numbers on pale boxes** <span class="pp">|</span> Each region's number, 1 to 11 <span class="pp">|</span> Placed inside each region by the code <span class="pp">|</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Dots** <span class="pp">|</span> Adult heart-transplant centers, at their true locations. They are partly transparent, so where several overlap the dot looks darker. <span class="pp">|</span> HRSA's current transplant-center list <span class="co">[</span><span class="ot">@hrsa_otc_layer</span><span class="co">]</span> <span class="pp">|</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Grey states** <span class="pp">|</span> A region with no value <span class="pp">|</span> Shown as *no data*, never as zero <span class="pp">|</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Note under the map** <span class="pp">|</span> Where the shading and the dots come from, and the date the center list was downloaded <span class="pp">|</span> Printed on every map <span class="pp">|</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>The tmap version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Light colours are low values and dark red ones are high. The legend gives the numbers. No map on this site uses a grey state: every region has a value in all three studies, even when that value is zero.</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which states are in each region</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in sRtr's region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in {sRtr}'s region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Region <span class="pp">|</span> States on the maps <span class="pp">|</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
@@ -1234,8 +1229,8 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>Each map is drawn twice, and the study pages show both in tabs:</span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**With corridor inset (tmap)**, shown first, with the Washington-Boston corridor enlarged beside the main map.</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Without inset (ggplot2)**, closest in look to the maps in the published papers.</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**With corridor inset ({tmap})**, shown first, with the Washington-Boston corridor enlarged beside the main map.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Without inset ([{ggplot2}](https://ggplot2.tidyverse.org/))**, closest in look to the maps in the published papers.</span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>The two show the same values with the same colours. Every map can be downloaded as a PDF, a vector file that stays sharp at any size, from the link under it. TIFF files at 600 dots per inch, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then *Artifacts*).</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>

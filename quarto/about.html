@@ -96,7 +96,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -473,7 +473,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 
 <section id="the-study" class="level2">
 <h2 class="anchored" data-anchor-id="the-study">The study</h2>
-<p>This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>, and teaches how to draw them with the sRtr package <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. The maps’ values come from the published analyses and are public.</p>
+<p>This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>, and teaches how to draw them with the <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a> package <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. The maps’ values come from the published analyses and are public.</p>
 <ul>
 <li><strong>Shivank Madan</strong> (principal investigator of the studies)</li>
 <li><strong>Vagish Hemmige</strong> (mapping and code)</li>
@@ -482,7 +482,7 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 </section>
 <section id="this-repository" class="level2">
 <h2 class="anchored" data-anchor-id="this-repository">This repository</h2>
-<p><code>R/main.R</code> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study’s regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <code>original/</code>.</p>
+<p><code>R/main.R</code> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from {sRtr}. Each study’s regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <code>original/</code>.</p>
 <p>Contributions follow the rules in <a href="../quarto/agents.html"><code>AGENTS.md</code></a>.</p>
 </section>
 <section id="how-this-website-was-created" class="level2">
@@ -501,10 +501,10 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
 <h2 class="anchored" data-anchor-id="pages">Pages</h2>
 <ul>
 <li><a href="../quarto/background.html"><strong>Clinical background</strong></a>: the three studies and why each mapped regional variation.</li>
-<li><a href="../quarto/methodological_background.html"><strong>Methodological background</strong></a>: an introduction to mapping in R (sf, projections, choropleths, tmap and insets), pointing to Walker’s <em>Analyzing US Census Data</em>.</li>
+<li><a href="../quarto/methodological_background.html"><strong>Methodological background</strong></a>: an introduction to mapping in R (<a href="https://r-spatial.github.io/sf/">{sf}</a>, projections, choropleths, <a href="https://r-tmap.github.io/tmap/">{tmap}</a> and insets), pointing to Walker’s <em>Analyzing US Census Data</em>.</li>
 <li><a href="../quarto/study_methods.html"><strong>Study design and methods</strong></a>: what the maps show and the choices behind them, in plain language.</li>
 <li><a href="../quarto/setup.html"><strong>Setup</strong></a>: packages and shared constants.</li>
-<li><a href="../quarto/functions.html"><strong>Functions</strong></a>: reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.</li>
+<li><a href="../quarto/functions.html"><strong>Functions</strong></a>: reading summaries, choosing centers, and drawing the <a href="https://ggplot2.tidyverse.org/">{ggplot2}</a> and {tmap} maps.</li>
 <li><a href="../quarto/map_geography.html"><strong>1. Map geography</strong></a>: regions, outlines, labels, centers and the inset extent, shared by every study.</li>
 <li><a href="../quarto/hcv_map.html"><strong>2. HCV donors (2021)</strong></a>: the HCV-donor maps.</li>
 <li><a href="../quarto/dcd_map.html"><strong>3. DCD donors (2024)</strong></a>: the four DCD-donor maps.</li>
@@ -1002,7 +1002,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## The study</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry <span class="co">[</span><span class="ot">@madan2021hcv; @madan2024dcd; @madan2025evmp</span><span class="co">]</span>, and teaches how to draw them with the sRtr package <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. The maps' values come from the published analyses and are public.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This site reproduces the regional maps from published heart-transplantation studies that used the UNOS registry <span class="co">[</span><span class="ot">@madan2021hcv; @madan2024dcd; @madan2025evmp</span><span class="co">]</span>, and teaches how to draw them with the <span class="co">[</span><span class="ot">{sRtr}</span><span class="co">](https://vagishhemmige.github.io/sRtr/)</span> package <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. The maps' values come from the published analyses and are public.</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Shivank Madan** (principal investigator of the studies)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Vagish Hemmige** (mapping and code)</span>
@@ -1011,7 +1011,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## This repository</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">`R/main.R`</span> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from sRtr. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <span class="in">`original/`</span>.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">`R/main.R`</span> runs the scripts in order: setup, shared map layers, then one script per study. The region geography and transplant centers come from {sRtr}. Each study's regional counts, published in its paper, are written out in its script. The original RMDs are kept unchanged in <span class="in">`original/`</span>.</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Contributions follow the rules in <span class="co">[</span><span class="ot">`AGENTS.md`</span><span class="co">](agents.qmd)</span>.</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
@@ -1031,10 +1031,10 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pages</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Clinical background**</span><span class="co">](background.qmd)</span>: the three studies and why each mapped regional variation.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Methodological background**</span><span class="co">](methodological_background.qmd)</span>: an introduction to mapping in R (sf, projections, choropleths, tmap and insets), pointing to Walker's *Analyzing US Census Data*.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Methodological background**</span><span class="co">](methodological_background.qmd)</span>: an introduction to mapping in R (<span class="co">[</span><span class="ot">{sf}</span><span class="co">](https://r-spatial.github.io/sf/)</span>, projections, choropleths, <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> and insets), pointing to Walker's *Analyzing US Census Data*.</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Study design and methods**</span><span class="co">](study_methods.qmd)</span>: what the maps show and the choices behind them, in plain language.</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Setup**</span><span class="co">](setup.qmd)</span>: packages and shared constants.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Functions**</span><span class="co">](functions.qmd)</span>: reading summaries, choosing centers, and drawing the ggplot2 and tmap maps.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**Functions**</span><span class="co">](functions.qmd)</span>: reading summaries, choosing centers, and drawing the <span class="co">[</span><span class="ot">{ggplot2}</span><span class="co">](https://ggplot2.tidyverse.org/)</span> and {tmap} maps.</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**1. Map geography**</span><span class="co">](map_geography.qmd)</span>: regions, outlines, labels, centers and the inset extent, shared by every study.</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**2. HCV donors (2021)**</span><span class="co">](hcv_map.qmd)</span>: the HCV-donor maps.</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">**3. DCD donors (2024)**</span><span class="co">](dcd_map.qmd)</span>: the four DCD-donor maps.</span>

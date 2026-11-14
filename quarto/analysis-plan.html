@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -513,18 +513,18 @@ gives this page GitHub-style IDs and those links work on both.
 <section id="scope-and-reporting-framework" class="level2">
 <h2 class="anchored" data-anchor-id="scope-and-reporting-framework">Scope and reporting framework</h2>
 <p>This document is the authoritative specification of the study’s scientific objectives, population, definitions, estimands and statistical methods. <code>ARCHITECTURE.md</code> documents the implementation, <code>AGENTS.md</code> the working conventions, and GitHub Issues the open decisions and implementation status. Neither file supersedes this plan.</p>
-<p>This repository reproduces the regional maps from a series of published heart-transplantation studies that used the United Network for Organ Sharing (UNOS) registry, and teaches how to build them with the sRtr package <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. The underlying studies, their cohorts and their regional summaries are specified in the published papers; this plan covers only how a regional summary becomes a map. Reporting follows STROBE and RECORD <span class="citation" data-cites="vonelm2007strobe benchimol2015record">(<a href="#ref-vonelm2007strobe" role="doc-biblioref">Elm et al. 2007</a>; <a href="#ref-benchimol2015record" role="doc-biblioref">Benchimol et al. 2015</a>)</span> as they apply to a descriptive figure. The reporting map below links each checklist item to a section of this plan.</p>
+<p>This repository reproduces the regional maps from a series of published heart-transplantation studies that used the United Network for Organ Sharing (UNOS) registry, and teaches how to build them with the <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a> package <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. The underlying studies, their cohorts and their regional summaries are specified in the published papers; this plan covers only how a regional summary becomes a map. Reporting follows STROBE and RECORD <span class="citation" data-cites="vonelm2007strobe benchimol2015record">(<a href="#ref-vonelm2007strobe" role="doc-biblioref">Elm et al. 2007</a>; <a href="#ref-benchimol2015record" role="doc-biblioref">Benchimol et al. 2015</a>)</span> as they apply to a descriptive figure. The reporting map below links each checklist item to a section of this plan.</p>
 </section>
 <section id="1-background-and-rationale" class="level2">
 <h2 class="anchored" data-anchor-id="1-background-and-rationale">1. Background and rationale</h2>
-<p>Each study below reported that use of a donor type or technology varied widely across UNOS regions. A map of the eleven UNOS regions shows that variation at a glance. The original maps were drawn with hand-built region tables, a local Census shapefile and a downloaded list of transplant centers. The sRtr package now holds the region geography and downloads the transplant-center layer, so the same maps can be drawn from a few package calls.</p>
+<p>Each study below reported that use of a donor type or technology varied widely across UNOS regions. A map of the eleven UNOS regions shows that variation at a glance. The original maps were drawn with hand-built region tables, a local Census shapefile and a downloaded list of transplant centers. The {sRtr} package now holds the region geography and downloads the transplant-center layer, so the same maps can be drawn from a few package calls.</p>
 </section>
 <section id="2-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="2-objectives">2. Objectives</h2>
 <ul>
 <li><strong>Primary:</strong> for each study, draw a map of the 48 contiguous states and the District of Columbia, with each state shaded by the value of its UNOS region and the eleven region boundaries drawn over the states.</li>
 <li><strong>Secondary:</strong> overlay the locations of adult heart-transplant centers on the same map.</li>
-<li><strong>Teaching:</strong> show the original code and the sRtr version side by side for each study.</li>
+<li><strong>Teaching:</strong> show the original code and the {sRtr} version side by side for each study.</li>
 </ul>
 <table class="caption-top table">
 <colgroup>
@@ -565,7 +565,7 @@ gives this page GitHub-style IDs and those links work on both.
 <h2 class="anchored" data-anchor-id="4-data-sources-and-measurement-periods">4. Data sources and measurement periods</h2>
 <ul>
 <li><strong>Regional counts:</strong> for each study, the number of transplants by UNOS region, written out in that study’s script. They are the counts behind the published regional figures, and their totals match the papers (109 of 1,322; 87 of 1,581; 561 of 12,363) <span class="citation" data-cites="madan2021hcv madan2024dcd madan2025evmp">(<a href="#ref-madan2021hcv" role="doc-biblioref">Madan et al. 2021</a>, <a href="#ref-madan2024dcd" role="doc-biblioref">2024</a>, <a href="#ref-madan2025evmp" role="doc-biblioref">2025</a>)</span>. Each was computed from the UNOS registry for the study period above.</li>
-<li><strong>Region geography:</strong> <code>UNOS_regions_sf</code> from sRtr, state polygons from the 2018 Census cartographic boundary file (1:20,000,000) with each state’s UNOS region <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>.</li>
+<li><strong>Region geography:</strong> <code>UNOS_regions_sf</code> from {sRtr}, state polygons from the 2018 Census cartographic boundary file (1:20,000,000) with each state’s UNOS region <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>.</li>
 <li><strong>Transplant centers:</strong> the HRSA organ procurement and transplantation layer, downloaded with <code>sRtr::get_hrsa_transplant_centers()</code> <span class="citation" data-cites="hrsa_otc_layer">(<a href="#ref-hrsa_otc_layer" role="doc-biblioref">Health Resources and Services Administration, n.d.</a>)</span>. The original maps used a downloaded copy of an HRSA transplant-center file.</li>
 </ul>
 <p>The maps use the current HRSA layer, downloaded each time the code runs. It describes centers as of the day it is downloaded, not as of each study period, so a center that opened or closed since a study period may be shown wrongly; this is accepted because the maps teach the method rather than restate each paper’s center list (decided by Vagish Hemmige, 2026-11-09; recorded in <code>SETUP-NOTES.md</code>, D1).</p>

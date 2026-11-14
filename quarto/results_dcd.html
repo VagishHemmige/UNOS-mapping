@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,17 +137,6 @@ div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pen
   content: '⏳';
   background-image: none;
 }
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
-}
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
-}
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
-  background-image: none;
-}
 div.callout-Results.callout {
   border-left-color: #198754;
 }
@@ -157,6 +146,17 @@ div.callout-Results.callout-style-default > .callout-header {
 div.callout-Results .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-Results.callout-style-default .callout-icon::before, div.callout-Results.callout-titled .callout-icon::before {
   content: '📊';
+  background-image: none;
+}
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
+}
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
+}
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 </style>
@@ -537,7 +537,7 @@ Provisional
 <p>Download as PDF: share <a href="../figures/dcd/pct_of_us_dcd_inset.pdf">with inset</a> or <a href="../figures/dcd/pct_of_us_dcd.pdf">without</a>; count <a href="../figures/dcd/n_dcd_inset.pdf">with inset</a> or <a href="../figures/dcd/n_dcd.pdf">without</a>.</p>
 <section id="reading-map-1" class="level3">
 <h3 class="anchored" data-anchor-id="reading-map-1">Reading map 1</h3>
-<p><strong>Three regions did about two thirds of the DCD-donor transplants</strong> (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the tmap version.</p>
+<p><strong>Three regions did about two thirds of the DCD-donor transplants</strong> (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the <a href="https://r-tmap.github.io/tmap/">{tmap}</a> version.</p>
 <p><strong>Two regions did none.</strong> Region 2, from Pennsylvania to Washington, DC, and Region 6, the Northwest, did no DCD-donor multiorgan heart transplants in the study period. They are drawn in the lightest colour because their value is zero, not grey, because the value is known. Region 10 did one.</p>
 <p><strong>The rest did between 3 and 9:</strong> Region 9 (New York and Vermont) did 9, Regions 3 and 7 did 7 each, and Regions 4 and 8 did 3 each.</p>
 </section>
@@ -1222,7 +1222,7 @@ Madan, Shivank, Jill Teitelbaum, Omar Saeed, Vagish Hemmige, Sasha Vukelic, Yogi
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reading map 1</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>**Three regions did about two thirds of the DCD-donor transplants** (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the tmap version.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>**Three regions did about two thirds of the DCD-donor transplants** (57 of 87, 66%): Region 11, from Virginia to Tennessee and the Carolinas, with 23 (26%); Region 5, from California to New Mexico, with 19 (22%); and Region 1, New England, with 15 (17%). Region 1 is small on the map, so look for it in the enlarged corridor of the <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> version.</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>**Two regions did none.** Region 2, from Pennsylvania to Washington, DC, and Region 6, the Northwest, did no DCD-donor multiorgan heart transplants in the study period. They are drawn in the lightest colour because their value is zero, not grey, because the value is known. Region 10 did one.</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>

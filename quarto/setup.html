@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,15 +126,15 @@ div.csl-indent {
   }
 }</script>
 <style>
-div.callout-Pending.callout {
-  border-left-color: #f0c400;
+div.callout-Rcode.callout {
+  border-left-color: #d63384;
 }
-div.callout-Pending.callout-style-default > .callout-header {
-  background-color: rgba(240, 196, 0, 0.13);
+div.callout-Rcode.callout-style-default > .callout-header {
+  background-color: rgba(214, 51, 132, 0.13);
 }
-div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
-  content: '⏳';
+div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
+  content: '💻';
   background-image: none;
 }
 div.callout-Results.callout {
@@ -148,15 +148,15 @@ div.callout-Results.callout-style-default .callout-icon::before, div.callout-Res
   content: '📊';
   background-image: none;
 }
-div.callout-Rcode.callout {
-  border-left-color: #d63384;
+div.callout-Pending.callout {
+  border-left-color: #f0c400;
 }
-div.callout-Rcode.callout-style-default > .callout-header {
-  background-color: rgba(214, 51, 132, 0.13);
+div.callout-Pending.callout-style-default > .callout-header {
+  background-color: rgba(240, 196, 0, 0.13);
 }
-div.callout-Rcode .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-Rcode.callout-style-default .callout-icon::before, div.callout-Rcode.callout-titled .callout-icon::before {
-  content: '💻';
+div.callout-Pending .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-Pending.callout-style-default .callout-icon::before, div.callout-Pending.callout-titled .callout-icon::before {
+  content: '⏳';
   background-image: none;
 }
 </style>
@@ -490,7 +490,7 @@ Source code
 </div>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p><a href="https://github.com/VagishHemmige/sRtr">sRtr</a> supplies the region geography and the transplant-center download, so the original scripts’ own data files are no longer needed <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with an inset of the Washington-Boston corridor. colorspace provides the <code>OrYel</code> palette the published maps used.</p>
+<p><a href="https://github.com/VagishHemmige/sRtr">{sRtr}</a> supplies the region geography and the transplant-center download, so the original scripts’ own data files are no longer needed <span class="citation" data-cites="srtr_package">(<a href="#ref-srtr_package" role="doc-biblioref">Hemmige and Czeresnia 2026</a>)</span>. sf handles the spatial data. <a href="https://ggplot2.tidyverse.org/">{ggplot2}</a> draws the main version of each map, and <a href="https://r-tmap.github.io/tmap/">{tmap}</a> (version 4) draws the version with an inset of the Washington-Boston corridor. <a href="https://colorspace.R-Forge.R-project.org/">{colorspace}</a> provides the <code>OrYel</code> palette the published maps used.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -507,8 +507,8 @@ Source code
 <section id="constants" class="level2">
 <h2 class="anchored" data-anchor-id="constants">Constants</h2>
 <ul>
-<li><code>map_crs</code> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.</li>
-<li><code>corridor_extent</code> is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</li>
+<li><code>map_crs</code> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection {sRtr} stores its region data in.</li>
+<li><code>corridor_extent</code> is the area enlarged in the {tmap} inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</li>
 <li><code>adult_center_exceptions</code> are the two centers with “Children” in their name that the original maps kept because they also transplant adults.</li>
 <li>There is no data path: each study’s regional counts are written out in its own script.</li>
 <li><code>label_margin</code> is the gap, in metres, kept between the corridor box and the region numbers placed beside or inside it.</li>
@@ -1061,7 +1061,7 @@ Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRt
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Packages</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">sRtr</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. sf handles the spatial data. ggplot2 draws the main version of each map, and tmap (version 4) draws the version with an inset of the Washington-Boston corridor. colorspace provides the <span class="in">`OrYel`</span> palette the published maps used.</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">{sRtr}</span><span class="co">](https://github.com/VagishHemmige/sRtr)</span> supplies the region geography and the transplant-center download, so the original scripts' own data files are no longer needed <span class="co">[</span><span class="ot">@srtr_package</span><span class="co">]</span>. sf handles the spatial data. <span class="co">[</span><span class="ot">{ggplot2}</span><span class="co">](https://ggplot2.tidyverse.org/)</span> draws the main version of each map, and <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> (version 4) draws the version with an inset of the Washington-Boston corridor. <span class="co">[</span><span class="ot">{colorspace}</span><span class="co">](https://colorspace.R-Forge.R-project.org/)</span> provides the <span class="in">`OrYel`</span> palette the published maps used.</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-packages</span></span>
@@ -1070,8 +1070,8 @@ Hemmige, Vagish, and Jonathan Czeresnia. 2026. <span>“<span class="nocase">sRt
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Constants</span></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`map_crs`</span> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection sRtr stores its region data in.</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`corridor_extent`</span> is the area enlarged in the tmap inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`map_crs`</span> is the projection every layer is put in before plotting: NAD83 / Conus Albers (EPSG:5070), the projection {sRtr} stores its region data in.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`corridor_extent`</span> is the area enlarged in the {tmap} inset, in longitude and latitude: the Washington-Boston corridor, from DC to Boston, where centers crowd together.</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`adult_center_exceptions`</span> are the two centers with "Children" in their name that the original maps kept because they also transplant adults.</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>There is no data path: each study's regional counts are written out in its own script.</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`label_margin`</span> is the gap, in metres, kept between the corridor box and the region numbers placed beside or inside it.</span>

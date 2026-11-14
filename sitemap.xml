@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_evmp.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/evmp_map.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/background.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/dcd_map.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/setup.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_dcd.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/about.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/agents.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/repository-blueprint.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/hcv_map.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/index.html</loc>
-    <lastmod>2026-11-12T00:39:18.097Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_hcv.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
     <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/original_code.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/functions.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/study_methods.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/analysis-plan.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
   </url>
   <url>
-    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/map_geography.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_dcd.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/background.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/repository-blueprint.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_hcv.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/dcd_map.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/hcv_map.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results_evmp.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/methodological_background.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/index.html</loc>
+    <lastmod>2026-11-14T00:06:28.047Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/setup.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
   </url>
   <url>
     <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/architecture.html</loc>
-    <lastmod>2026-11-12T00:39:18.099Z</lastmod>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/about.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/map_geography.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/agents.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/evmp_map.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/functions.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/study_methods.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vagishhemmige.github.io/UNOS-mapping/quarto/results.html</loc>
+    <lastmod>2026-11-14T00:06:28.048Z</lastmod>
   </url>
 </urlset>

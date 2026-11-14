@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dc857c0f987a6ff99153cd59fcca08e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed4181ec4840461b71f3d36593007b19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -497,7 +497,7 @@ Source code
 </div>
 <section id="states-and-regions" class="level2">
 <h2 class="anchored" data-anchor-id="states-and-regions">States and regions</h2>
-<p>In the original scripts this took three files: a spreadsheet listing each region’s states, the 2018 Census state shapefile, and code to split, pivot and join them. sRtr was built from exactly that code, so the result now ships with the package as <code>UNOS_regions_sf</code>: one row per state (the 48 contiguous states and the District of Columbia) with its region. <code>get_hrsa_optn_regions()</code> dissolves the states into one outline per region. Both are put in <code>map_crs</code>, so every layer shares one projection.</p>
+<p>In the original scripts this took three files: a spreadsheet listing each region’s states, the 2018 Census state shapefile, and code to split, pivot and join them. <a href="https://vagishhemmige.github.io/sRtr/">{sRtr}</a> was built from exactly that code, so the result now ships with the package as <code>UNOS_regions_sf</code>: one row per state (the 48 contiguous states and the District of Columbia) with its region. <code>get_hrsa_optn_regions()</code> dissolves the states into one outline per region. Both are put in <code>map_crs</code>, so every layer shares one projection.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -539,7 +539,7 @@ Source code
 </section>
 <section id="the-corridor-inset" class="level2">
 <h2 class="anchored" data-anchor-id="the-corridor-inset">The corridor inset</h2>
-<p>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <code>R/setup.R</code>, which is easier to read and change than projected coordinates. Here it is turned into a box in <code>map_crs</code>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <code>corridor_box</code>, because the tmap maps draw it in red on the main map and use it to place the region numbers.</p>
+<p>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <code>R/setup.R</code>, which is easier to read and change than projected coordinates. Here it is turned into a box in <code>map_crs</code>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <code>corridor_box</code>, because the <a href="https://r-tmap.github.io/tmap/">{tmap}</a> maps draw it in red on the main map and use it to place the region numbers.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to show/hide R Code</summary>
@@ -1075,7 +1075,7 @@ Health Resources and Services Administration. n.d. <span>“Organ Procurement an
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## States and regions</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>In the original scripts this took three files: a spreadsheet listing each region's states, the 2018 Census state shapefile, and code to split, pivot and join them. sRtr was built from exactly that code, so the result now ships with the package as <span class="in">`UNOS_regions_sf`</span>: one row per state (the 48 contiguous states and the District of Columbia) with its region. <span class="in">`get_hrsa_optn_regions()`</span> dissolves the states into one outline per region. Both are put in <span class="in">`map_crs`</span>, so every layer shares one projection.</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>In the original scripts this took three files: a spreadsheet listing each region's states, the 2018 Census state shapefile, and code to split, pivot and join them. <span class="co">[</span><span class="ot">{sRtr}</span><span class="co">](https://vagishhemmige.github.io/sRtr/)</span> was built from exactly that code, so the result now ships with the package as <span class="in">`UNOS_regions_sf`</span>: one row per state (the 48 contiguous states and the District of Columbia) with its region. <span class="in">`get_hrsa_optn_regions()`</span> dissolves the states into one outline per region. Both are put in <span class="in">`map_crs`</span>, so every layer shares one projection.</span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: region-geography</span></span>
@@ -1095,7 +1095,7 @@ Health Resources and Services Administration. n.d. <span>“Organ Procurement an
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## The corridor inset</span></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <span class="in">`R/setup.R`</span>, which is easier to read and change than projected coordinates. Here it is turned into a box in <span class="in">`map_crs`</span>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <span class="in">`corridor_box`</span>, because the tmap maps draw it in red on the main map and use it to place the region numbers.</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in <span class="in">`R/setup.R`</span>, which is easier to read and change than projected coordinates. Here it is turned into a box in <span class="in">`map_crs`</span>. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, <span class="in">`corridor_box`</span>, because the <span class="co">[</span><span class="ot">{tmap}</span><span class="co">](https://r-tmap.github.io/tmap/)</span> maps draw it in red on the main map and use it to place the region numbers.</span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: corridor-inset</span></span>
