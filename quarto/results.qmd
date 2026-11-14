@@ -18,20 +18,20 @@ Every map is built from the same layers, in the same order, so once you can read
 | On the map | What it shows | Where it comes from |
 |---|---|---|
 | **Shaded states** | The value for the state's UNOS region. Every state in a region has the same colour. | The region's count in the published study |
-| **Thin grey lines** | State borders | Census state boundaries, through sRtr [@srtr_package] |
-| **Thick black lines** | The borders of the eleven UNOS regions | sRtr's region outlines |
+| **Thin grey lines** | State borders | Census state boundaries, through [{sRtr}](https://vagishhemmige.github.io/sRtr/) [@srtr_package] |
+| **Thick black lines** | The borders of the eleven UNOS regions | {sRtr}'s region outlines |
 | **Navy numbers on pale boxes** | Each region's number, 1 to 11 | Placed inside each region by the code |
 | **Dots** | Adult heart-transplant centers, at their true locations. They are partly transparent, so where several overlap the dot looks darker. | HRSA's current transplant-center list [@hrsa_otc_layer] |
 | **Grey states** | A region with no value | Shown as *no data*, never as zero |
 | **Note under the map** | Where the shading and the dots come from, and the date the center list was downloaded | Printed on every map |
 
-The tmap version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.
+The [{tmap}](https://r-tmap.github.io/tmap/) version adds two things: a red box on the main map around the stretch from Washington, DC, to Boston, and an enlarged copy of that box beside the map. Between those cities, centers sit so close together that their dots overlap on a national map; the enlarged copy separates them.
 
 Light colours are low values and dark red ones are high. The legend gives the numbers. No map on this site uses a grey state: every region has a value in all three studies, even when that value is zero.
 
 ## Which states are in each region
 
-The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in sRtr's region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.
+The Organ Procurement and Transplantation Network (OPTN), operated by the United Network for Organ Sharing (UNOS), groups the states into eleven regions. The maps use the grouping in {sRtr}'s region table, which places each state in one region. Alaska, Hawaii and Puerto Rico are not on the maps.
 
 | Region | States on the maps |
 |---|---|
@@ -85,7 +85,7 @@ The paper behind each map gives the full analysis, including trends over time an
 
 Each map is drawn twice, and the study pages show both in tabs:
 
--   **With corridor inset (tmap)**, shown first, with the Washington-Boston corridor enlarged beside the main map.
--   **Without inset (ggplot2)**, closest in look to the maps in the published papers.
+-   **With corridor inset ({tmap})**, shown first, with the Washington-Boston corridor enlarged beside the main map.
+-   **Without inset ([{ggplot2}](https://ggplot2.tidyverse.org/))**, closest in look to the maps in the published papers.
 
 The two show the same values with the same colours. Every map can be downloaded as a PDF, a vector file that stays sharp at any size, from the link under it. TIFF files at 600 dots per inch, for journal submission, are kept with each run of the publishing workflow on GitHub (Actions, the run, then *Artifacts*).

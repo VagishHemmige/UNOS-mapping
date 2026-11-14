@@ -52,7 +52,7 @@ The counts and percentages behind the maps, with readable column names, are save
 
 ## Maps
 
-For each measure the same two functions draw the ggplot2 map and the tmap map with the corridor inset, and save both under `figures/hcv/` as PNG, PDF and TIFF. Both carry the center legend and the note from [Map geography](map_geography.qmd#transplant-centers).
+For each measure the same two functions draw the [{ggplot2}](https://ggplot2.tidyverse.org/) map and the [{tmap}](https://r-tmap.github.io/tmap/) map with the corridor inset, and save both under `figures/hcv/` as PNG, PDF and TIFF. Both carry the center legend and the note from [Map geography](map_geography.qmd#transplant-centers).
 
 This was the first of these maps, and the later RMDs copied its code. Compared with the original, everything that set up the geography is gone from this script: it is in [Map geography](map_geography.qmd), shared by every study.
 

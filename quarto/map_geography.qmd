@@ -27,7 +27,7 @@ knitr::read_chunk("../R/map_geography.R")
 
 ## States and regions
 
-In the original scripts this took three files: a spreadsheet listing each region's states, the 2018 Census state shapefile, and code to split, pivot and join them. sRtr was built from exactly that code, so the result now ships with the package as `UNOS_regions_sf`: one row per state (the 48 contiguous states and the District of Columbia) with its region. `get_hrsa_optn_regions()` dissolves the states into one outline per region. Both are put in `map_crs`, so every layer shares one projection.
+In the original scripts this took three files: a spreadsheet listing each region's states, the 2018 Census state shapefile, and code to split, pivot and join them. [{sRtr}](https://vagishhemmige.github.io/sRtr/) was built from exactly that code, so the result now ships with the package as `UNOS_regions_sf`: one row per state (the 48 contiguous states and the District of Columbia) with its region. `get_hrsa_optn_regions()` dissolves the states into one outline per region. Both are put in `map_crs`, so every layer shares one projection.
 
 ```{r}
 #| label: region-geography
@@ -47,7 +47,7 @@ The layer shows centers as they are on the day the code runs, not as they were d
 
 ## The corridor inset
 
-The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in `R/setup.R`, which is easier to read and change than projected coordinates. Here it is turned into a box in `map_crs`. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, `corridor_box`, because the tmap maps draw it in red on the main map and use it to place the region numbers.
+The inset enlarges the Washington-Boston corridor, the stretch from DC through Baltimore, Philadelphia, New York and Hartford to Providence and Boston where centers crowd together. The extent is set in longitude and latitude in `R/setup.R`, which is easier to read and change than projected coordinates. Here it is turned into a box in `map_crs`. Projecting a rectangle bends its edges, so the box is projected as a polygon and its bounding box taken, so that no corner of the corridor is cut off. The box is kept as a polygon, `corridor_box`, because the [{tmap}](https://r-tmap.github.io/tmap/) maps draw it in red on the main map and use it to place the region numbers.
 
 ```{r}
 #| label: corridor-inset

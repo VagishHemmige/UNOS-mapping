@@ -12,7 +12,7 @@ Citation](https://img.shields.io/badge/use-not_for_citation-lightgrey)](#)
 
 The goal of this repository is to reproduce the UNOS-region maps from
 published heart-transplantation registry studies, and to teach how to
-draw them with the [sRtr](https://github.com/VagishHemmige/sRtr)
+draw them with the [{sRtr}](https://github.com/VagishHemmige/sRtr)
 package. It covers the HCV-donor (2021), DCD-donor (2024) and
 machine-perfusion (2025) studies so far; the original RMDs are kept
 unchanged in `original/`.
@@ -34,8 +34,8 @@ The website, which explains the code step by step, is available at:
 
 ## Running the analysis
 
-Run `R/main.R` from the project root. It needs sRtr
-(`remotes::install_github("VagishHemmige/sRtr")`), tmap 4.x and an
+Run `R/main.R` from the project root. It needs {sRtr}
+(`remotes::install_github("VagishHemmige/sRtr")`), [{tmap}](https://r-tmap.github.io/tmap/) 4.x and an
 internet connection for the HRSA transplant-center layer. On GitHub, the
 “Draw maps and publish website” workflow does the same on every push to
 `main` and publishes the site to GitHub Pages. Each study’s regional

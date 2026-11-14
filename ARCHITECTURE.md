@@ -4,7 +4,7 @@ How the code that draws the regional maps is organized, as implemented on the `s
 
 ## Overview
 
-`R/main.R` runs six scripts in order. The first two set up packages, constants and helper functions. `R/map_geography.R` builds the map layers every study shares, from the sRtr package and the live HRSA transplant-center layer. Each study script then holds that study's regional counts, joins them to the shared layers, and saves two maps per measure to `figures/<study>/` (one drawn with ggplot2, and one with tmap with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to `tables/`.
+`R/main.R` runs six scripts in order. The first two set up packages, constants and helper functions. `R/map_geography.R` builds the map layers every study shares, from the [{sRtr}](https://vagishhemmige.github.io/sRtr/) package and the live HRSA transplant-center layer. Each study script then holds that study's regional counts, joins them to the shared layers, and saves two maps per measure to `figures/<study>/` (one drawn with [{ggplot2}](https://ggplot2.tidyverse.org/), and one with [{tmap}](https://r-tmap.github.io/tmap/) with an inset of the Washington-Boston corridor), each as PNG, PDF and TIFF, plus a regional table to `tables/`.
 
 The Quarto website explains the scripts. Its pages import the scripts' labelled sections with `knitr::read_chunk()` and show them; they never run the analysis. The Results pages (`quarto/results.qmd` and one `quarto/results_<study>.qmd` per study) show the saved maps and tables. A GitHub Actions workflow runs `R/main.R`, renders the site and publishes it on every push to `main`, so the maps and the site are always drawn from the code on `main`.
 
@@ -62,8 +62,8 @@ flowchart TD
 - `select_adult_centers()`: keeps centers listing the organ, one row per `OTC_CD`, applies the pediatric name rule, projects to `map_crs`, and drops centers outside the mapped states.
 - `place_region_labels()`: points for the region numbers, kept clear of the corridor box on the main map (`where = "main"`) or inside it for the inset (`where = "inset"`).
 - `write_region_table()`: saves a study's regional table to `tables/<study>_regions.csv`.
-- `map_regions_ggplot()`: the ggplot2 map (states shaded by region value, region outlines, boxed region numbers, centers with a legend entry, and the note as caption).
-- `map_regions_tmap()`: the same map in tmap 4, with the corridor inset drawn as its own map with its own numbers, a red locator box, and the legend, center symbol and note below.
+- `map_regions_ggplot()`: the {ggplot2} map (states shaded by region value, region outlines, boxed region numbers, centers with a legend entry, and the note as caption).
+- `map_regions_tmap()`: the same map in {tmap} 4, with the corridor inset drawn as its own map with its own numbers, a red locator box, and the legend, center symbol and note below.
 - `save_region_maps()`: saves both versions as PNG (300 dpi), PDF and TIFF (`tiff_dpi`) under `figures/<study>/`.
 
 **Interactions**: sourced second; used by `R/map_geography.R` and the study scripts.
@@ -89,7 +89,7 @@ flowchart TD
 
 **Location**: `R/hcv_map.R`, `R/dcd_map.R`, `R/evmp_map.R`
 
-**Produces**: `hcv_summary`, `hcv_states`; `dcd_summary`, `dcd_states`; `evmp_summary`, `evmp_states`; `tables/<study>_regions.csv`; and the maps in `figures/hcv/`, `figures/dcd/` and `figures/evmp/`. Each map is saved as `<measure>` (ggplot2) and `<measure>_inset` (tmap), each in `.png`, `.pdf` and `.tiff`.
+**Produces**: `hcv_summary`, `hcv_states`; `dcd_summary`, `dcd_states`; `evmp_summary`, `evmp_states`; `tables/<study>_regions.csv`; and the maps in `figures/hcv/`, `figures/dcd/` and `figures/evmp/`. Each map is saved as `<measure>` ({ggplot2}) and `<measure>_inset` ({tmap}), each in `.png`, `.pdf` and `.tiff`.
 
 **Interactions**: need the shared layers; independent of each other.
 
@@ -107,7 +107,7 @@ flowchart TD
 
 **Location**: `.github/workflows/publish.yml`
 
-**Interactions**: runs on every push to `main` and by hand (Actions → Draw maps and publish website → Run workflow). On a pull request it draws and renders without publishing, as a check. It installs sRtr from GitHub and the other packages from CRAN, and needs internet access to the HRSA server. Each run keeps `figures/` and `tables/`, TIFFs included, as a downloadable artifact. A failed run publishes nothing, so the last good site stays live.
+**Interactions**: runs on every push to `main` and by hand (Actions → Draw maps and publish website → Run workflow). On a pull request it draws and renders without publishing, as a check. It installs {sRtr} from GitHub and the other packages from CRAN, and needs internet access to the HRSA server. Each run keeps `figures/` and `tables/`, TIFFs included, as a downloadable artifact. A failed run publishes nothing, so the last good site stays live.
 
 ### Provenance
 
@@ -116,14 +116,14 @@ flowchart TD
 ## Data flow
 
 1. `R/setup.R` attaches packages and sets constants; `R/functions.R` defines the helpers.
-2. `R/map_geography.R` takes the state polygons and region outlines from sRtr, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.
+2. `R/map_geography.R` takes the state polygons and region outlines from {sRtr}, downloads the HRSA center layer, narrows it to adult heart centers, and projects every layer to EPSG:5070.
 3. Each study script builds its regional table from counts written in the script, computes percentages (shares of the national count for HCV and DCD; the region's own rate for EVMP), and joins the table to the state polygons.
-4. Each study script saves its regional table to `tables/`, then, for each measure, draws the ggplot2 and tmap maps and saves them to `figures/<study>/`.
+4. Each study script saves its regional table to `tables/`, then, for each measure, draws the {ggplot2} and {tmap} maps and saves them to `figures/<study>/`.
 5. Quarto renders the site, copying the maps for the Results page, and the publish workflow pushes it to the `gh-pages` branch.
 
 ## Configuration
 
-All settings are constants in `R/setup.R`; no environment variables or data paths are needed. The region geography comes with sRtr, and the regional counts are in the study scripts. The HRSA layer is downloaded from `gisportal.hrsa.gov`, so a run needs internet access to that host.
+All settings are constants in `R/setup.R`; no environment variables or data paths are needed. The region geography comes with {sRtr}, and the regional counts are in the study scripts. The HRSA layer is downloaded from `gisportal.hrsa.gov`, so a run needs internet access to that host.
 
 ## Code references
 
@@ -144,9 +144,9 @@ All settings are constants in `R/setup.R`; no environment variables or data path
 
 | Term | Definition |
 |---|---|
-| UNOS region | One of the eleven groups of states the OPTN uses; sRtr assigns each state to one region |
+| UNOS region | One of the eleven groups of states the OPTN uses; {sRtr} assigns each state to one region |
 | `map_crs` | EPSG:5070, NAD83 / Conus Albers, the projection of every layer |
-| Corridor inset | The enlarged view of DC to Boston in the tmap maps |
+| Corridor inset | The enlarged view of DC to Boston in the {tmap} maps |
 | Share of the national count | A region's count divided by the U.S. total (HCV and DCD percentages) |
 | Region's own rate | A region's count divided by its own transplants (EVMP percentage) |
 | `OTC_CD` | HRSA's transplant-center code, used to keep one row per center |

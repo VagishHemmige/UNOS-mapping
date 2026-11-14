@@ -45,7 +45,7 @@ Download as PDF: [with inset](../figures/hcv/pct_of_us_hcv_inset.pdf), [without 
 
 **The lightest regions** are Region 8 in the central Plains, with 1 transplant (under 1%), and Region 4, Texas and Oklahoma, with 2 (2%). Regions 6 and 7 each did 4 (4%).
 
-In the tmap version, the enlarged corridor shows that Regions 1, 2 and 9 meet in the crowded Northeast. Region 1, New England, did 10 (9%), and Region 2, from Pennsylvania to Washington, DC, did 6 (6%).
+In the [{tmap}](https://r-tmap.github.io/tmap/) version, the enlarged corridor shows that Regions 1, 2 and 9 meet in the crowded Northeast. Region 1, New England, did 10 (9%), and Region 2, from Pennsylvania to Washington, DC, did 6 (6%).
 
 ## Compared with all multiorgan heart transplants
 

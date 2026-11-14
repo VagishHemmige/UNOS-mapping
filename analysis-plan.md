@@ -11,7 +11,7 @@ decisions and implementation status. Neither file supersedes this plan.
 
 This repository reproduces the regional maps from a series of published heart-transplantation
 studies that used the United Network for Organ Sharing (UNOS) registry, and teaches how to
-build them with the sRtr package [@srtr_package]. The underlying studies, their cohorts and
+build them with the [{sRtr}](https://vagishhemmige.github.io/sRtr/) package [@srtr_package]. The underlying studies, their cohorts and
 their regional summaries are specified in the published papers; this plan covers only how a
 regional summary becomes a map. Reporting follows STROBE and RECORD
 [@vonelm2007strobe; @benchimol2015record] as they apply to a descriptive figure. The
@@ -22,7 +22,7 @@ reporting map below links each checklist item to a section of this plan.
 Each study below reported that use of a donor type or technology varied widely across UNOS
 regions. A map of the eleven UNOS regions shows that variation at a glance. The original maps
 were drawn with hand-built region tables, a local Census shapefile and a downloaded list of
-transplant centers. The sRtr package now holds the region geography and downloads the
+transplant centers. The {sRtr} package now holds the region geography and downloads the
 transplant-center layer, so the same maps can be drawn from a few package calls.
 
 ## 2. Objectives
@@ -31,7 +31,7 @@ transplant-center layer, so the same maps can be drawn from a few package calls.
   Columbia, with each state shaded by the value of its UNOS region and the eleven region
   boundaries drawn over the states.
 - **Secondary:** overlay the locations of adult heart-transplant centers on the same map.
-- **Teaching:** show the original code and the sRtr version side by side for each study.
+- **Teaching:** show the original code and the {sRtr} version side by side for each study.
 
 | Study | Measures mapped by region |
 |---|---|
@@ -56,7 +56,7 @@ No new cohort is drawn and no new statistic is estimated.
   match the papers (109 of 1,322; 87 of 1,581; 561 of 12,363)
   [@madan2021hcv; @madan2024dcd; @madan2025evmp]. Each was computed from the UNOS registry for the
   study period above.
-- **Region geography:** `UNOS_regions_sf` from sRtr, state polygons from the 2018 Census
+- **Region geography:** `UNOS_regions_sf` from {sRtr}, state polygons from the 2018 Census
   cartographic boundary file (1:20,000,000) with each state's UNOS region [@srtr_package].
 - **Transplant centers:** the HRSA organ procurement and transplantation layer, downloaded with
   `sRtr::get_hrsa_transplant_centers()` [@hrsa_otc_layer]. The original maps used a downloaded
